@@ -23,7 +23,7 @@ jobs:
       - name: Lint API Gateway
         working-directory: ebia-backend/api-gateway
         run: |
-          npm ci --omit=dev
+          npm install --omit=dev
           node --check src/index.js
           node --check src/routes/auth.js
           node --check src/routes/tracks.js
