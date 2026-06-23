@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Poppins", ui-sans-serif, sans-serif;
+  color: #1f1330;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, .font-heading {
+  font-family: "Baloo 2", ui-rounded, sans-serif;
+}
+
+::selection {
+  background-color: #E0C2FF;
+}
+
+/* Hide scrollbar for testimonial / gallery carousels if needed */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
