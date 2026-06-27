@@ -7,8 +7,8 @@ import { useAboutStats, useTeam } from "../hooks/useSiteData";
 import { img } from "../data/siteData";
 
 export default function About() {
-  const { data: aboutStats } = useAboutStats();
-  const { data: team } = useTeam();
+  const { data: aboutStats = [] } = useAboutStats();
+  const { data: team = [] } = useTeam();
 
   return (
     <div className="font-body">

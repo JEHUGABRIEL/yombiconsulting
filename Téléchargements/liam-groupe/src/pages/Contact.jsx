@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
 import { FacebookIcon, InstagramIcon, XIcon, YoutubeIcon } from "../components/SocialIcons";
 import Navbar from "../components/Navbar";
@@ -5,10 +6,13 @@ import Footer from "../components/Footer";
 import SectionHeading from "../components/SectionHeading";
 import { useSiteInfo } from "../hooks/useSiteData";
 import { img } from "../data/siteData";
+import useUnsavedChanges from "../hooks/useUnsavedChanges";
 
 export default function Contact() {
-  const { data: siteInfo } = useSiteInfo();
-  const info = siteInfo?.contactPage;
+  const { data: siteInfo = {} } = useSiteInfo();
+  const info = siteInfo?.contactPage ?? {};
+  const [contactDirty, setContactDirty] = useState(false);
+  const { blocker } = useUnsavedChanges(contactDirty);
 
   return (
     <div className="font-body">
@@ -60,8 +64,9 @@ export default function Contact() {
             </div>
 
             <form
-              onSubmit={(e) => e.preventDefault()}
+              onSubmit={(e) => { e.preventDefault(); setContactDirty(false); }}
               className="bg-white border border-gray-100 shadow-card rounded-2xl p-8 space-y-5 h-fit"
+              onInput={() => setContactDirty(true)}
             >
               <h3 className="font-heading font-bold text-lg">Envoyez-nous un message</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
@@ -96,6 +101,38 @@ export default function Contact() {
                 Envoyer le message <Send className="w-4 h-4" />
               </button>
             </form>
+
+            {/* Blocker modal — changements non sauvegardés */}
+            {blocker.state === "blocked" && (
+              <div className="fixed inset-0 z-[60] flex items-center justify-center px-4">
+                <div className="fixed inset-0 bg-black/50" onClick={() => blocker.reset()} />
+                <div className="relative bg-white rounded-2xl shadow-xl p-6 w-full max-w-sm text-center">
+                  <div className="mx-auto mb-4 w-14 h-14 rounded-full bg-amber-50 flex items-center justify-center">
+                    <Send className="w-6 h-6 text-amber-500" />
+                  </div>
+                  <h3 className="font-heading font-bold text-lg mb-2">
+                    Message non envoyé
+                  </h3>
+                  <p className="text-gray-500 text-sm mb-6">
+                    Vous avez commencé à écrire un message. Voulez-vous vraiment quitter cette page ?
+                  </p>
+                  <div className="flex items-center justify-center gap-3">
+                    <button
+                      onClick={() => blocker.reset()}
+                      className="px-5 py-2.5 rounded-full border border-gray-200 text-sm font-medium hover:bg-gray-50 transition-colors"
+                    >
+                      Rester
+                    </button>
+                    <button
+                      onClick={() => blocker.proceed()}
+                      className="px-5 py-2.5 rounded-full bg-brand-500 hover:bg-brand-600 text-white text-sm font-semibold transition-colors"
+                    >
+                      Quitter
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -118,7 +155,7 @@ export default function Contact() {
   );
 }
 
-function ContactItem({ icon: Icon, label, lines }) {
+function ContactItem({ icon: Icon, label, lines = [] }) {
   return (
     <div className="flex gap-4">
       <span className="w-11 h-11 rounded-full bg-brand-50 text-brand-600 flex items-center justify-center shrink-0">
@@ -126,7 +163,7 @@ function ContactItem({ icon: Icon, label, lines }) {
       </span>
       <div>
         <p className="font-heading font-bold">{label}</p>
-        {lines.map((l) => (
+        {(lines ?? []).map((l) => (
           <p key={l} className="text-gray-500">
             {l}
           </p>

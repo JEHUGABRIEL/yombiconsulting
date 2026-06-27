@@ -8,7 +8,7 @@ import { usePartners } from "../hooks/useSiteData";
 import { img } from "../data/siteData";
 
 export default function Partners() {
-  const { data: partners } = usePartners();
+  const { data: partners = [] } = usePartners();
 
   return (
     <div className="font-body">

@@ -2,7 +2,7 @@ import { ExternalLink } from "lucide-react";
 
 export default function PartnerCard({ partner }) {
   return (
-    <div className="bg-gray-50 rounded-2xl border border-gray-100 overflow-hidden flex flex-col h-full">
+    <div className="bg-gray-50 rounded-2xl border border-gray-100 overflow-hidden flex flex-col h-full hover:lift transition-all duration-300">
       <div className="p-8 pb-6">
         {partner.logo ? (
           <div className="w-20 h-20 flex items-center justify-center mb-4">
@@ -37,7 +37,7 @@ export default function PartnerCard({ partner }) {
         {partner.website && (
           <a
             href={partner.website}
-            className="mt-4 inline-flex items-center gap-1.5 text-violet-600 font-semibold text-sm"
+            className="mt-4 inline-flex items-center gap-1.5 text-brand-600 font-semibold text-sm"
           >
             Visiter le site <ExternalLink className="w-3.5 h-3.5" />
           </a>

@@ -102,6 +102,17 @@ CREATE INDEX idx_events_status ON events(status);
 CREATE INDEX idx_news_slug ON news(slug);
 CREATE INDEX idx_site_settings_key ON site_settings(key);
 
+-- Administrateurs
+CREATE TABLE admins (
+  id BIGSERIAL PRIMARY KEY,
+  email TEXT UNIQUE NOT NULL,
+  password_hash TEXT NOT NULL,
+  name TEXT NOT NULL DEFAULT 'Admin',
+  created_at TIMESTAMPTZ DEFAULT now()
+);
+
+CREATE INDEX idx_admins_email ON admins(email);
+
 -- Row Level Security (lecture publique pour tous, écriture restreinte)
 ALTER TABLE domains ENABLE ROW LEVEL SECURITY;
 ALTER TABLE events ENABLE ROW LEVEL SECURITY;
@@ -110,6 +121,7 @@ ALTER TABLE team ENABLE ROW LEVEL SECURITY;
 ALTER TABLE partners ENABLE ROW LEVEL SECURITY;
 ALTER TABLE testimonials ENABLE ROW LEVEL SECURITY;
 ALTER TABLE site_settings ENABLE ROW LEVEL SECURITY;
+ALTER TABLE admins ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY "Lecture publique domains" ON domains FOR SELECT USING (true);
 CREATE POLICY "Lecture publique events" ON events FOR SELECT USING (true);
@@ -118,3 +130,4 @@ CREATE POLICY "Lecture publique team" ON team FOR SELECT USING (true);
 CREATE POLICY "Lecture publique partners" ON partners FOR SELECT USING (true);
 CREATE POLICY "Lecture publique testimonials" ON testimonials FOR SELECT USING (true);
 CREATE POLICY "Lecture publique site_settings" ON site_settings FOR SELECT USING (true);
+CREATE POLICY "Lecture publique admins" ON admins FOR SELECT USING (true);

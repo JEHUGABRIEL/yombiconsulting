@@ -6,7 +6,7 @@ import DomainCard from "../components/DomainCard";
 import { useDomains } from "../hooks/useSiteData";
 
 export default function DomainsIndex() {
-  const { data: domains } = useDomains();
+  const { data: domains = [] } = useDomains();
 
   return (
     <div className="font-body">

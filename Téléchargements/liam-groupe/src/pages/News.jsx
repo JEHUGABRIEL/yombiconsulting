@@ -5,7 +5,7 @@ import { useNews } from "../hooks/useSiteData";
 import { img } from "../data/siteData";
 
 export default function News_() {
-  const { data: news } = useNews();
+  const { data: news = [] } = useNews();
 
   return (
     <div className="font-body">

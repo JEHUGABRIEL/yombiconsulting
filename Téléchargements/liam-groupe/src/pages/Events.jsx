@@ -12,9 +12,9 @@ const filters = [
 ];
 
 export default function Events() {
-  const { data: events } = useEvents();
+  const { data: events = [] } = useEvents();
   const [active, setActive] = useState("tous");
-  const filtered = active === "tous" ? events : events?.filter((e) => e.status === active) ?? [];
+  const filtered = active === "tous" ? events : events.filter((e) => e.status === active);
 
   return (
     <div className="font-body">

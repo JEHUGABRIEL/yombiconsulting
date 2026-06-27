@@ -1,82 +1,32 @@
 // Données centrales du site LIAM Groupe
-// Images stockées dans public/images/ — organisées par dossier
+// Images hébergées sur Cloudinary — optimisées avec f_auto,q_auto
 
-// Mapping des seeds vers les fichiers images locaux
-const imageMap = {
-  // === HEROES (evenement/) ===
-  'home-hero':            '/images/evenement/649663282_122119437861196199_4232496391102016781_n.jpg',
-  'apropos-hero':         '/images/evenement/650067036_122119437711196199_2231611111698518038_n.jpg',
-  'contact-hero':         '/images/evenement/650402859_122119438095196199_6492690932660757656_n.jpg',
-  'evenements-hero':      '/images/evenement/651295601_122119437513196199_2457018190910906925_n.jpg',
-  'actualites-hero':      '/images/evenement/653706933_122120105469196199_1489113583567859840_n.jpg',
-  'partenaires-hero':     '/images/evenement/653713573_122120105385196199_851877391939734809_n.jpg',
+const CLOUD_NAME = 'dwmrzp61c'
+const BASE_URL = `https://res.cloudinary.com/${CLOUD_NAME}/image/upload`
 
-  // === G-FITNESS (g_fitness/) ===
-  'gfitness-hero':        '/images/g_fitness/710813088_1616388847160101_5103056724183321054_n.jpg',
-  'gfitness-gallery-1':   '/images/g_fitness/711744946_1616380387160947_5725491531577466523_n.jpg',
-  'gfitness-gallery-2':   '/images/g_fitness/712429303_1616380573827595_8604384611473644257_n.jpg',
+/**
+ * Génère une URL Cloudinary optimisée pour une image.
+ * Utilise f_auto (meilleur format) et q_auto (qualité optimale).
+ * @param {string} seed  Identifiant unique de l'image (ex: "home-hero")
+ * @param {number} w     Largeur souhaitée
+ * @param {number} h     Hauteur souhaitée
+ * @param {string} fit   Mode de redimensionnement (fill, scale, etc.)
+ * @param {string} quality Qualité Cloudinary (auto, eco, best, good, low)
+ */
+export const img = (seed, w = 800, h = 600, fit = 'fill', quality = 'auto') =>
+  `${BASE_URL}/f_auto,q_${quality},w_${w},h_${h},c_${fit}/v1/liam-groupe/${seed}`
 
-  // === O'GAB (evenement/) ===
-  'ogab-hero':            '/images/evenement/675285399_122126148903196199_1429673116459782946_n.jpg',
-  'ogab-gallery-1':       '/images/evenement/678331755_122126148987196199_7585214201883727236_n.jpg',
-  'ogab-gallery-2':       '/images/evenement/678598104_122126148861196199_4152059427134768769_n.jpg',
+/**
+ * Génère une URL de blur placeholder Cloudinary (très petite, qualité basse)
+ * pour l'effet de chargement progressif (LQIP).
+ */
+export const imgBlur = (seed) =>
+  `${BASE_URL}/f_auto,q_10,w_200,h_112,c_fill,e_blur:500/v1/liam-groupe/${seed}`
 
-  // === FORMATION (evenement/) ===
-  'formation-hero':       '/images/evenement/680399735_122126213229196199_5404875384034859661_n.jpg',
-  'formation-gallery-1':  '/images/evenement/680460056_122126148945196199_3490687067894665868_n.jpg',
-  'formation-gallery-2':  '/images/evenement/680586062_122126213271196199_3361551129820773528_n.jpg',
-
-  // === ENTREPRENEURIAT (evenement/entrepreneuriat/) ===
-  'entreprenariat-hero':       '/images/evenement/entrepreneuriat/710756876_122131505535196199_4017371313737603502_n.jpg',
-  'entreprenariat-gallery-1':  '/images/evenement/entrepreneuriat/710813088_122131505319196199_8017949178372935704_n.jpg',
-  'entreprenariat-gallery-2':  '/images/evenement/entrepreneuriat/710813114_122131524471196199_7378646415528087130_n.jpg',
-
-  // === COMMUNICATION (evenement/entrepreneuriat/) ===
-  'communication-hero':       '/images/evenement/entrepreneuriat/710831116_122131524207196199_8376494647517036671_n.jpg',
-  'communication-gallery-1':  '/images/evenement/entrepreneuriat/710831124_122131505805196199_3526435494416366913_n.jpg',
-  'communication-gallery-2':  '/images/evenement/entrepreneuriat/711670764_122131523727196199_2664650814454473234_n.jpg',
-
-  // === ÉVÉNEMENTIEL (evenement/special_fete_des_meres/) ===
-  'evenementiel-hero':       '/images/evenement/special_fete_des_meres/723481236_122134397847196199_7640928971276495049_n.jpg',
-  'evenementiel-gallery-1':  '/images/evenement/special_fete_des_meres/723626716_122134404231196199_7926060632808668280_n.jpg',
-  'evenementiel-gallery-2':  '/images/evenement/special_fete_des_meres/725816702_122134400163196199_6720898922191010531_n.jpg',
-
-  // === ÉVÉNEMENTS (evenement/special_fete_des_meres/) ===
-  'event-basketball':    '/images/evenement/special_fete_des_meres/725839081_122134396695196199_1703171203389804767_n.jpg',
-  'event-conference':    '/images/evenement/special_fete_des_meres/726373097_122134399581196199_8758511037572396978_n.jpg',
-  'event-formation':     '/images/evenement/special_fete_des_meres/726440405_122134397709196199_6812586940256257699_n.jpg',
-  'event-gala':          '/images/evenement/special_fete_des_meres/726564088_122134396977196199_4013649599622405352_n.jpg',
-  'event-gastronomie':   '/images/evenement/special_fete_des_meres/726970418_122134396635196199_3649580582898974317_n.jpg',
-  'event-miss':          '/images/evenement/special_fete_des_meres/727136720_122134404405196199_9044791104474009986_n.jpg',
-
-  // === ACTUALITÉS (evenement/special_fete_des_meres/) ===
-  'news-prix':          '/images/evenement/special_fete_des_meres/727323144_122134396827196199_4803349184958600155_n.jpg',
-  'news-minusca':       '/images/evenement/special_fete_des_meres/727338303_122134396503196199_3307266805496510671_n.jpg',
-  'news-ogab':          '/images/evenement/special_fete_des_meres/728234769_122134396359196199_3765211981059786002_n.jpg',
-  'news-formation':     '/images/evenement/special_fete_des_meres/728255261_122134405107196199_7265209287056731082_n.jpg',
-  'news-basketball':    '/images/evenement/special_fete_des_meres/728969719_122134398249196199_8780774270968223765_n.jpg',
-  'news-portrait':      '/images/evenement/special_fete_des_meres/729349947_122134404189196199_8423426739964680475_n.jpg',
-
-  // === ÉQUIPE (evenement/entrepreneuriat/) ===
-  'team-marie-claire':  '/images/evenement/entrepreneuriat/711774813_122131524759196199_1580422163330799514_n.jpg',
-  'team-jean-pierre':   '/images/evenement/entrepreneuriat/711774814_122131505277196199_7895555856177219119_n.jpg',
-  'team-aminata':       '/images/evenement/entrepreneuriat/712267294_122131523919196199_1425467711991150454_n.jpg',
-  'team-florence':      '/images/evenement/entrepreneuriat/712340022_122131505889196199_2231557571859049472_n.jpg',
-  'team-romain':        '/images/evenement/entrepreneuriat/712524715_122131523823196199_3668925581966465087_n.jpg',
-  'team-esther':        '/images/evenement/entrepreneuriat/712563411_122131505361196199_451566848508466121_n.jpg',
-
-  // === TÉMOIGNAGES (evenement/entrepreneuriat/) ===
-  'testimonial-christelle':  '/images/evenement/entrepreneuriat/713204712_122131505667196199_2692011052590305838_n.jpg',
-  'testimonial-michel':      '/images/evenement/entrepreneuriat/713584366_122131524801196199_1457990253509752430_n.jpg',
-  'testimonial-fatime':      '/images/evenement/entrepreneuriat/713703370_122131506225196199_7083104748121761186_n.jpg',
-
-  // === À PROPOS (evenement/entrepreneuriat/) ===
-  'apropos-1':  '/images/evenement/entrepreneuriat/713903395_122131506033196199_7875976423008481828_n.jpg',
-  'apropos-2':  '/images/evenement/entrepreneuriat/714570791_122131505937196199_2981623218367628560_n.jpg',
-};
-
-export const img = (seed, w = 800, h = 600) =>
-  imageMap[seed] || `https://picsum.photos/seed/${seed}/${w}/${h}`;
+/**
+ * Version optimisée pour les images hero — plus légère et éco.
+ */
+export const imgHero = (seed) => img(seed, 1600, 900, 'fill', 'eco')
 
 export const siteInfo = {
   name: "LIAM",
@@ -541,7 +491,7 @@ export const partners = [
   {
     name: "FAFECA",
     initial: "F",
-    logo: "/images/partenaires/fafeca.png",
+    logo: "https://res.cloudinary.com/dwmrzp61c/image/upload/f_auto,q_auto/v1/liam-groupe/fafeca.png",
     color: "#8A0015",
     category: "PARTENAIRE INSTITUTIONNEL",
     subtitle: "Fédération des Associations Féminines de Centrafrique",
@@ -553,7 +503,7 @@ export const partners = [
   {
     name: "ASK Gras Savoye",
     initial: "A",
-    logo: "/images/partenaires/ask%20gras%20savoye.png",
+    logo: "https://res.cloudinary.com/dwmrzp61c/image/upload/f_auto,q_auto/v1/liam-groupe/ask-gras-savoye.png",
     color: "#16335B",
     category: "PARTENAIRE CORPORATE",
     subtitle: "ASK Gras Savoye - Bangui",
@@ -587,7 +537,7 @@ export const partners = [
   {
     name: "MINUSCA",
     initial: "M",
-    logo: "/images/partenaires/minusca.png",
+    logo: "https://res.cloudinary.com/dwmrzp61c/image/upload/f_auto,q_auto/v1/liam-groupe/minusca.png",
     color: "#2255A4",
     category: "PARTENAIRE INTERNATIONAL",
     subtitle: "Mission Multidimensionnelle Intégrée des Nations Unies pour la Stabilisation en Centrafrique",

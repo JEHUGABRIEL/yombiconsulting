@@ -1,20 +1,22 @@
 import { useState } from "react";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { useTestimonials } from "../hooks/useSiteData";
+import useScrollReveal from "../hooks/useScrollReveal";
 
 export default function TestimonialCarousel() {
   const [page, setPage] = useState(0);
-  const { data: testimonials } = useTestimonials();
+  const { data: testimonials = [] } = useTestimonials();
   const pages = [testimonials, [...testimonials.slice(1), testimonials[0]]];
+  const sectionRef = useScrollReveal();
 
   return (
-    <div>
+    <div ref={sectionRef}>
       <div className="relative">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 stagger-children">
           {pages[page].map((t, i) => (
             <div
               key={t.name + i}
-              className="bg-white rounded-2xl border border-gray-100 shadow-card p-7"
+              className="bg-white rounded-2xl border border-gray-100 shadow-card p-7 reveal hover:lift transition-all duration-300"
             >
               <div className="flex gap-1 text-amber-400 mb-4">
                 {Array.from({ length: 5 }).map((_, idx) => (

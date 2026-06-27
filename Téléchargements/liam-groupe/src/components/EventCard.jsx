@@ -10,12 +10,12 @@ import { CalendarDays, MapPin } from "lucide-react";
 export default function EventCard({ event, compact = false }) {
   const isUpcoming = event.status === "a_venir";
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 shadow-card overflow-hidden flex flex-col h-full">
-      <div className="relative h-56">
-        <img src={event.image} alt={event.title} className="w-full h-full object-cover" loading="lazy" />
+    <div className="bg-white rounded-2xl border border-gray-100 shadow-card overflow-hidden flex flex-col h-full hover:lift transition-all duration-300 group">
+      <div className="relative h-56 overflow-hidden">
+        <img src={event.image} alt={event.title} className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" loading="lazy" />
         <span
           className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold ${
-            isUpcoming ? "bg-coral-500 text-white" : "bg-ink/80 text-white"
+            isUpcoming ? "bg-brand-500 text-white" : "bg-ink/80 text-white"
           }`}
         >
           {isUpcoming ? "À venir" : "Passé"}
@@ -42,7 +42,7 @@ export default function EventCard({ event, compact = false }) {
             {event.category}
           </span>
         ) : isUpcoming ? (
-          <button className="mt-5 w-full py-3 rounded-full border border-violet-200 text-violet-600 font-semibold hover:bg-violet-50 transition-colors">
+          <button className="mt-5 w-full py-3 rounded-full border border-brand-100 text-brand-600 font-semibold hover:bg-brand-50 transition-colors">
             S'inscrire →
           </button>
         ) : null}

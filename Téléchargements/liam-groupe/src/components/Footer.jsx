@@ -4,8 +4,9 @@ import { FacebookIcon, InstagramIcon, XIcon, YoutubeIcon } from "./SocialIcons";
 import { useSiteInfo, useFooterLinks } from "../hooks/useSiteData";
 
 export default function Footer() {
-  const { data: siteInfo } = useSiteInfo();
-  const { data: footerLinks } = useFooterLinks();
+  const { data: siteInfo = {} } = useSiteInfo();
+  const { data: footerLinks = {} } = useFooterLinks();
+  const fLinks = { liamGroupe: [], domaines: [], agir: [], ...footerLinks };
 
   return (
     <footer className="bg-ink text-white">
@@ -67,7 +68,7 @@ export default function Footer() {
           <div>
             <h4 className="font-heading font-bold mb-4">LIAM Groupe</h4>
             <ul className="space-y-3 text-white/60">
-              {footerLinks.liamGroupe.map((l) => (
+              {fLinks.liamGroupe.map((l) => (
                 <li key={l.label}>
                   <Link to={l.to} className="hover:text-white transition-colors">
                     {l.label}
@@ -80,7 +81,7 @@ export default function Footer() {
           <div>
             <h4 className="font-heading font-bold mb-4">Domaines</h4>
             <ul className="space-y-3 text-white/60">
-              {footerLinks.domaines.map((l) => (
+              {fLinks.domaines.map((l) => (
                 <li key={l.label}>
                   <Link to={l.to} className="hover:text-white transition-colors">
                     {l.label}
@@ -93,7 +94,7 @@ export default function Footer() {
           <div>
             <h4 className="font-heading font-bold mb-4">Agir</h4>
             <ul className="space-y-3 text-white/60">
-              {footerLinks.agir.map((l) => (
+              {fLinks.agir.map((l) => (
                 <li key={l.label}>
                   <Link to={l.to} className="hover:text-white transition-colors">
                     {l.label}

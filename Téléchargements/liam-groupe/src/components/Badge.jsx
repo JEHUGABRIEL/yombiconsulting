@@ -4,18 +4,18 @@
  */
 export default function Badge({ icon: Icon, children, variant = "rose", withRules = false }) {
   const styles =
-    variant === "violet"
-      ? "bg-violet-50 text-violet-600"
+    variant === "violet" || variant === "brand"
+      ? "bg-brand-50 text-brand-600"
       : variant === "blue"
       ? "bg-blue-50 text-blue-800"
       : "bg-rose-50 text-rose-700";
 
   if (withRules) {
     return (
-      <div className="flex items-center justify-center gap-3 text-coral-500 font-semibold tracking-[0.2em] text-xs uppercase">
-        <span className="h-px w-10 bg-coral-500/50" />
+      <div className="flex items-center justify-center gap-3 text-brand-500 font-semibold tracking-[0.2em] text-xs uppercase">
+        <span className="h-px w-10 bg-brand-500/50" />
         {children}
-        <span className="h-px w-10 bg-coral-500/50" />
+        <span className="h-px w-10 bg-brand-500/50" />
       </div>
     );
   }

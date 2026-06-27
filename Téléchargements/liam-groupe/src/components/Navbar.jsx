@@ -18,9 +18,9 @@ export default function Navbar({ transparentOnTop = true }) {
   const location = useLocation();
   const closeTimer = useRef(null);
   const [prevPath, setPrevPath] = useState(location.pathname);
-  const { data: navLinks } = useNavLinks();
-  const { data: domains } = useDomains();
-  const { data: siteInfo } = useSiteInfo();
+  const { data: navLinks = [] } = useNavLinks();
+  const { data: domains = [] } = useDomains();
+  const { data: siteInfo = {} } = useSiteInfo();
 
   useEffect(() => {
     if (!transparentOnTop) return;
