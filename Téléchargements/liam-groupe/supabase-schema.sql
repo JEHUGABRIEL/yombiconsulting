@@ -125,6 +125,7 @@ ALTER TABLE testimonials ENABLE ROW LEVEL SECURITY;
 ALTER TABLE site_settings ENABLE ROW LEVEL SECURITY;
 ALTER TABLE admins ENABLE ROW LEVEL SECURITY;
 
+-- Lecture publique (pour le site public)
 CREATE POLICY "Lecture publique domains" ON domains FOR SELECT USING (true);
 CREATE POLICY "Lecture publique events" ON events FOR SELECT USING (true);
 CREATE POLICY "Lecture publique news" ON news FOR SELECT USING (true);
@@ -133,3 +134,36 @@ CREATE POLICY "Lecture publique partners" ON partners FOR SELECT USING (true);
 CREATE POLICY "Lecture publique testimonials" ON testimonials FOR SELECT USING (true);
 CREATE POLICY "Lecture publique site_settings" ON site_settings FOR SELECT USING (true);
 CREATE POLICY "Lecture publique admins" ON admins FOR SELECT USING (true);
+
+-- Écriture publique (pour le panneau admin — utilise la clé anon)
+CREATE POLICY "Écriture publique domains" ON domains FOR INSERT WITH CHECK (true);
+CREATE POLICY "Modification publique domains" ON domains FOR UPDATE USING (true);
+CREATE POLICY "Suppression publique domains" ON domains FOR DELETE USING (true);
+
+CREATE POLICY "Écriture publique events" ON events FOR INSERT WITH CHECK (true);
+CREATE POLICY "Modification publique events" ON events FOR UPDATE USING (true);
+CREATE POLICY "Suppression publique events" ON events FOR DELETE USING (true);
+
+CREATE POLICY "Écriture publique news" ON news FOR INSERT WITH CHECK (true);
+CREATE POLICY "Modification publique news" ON news FOR UPDATE USING (true);
+CREATE POLICY "Suppression publique news" ON news FOR DELETE USING (true);
+
+CREATE POLICY "Écriture publique team" ON team FOR INSERT WITH CHECK (true);
+CREATE POLICY "Modification publique team" ON team FOR UPDATE USING (true);
+CREATE POLICY "Suppression publique team" ON team FOR DELETE USING (true);
+
+CREATE POLICY "Écriture publique partners" ON partners FOR INSERT WITH CHECK (true);
+CREATE POLICY "Modification publique partners" ON partners FOR UPDATE USING (true);
+CREATE POLICY "Suppression publique partners" ON partners FOR DELETE USING (true);
+
+CREATE POLICY "Écriture publique testimonials" ON testimonials FOR INSERT WITH CHECK (true);
+CREATE POLICY "Modification publique testimonials" ON testimonials FOR UPDATE USING (true);
+CREATE POLICY "Suppression publique testimonials" ON testimonials FOR DELETE USING (true);
+
+CREATE POLICY "Écriture publique site_settings" ON site_settings FOR INSERT WITH CHECK (true);
+CREATE POLICY "Modification publique site_settings" ON site_settings FOR UPDATE USING (true);
+CREATE POLICY "Suppression publique site_settings" ON site_settings FOR DELETE USING (true);
+
+-- Administrateurs (pour le script create-admin.js)
+CREATE POLICY "Écriture publique admins" ON admins FOR INSERT WITH CHECK (true);
+CREATE POLICY "Modification publique admins" ON admins FOR UPDATE USING (true);

@@ -11,10 +11,38 @@
     "language": "Language"
   },
   "hero": {
-    "tagline": "Innovation · Ambition · Mission",
-    "title1": "Let's build together",
-    "title2": "the Central Africa of tomorrow",
-    "description": "LIAM Groupe mobilizes Central African women and youth through sports, entrepreneurship, community gastronomy, and training for sustainable impact in the heart of Bangui.",
+    "slides": [
+      {
+        "tagline": "Innovation · Ambition · Mission",
+        "title1": "Let's build together",
+        "title2": "the Central Africa of tomorrow",
+        "description": "LIAM Groupe mobilizes Central African women and youth through sports, entrepreneurship, community gastronomy, and training for sustainable impact in the heart of Bangui."
+      },
+      {
+        "tagline": "Sports · Health · Empowerment",
+        "title1": "Sports as a catalyst",
+        "title2": "for women's empowerment",
+        "description": "G-Fitness promotes health and well-being through sports, with programs tailored for women and youth in Bangui."
+      },
+      {
+        "tagline": "Gastronomy · Culture · Solidarity",
+        "title1": "Celebrating the richness",
+        "title2": "of Central African cuisine",
+        "description": "O'GAB creates economic opportunities for women while celebrating the gastronomy and local products of Central Africa."
+      },
+      {
+        "tagline": "Training · Employment · Future",
+        "title1": "Training youth",
+        "title2": "to build tomorrow",
+        "description": "Practical, job-oriented training programs to give Central African youth the keys to employment and success."
+      },
+      {
+        "tagline": "Partnership · Commitment · Impact",
+        "title1": "Join the adventure",
+        "title2": "human and supportive",
+        "description": "Become a partner or sponsor of LIAM Groupe and associate your image with concrete actions that change lives in the Central African Republic."
+      }
+    ],
     "ctaPartner": "Become a partner",
     "ctaEvents": "See our events",
     "seeMore": "See more"

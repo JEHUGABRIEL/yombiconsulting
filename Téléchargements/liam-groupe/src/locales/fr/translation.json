@@ -11,10 +11,38 @@
     "language": "Langue"
   },
   "hero": {
-    "tagline": "Innovation · Ambition · Mission",
-    "title1": "Construisons ensemble",
-    "title2": "la Centrafrique de demain",
-    "description": "LIAM Groupe mobilise les femmes et les jeunes centrafricains à travers le sport, l'entrepreneuriat, la gastronomie solidaire et la formation pour un impact durable au cœur de Bangui.",
+    "slides": [
+      {
+        "tagline": "Innovation · Ambition · Mission",
+        "title1": "Construisons ensemble",
+        "title2": "la Centrafrique de demain",
+        "description": "LIAM Groupe mobilise les femmes et les jeunes centrafricains à travers le sport, l'entrepreneuriat, la gastronomie solidaire et la formation pour un impact durable au cœur de Bangui."
+      },
+      {
+        "tagline": "Sport · Santé · Émancipation",
+        "title1": "Le sport au service",
+        "title2": "de l'émancipation féminine",
+        "description": "G-Fitness promeut la santé et le bien-être par le sport, avec des programmes adaptés aux femmes et aux jeunes de Bangui."
+      },
+      {
+        "tagline": "Gastronomie · Culture · Solidarité",
+        "title1": "Valorisons la richesse",
+        "title2": "culinaire centrafricaine",
+        "description": "O'GAB crée des opportunités économiques pour les femmes tout en célébrant la gastronomie et les produits locaux de Centrafrique."
+      },
+      {
+        "tagline": "Formation · Insertion · Avenir",
+        "title1": "Former les jeunes",
+        "title2": "pour construire demain",
+        "description": "Des formations pratiques et professionnalisantes pour offrir aux jeunes centrafricains les clés de leur insertion et de leur réussite."
+      },
+      {
+        "tagline": "Partenariat · Engagement · Impact",
+        "title1": "Rejoignez l'aventure",
+        "title2": "humaine et solidaire",
+        "description": "Devenez partenaire ou sponsor de LIAM Groupe et associez votre image à des actions concrètes qui changent des vies en République Centrafricaine."
+      }
+    ],
     "ctaPartner": "Devenir partenaire",
     "ctaEvents": "Voir nos événements",
     "seeMore": "Voir plus"

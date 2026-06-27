@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { ChevronDown, Globe, Menu, X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useNavLinks, useDomains, useSiteInfo } from "../hooks/useSiteData";
+import { prefetchRoute } from "../lib/routePrefetch";
 
 /**
  * Navbar — reproduit le comportement observé sur les captures :
@@ -91,6 +92,7 @@ export default function Navbar({ transparentOnTop = true }) {
                       <Link
                         key={d.slug}
                         to={`/domaines/${d.slug}`}
+                        onMouseEnter={() => prefetchRoute(`/domaines/${d.slug}`)}
                         className="block px-5 py-2.5 text-gray-700 hover:bg-brand-50 hover:text-brand-600 transition-colors"
                       >
                         {d.name}
@@ -103,6 +105,7 @@ export default function Navbar({ transparentOnTop = true }) {
               <NavLink
                 key={link.label}
                 to={link.to}
+                onMouseEnter={() => prefetchRoute(link.to)}
                 className={({ isActive }) =>
                   `font-medium transition-colors ${
                     isTransparent
@@ -155,6 +158,7 @@ export default function Navbar({ transparentOnTop = true }) {
           </div>
           <Link
             to="/partenaires"
+            onMouseEnter={() => prefetchRoute("/partenaires")}
             className={`px-6 py-2.5 rounded-full font-semibold transition-colors ${
               isTransparent
                 ? "bg-brand-500 hover:bg-brand-600 text-white"
@@ -195,6 +199,7 @@ export default function Navbar({ transparentOnTop = true }) {
                         <Link
                           key={d.slug}
                           to={`/domaines/${d.slug}`}
+                          onMouseEnter={() => prefetchRoute(`/domaines/${d.slug}`)}
                           className="py-2.5 text-gray-600 hover:text-brand-600 transition-colors"
                           onClick={() => setMobileOpen(false)}
                         >
@@ -208,6 +213,7 @@ export default function Navbar({ transparentOnTop = true }) {
                 <Link
                   key={link.label}
                   to={link.to}
+                  onMouseEnter={() => prefetchRoute(link.to)}
                   className="block py-3 font-medium text-gray-800 hover:text-brand-600 transition-colors"
                   onClick={() => setMobileOpen(false)}
                 >
@@ -236,6 +242,7 @@ export default function Navbar({ transparentOnTop = true }) {
           </div>
           <Link
             to="/partenaires"
+            onMouseEnter={() => prefetchRoute("/partenaires")}
             className="block text-center px-6 py-3 rounded-full font-semibold bg-brand-500 hover:bg-brand-600 text-white transition-colors"
             onClick={() => setMobileOpen(false)}
           >

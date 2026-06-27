@@ -115,16 +115,16 @@ export default function Home() {
         <div className="relative max-w-4xl reveal">
           <div className="flex items-center justify-center gap-3 text-brand-500 font-semibold tracking-[0.25em] text-xs uppercase mb-6 reveal">
             <span className="h-px w-10 bg-brand-500/60" />
-            {t('hero.tagline')}
+            {t(`hero.slides.${heroIdx}.tagline`)}
             <span className="h-px w-10 bg-brand-500/60" />
           </div>
           <h1 className="font-heading font-extrabold text-4xl sm:text-5xl md:text-6xl text-white leading-tight reveal">
-            {t('hero.title1')}
+            {t(`hero.slides.${heroIdx}.title1`)}
             <br />
-            <span className="text-brand-500">{t('hero.title2')}</span>
+            <span className="text-brand-500">{t(`hero.slides.${heroIdx}.title2`)}</span>
           </h1>
           <p className="text-white/80 max-w-2xl mx-auto mt-6 leading-relaxed reveal">
-            {t('hero.description')}
+            {t(`hero.slides.${heroIdx}.description`)}
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4 mt-9 reveal">
             <Link

@@ -21,21 +21,6 @@ export default function Admin() {
     if (stored === "true") setAuthenticated(true);
   }, []);
 
-  if (!authenticated) {
-    return <AdminLogin onLogin={() => setAuthenticated(true)} />;
-  }
-
-  const handleLogout = () => {
-    setShowLogoutModal(true);
-    setClosing(false);
-  };
-
-  const confirmLogout = () => {
-    localStorage.removeItem("liam-admin-authenticated");
-    setAuthenticated(false);
-    setShowLogoutModal(false);
-  };
-
   const startCloseAnimation = useCallback(() => {
     if (closing) return;
     setClosing(true);
@@ -65,6 +50,21 @@ export default function Admin() {
   }, [showLogoutModal, cancelLogout]);
 
   const logoutModalRef = useFocusTrap(showLogoutModal);
+
+  if (!authenticated) {
+    return <AdminLogin onLogin={() => setAuthenticated(true)} />;
+  }
+
+  const handleLogout = () => {
+    setShowLogoutModal(true);
+    setClosing(false);
+  };
+
+  const confirmLogout = () => {
+    localStorage.removeItem("liam-admin-authenticated");
+    setAuthenticated(false);
+    setShowLogoutModal(false);
+  };
 
   const handleNavigate = (s) => {
     setSection(s);

@@ -16,11 +16,12 @@ const Contact = lazy(() => import("./pages/Contact"));
 const Admin = lazy(() => import("./pages/Admin"));
 
 function PageLoader() {
+  const { t } = useTranslation();
   return (
     <div className="flex items-center justify-center min-h-[60vh]">
       <div className="flex flex-col items-center gap-3">
         <Loader2 className="w-8 h-8 text-brand-500 animate-spin" />
-        <p className="text-sm text-gray-400">Chargement…</p>
+        <p className="text-sm text-gray-400">{t("common.loading")}</p>
       </div>
     </div>
   );
