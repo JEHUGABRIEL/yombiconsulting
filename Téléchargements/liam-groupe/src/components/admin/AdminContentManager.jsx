@@ -5,6 +5,7 @@ import AdminImageUpload from "./AdminImageUpload";
 import AdminGalleryUpload from "./AdminGalleryUpload";
 import {
   Plus, Pencil, Trash2, Search, ArrowUpDown,
+  ChevronLeft, ChevronRight,
   X, Save, Loader2, Image as ImageIcon,
   ExternalLink,
 } from "lucide-react";
@@ -122,8 +123,10 @@ export default function AdminContentManager({ table }) {
   const columns = TABLE_COLS[table] || [];
   const [rows, setRows] = useState([]);
   const [loading, setLoading] = useState(true);
+  const ITEMS_PER_PAGE = 10;
   const [search, setSearch] = useState("");
   const [sortDir, setSortDir] = useState("asc");
+  const [page, setPage] = useState(0);
   const [editing, setEditing] = useState(null);
   const [saving, setSaving] = useState(false);
   const [deleting, setDeleting] = useState(null);
@@ -162,6 +165,9 @@ export default function AdminContentManager({ table }) {
     }
   }, [editing]);
 
+  // Reset page quand la recherche ou le tri change
+  useEffect(() => { setPage(0); }, [search, sortDir]);
+
   const updateFormValue = (key, value) => {
     setFormValues((prev) => ({ ...prev, [key]: value }));
     setFormDirty(true);
@@ -179,6 +185,11 @@ export default function AdminContentManager({ table }) {
       const vb = b[config.orderField] ?? 0;
       return sortDir === "asc" ? va - vb : vb - va;
     });
+
+  // Pagination
+  const totalPages = Math.max(1, Math.ceil(filtered.length / ITEMS_PER_PAGE));
+  const currentPage = Math.min(page, totalPages - 1);
+  const paginated = filtered.slice(currentPage * ITEMS_PER_PAGE, (currentPage + 1) * ITEMS_PER_PAGE);
 
   // ── Save ──
   const handleSave = async () => {
@@ -340,49 +351,100 @@ export default function AdminContentManager({ table }) {
           <p className="text-sm mt-1">{t("admin.contentManager.emptyText")}</p>
         </div>
       ) : (
-        <div className="overflow-x-auto rounded-2xl border border-gray-100 bg-white">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-gray-100 bg-gray-50/50">
-                {columns.map((col) => (
-                  <th key={col} className="text-left px-5 py-3.5 font-semibold text-gray-600 whitespace-nowrap">
-                    {config.fields.find((f) => f.key === col)?.label || col}
-                  </th>
-                ))}
-                <th className="text-right px-5 py-3.5 font-semibold text-gray-600 w-24">{t("admin.contentManager.actions")}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filtered.map((row) => (
-                <tr key={row.id} className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors">
+        <>
+          <div className="overflow-x-auto rounded-2xl border border-gray-100 bg-white">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-gray-100 bg-gray-50/50">
                   {columns.map((col) => (
-                    <td key={col} className="px-5 py-3.5 text-gray-700 max-w-[250px] truncate">
-                      {renderCell(row, col, t)}
-                    </td>
+                    <th key={col} className="text-left px-5 py-3.5 font-semibold text-gray-600 whitespace-nowrap">
+                      {config.fields.find((f) => f.key === col)?.label || col}
+                    </th>
                   ))}
-                  <td className="px-5 py-3.5 text-right">
-                    <div className="flex items-center justify-end gap-1">
-                      <button
-                        onClick={() => setEditing(row)}
-                        className="p-2 rounded-lg hover:bg-gray-100 text-gray-500 hover:text-brand-600 transition-colors"
-                        title={t("admin.contentManager.edit")}
-                      >
-                        <Pencil className="w-4 h-4" />
-                      </button>
-                      <button
-                        onClick={() => setDeleting(row)}
-                        className="p-2 rounded-lg hover:bg-red-50 text-gray-500 hover:text-red-600 transition-colors"
-                        title={t("admin.contentManager.delete")}
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </button>
-                    </div>
-                  </td>
+                  <th className="text-right px-5 py-3.5 font-semibold text-gray-600 w-24">{t("admin.contentManager.actions")}</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody>
+                {paginated.map((row) => (
+                  <tr key={row.id} className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors">
+                    {columns.map((col) => (
+                      <td key={col} className="px-5 py-3.5 text-gray-700 max-w-[250px] truncate">
+                        {renderCell(row, col, t)}
+                      </td>
+                    ))}
+                    <td className="px-5 py-3.5 text-right">
+                      <div className="flex items-center justify-end gap-1">
+                        <button
+                          onClick={() => setEditing(row)}
+                          className="p-2 rounded-lg hover:bg-gray-100 text-gray-500 hover:text-brand-600 transition-colors"
+                          title={t("admin.contentManager.edit")}
+                        >
+                          <Pencil className="w-4 h-4" />
+                        </button>
+                        <button
+                          onClick={() => setDeleting(row)}
+                          className="p-2 rounded-lg hover:bg-red-50 text-gray-500 hover:text-red-600 transition-colors"
+                          title={t("admin.contentManager.delete")}
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="flex items-center justify-between mt-4 px-1">
+              <p className="text-sm text-gray-500">
+                {currentPage * ITEMS_PER_PAGE + 1}–{Math.min((currentPage + 1) * ITEMS_PER_PAGE, filtered.length)} / {filtered.length}
+              </p>
+              <div className="flex items-center gap-1">
+                <button
+                  onClick={() => setPage((p) => Math.max(0, p - 1))}
+                  disabled={page === 0}
+                  className="p-2 rounded-lg hover:bg-gray-100 text-gray-500 hover:text-gray-700 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                  aria-label="Page précédente"
+                >
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+                {Array.from({ length: Math.min(totalPages, 7) }).map((_, i) => {
+                  const pageNum = totalPages <= 7
+                    ? i
+                    : (() => {
+                        if (currentPage < 3) return i;
+                        if (currentPage > totalPages - 4) return totalPages - 7 + i;
+                        return currentPage - 3 + i;
+                      })();
+                  return (
+                    <button
+                      key={pageNum}
+                      onClick={() => setPage(pageNum)}
+                      className={`w-8 h-8 rounded-lg text-sm font-medium transition-colors ${
+                        pageNum === currentPage
+                          ? "bg-brand-500 text-white"
+                          : "text-gray-600 hover:bg-gray-100"
+                      }`}
+                    >
+                      {pageNum + 1}
+                    </button>
+                  );
+                })}
+                <button
+                  onClick={() => setPage((p) => Math.min(totalPages - 1, p + 1))}
+                  disabled={page >= totalPages - 1}
+                  className="p-2 rounded-lg hover:bg-gray-100 text-gray-500 hover:text-gray-700 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                  aria-label="Page suivante"
+                >
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+          )}
+        </>
       )}
 
       {/* ── Edit Modal ── */}
