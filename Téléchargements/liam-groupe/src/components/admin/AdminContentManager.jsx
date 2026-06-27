@@ -38,6 +38,7 @@ const TABLES = {
       { key: "date", label: "Date", type: "text", placeholder: "15 Août 2026" },
       { key: "location", label: "Lieu", type: "text" },
       { key: "image", label: "Image", type: "image" },
+      { key: "gallery", label: "Galerie", type: "gallery" },
       { key: "status", label: "Statut", type: "select", options: ["a_venir", "passe"] },
       { key: "category", label: "Catégorie", type: "text" },
     ],
@@ -51,6 +52,7 @@ const TABLES = {
       { key: "title", label: "Titre", type: "text", required: true },
       { key: "excerpt", label: "Extrait", type: "textarea" },
       { key: "image", label: "Image", type: "image" },
+      { key: "gallery", label: "Galerie", type: "gallery" },
       { key: "date", label: "Date", type: "text", placeholder: "12 Juin 2026" },
       { key: "tag", label: "Tag", type: "text", placeholder: "ACTUALITÉ" },
     ],
@@ -98,8 +100,8 @@ const TABLES = {
 // ─── Column display config ─────────────────────────────────────────────────
 const TABLE_COLS = {
   domains: ["slug", "name", "category"],
-  events: ["title", "date", "status", "category"],
-  news: ["title", "date", "tag"],
+  events: ["title", "date", "status", "category", "gallery"],
+  news: ["title", "date", "tag", "gallery"],
   team: ["name", "role"],
   partners: ["name", "category"],
   testimonials: ["name", "role"],
@@ -511,6 +513,16 @@ function renderCell(row, col) {
         <span className="truncate max-w-[160px]">Voir</span>
         <ExternalLink className="w-3 h-3" />
       </a>
+    );
+  }
+  if (col === "gallery") {
+    const count = Array.isArray(val) ? val.length : 0;
+    if (count === 0) return <span className="text-gray-300">—</span>;
+    return (
+      <span className="inline-flex items-center gap-1.5 text-brand-600">
+        <ImageIcon className="w-4 h-4" />
+        <span>{count} image{count > 1 ? "s" : ""}</span>
+      </span>
     );
   }
   if (col === "status") {
