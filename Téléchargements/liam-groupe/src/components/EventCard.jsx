@@ -1,5 +1,6 @@
-import { CalendarDays, MapPin } from "lucide-react";
+import { CalendarDays, MapPin, ImageOff } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import SafeImg from "./SafeImg";
 
 export default function EventCard({ event, compact = false }) {
   const { t } = useTranslation();
@@ -7,7 +8,7 @@ export default function EventCard({ event, compact = false }) {
   return (
     <div className="bg-white rounded-2xl border border-gray-100 shadow-card overflow-hidden flex flex-col h-full hover:lift transition-all duration-300 group">
       <div className="relative h-56 overflow-hidden">
-        <img src={event.image} alt={event.title} className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" loading="lazy" />
+        <SafeImg src={event.image} alt={event.title} className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" icon={ImageOff} />
         <span
           className={`absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-semibold ${
             isUpcoming ? "bg-brand-500 text-white" : "bg-ink/80 text-white"

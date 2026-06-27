@@ -1,12 +1,13 @@
 import { useTranslation } from "react-i18next";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ImageOff } from "lucide-react";
+import SafeImg from "./SafeImg";
 
 export default function NewsCard({ item }) {
   const { t } = useTranslation();
   return (
     <div className="bg-white rounded-2xl border border-gray-100 shadow-card overflow-hidden flex flex-col h-full hover:lift transition-all duration-300 group">
       <div className="h-56 overflow-hidden">
-        <img src={item.image} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" loading="lazy" />
+        <SafeImg src={item.image} alt={item.title} className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" icon={ImageOff} />
       </div>
       <div className="p-6 flex flex-col flex-1">
         <div className="flex items-center gap-3 mb-3">

@@ -60,7 +60,7 @@ export default function Home() {
   return (
     <div className="font-body">
       {/* Preload de la première image hero */}
-      <link rel="preload" as="image" href={imgHero("home-hero")} fetchpriority="high" />
+      <link rel="preload" as="image" href={imgHero("home-hero")} fetchPriority="high" />
       <link rel="preload" as="image" href={imgBlur("home-hero")} />
 
       <Navbar />
@@ -85,9 +85,9 @@ export default function Home() {
                 isActive ? "opacity-100 scale-100" : "opacity-0 scale-105"
               }`}
               loading={isFirst ? "eager" : "lazy"}
-              fetchpriority={isFirst ? "high" : "low"}
+              fetchPriority={isFirst ? "high" : "low"}
+              onError={(e) => { e.target.style.display = "none"; }}
               onLoad={(e) => {
-                // Disparaît le blur placeholder dès que la première image charge
                 if (isFirst) {
                   const blur = e.target.parentElement?.querySelector(".hero-blur-bg");
                   if (blur) blur.style.opacity = "0";

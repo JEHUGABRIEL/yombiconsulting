@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Send, ImageOff } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { FacebookIcon, InstagramIcon, XIcon, YoutubeIcon } from "../components/SocialIcons";
 import Navbar from "../components/Navbar";
@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import SectionHeading from "../components/SectionHeading";
 import { useSiteInfo } from "../hooks/useSiteData";
 import { img } from "../data/siteData";
+import SafeImg from "../components/SafeImg";
 import useUnsavedChanges from "../hooks/useUnsavedChanges";
 import useScrollReveal from "../hooks/useScrollReveal";
 
@@ -23,11 +24,12 @@ export default function Contact() {
     <div className="font-body">
       <Navbar />
 
-      <section className="relative h-[480px]">
-        <img
+      <section className="relative h-[480px] bg-gradient-to-br from-gray-100 to-gray-200">
+        <SafeImg
           src={img("contact-hero", 1920, 700)}
           alt={t('contact.heroAlt')}
           className="absolute inset-0 w-full h-full object-cover"
+          icon={ImageOff}
         />
       </section>
 

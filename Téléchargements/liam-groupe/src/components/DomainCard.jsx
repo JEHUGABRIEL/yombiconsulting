@@ -1,18 +1,19 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ImageOff } from "lucide-react";
 import { DomainIcon } from "./DomainIcon";
+import SafeImg from "./SafeImg";
 
 export default function DomainCard({ domain }) {
   const { t } = useTranslation();
   return (
     <div className="bg-white rounded-2xl border border-gray-100 shadow-card overflow-hidden flex flex-col hover:lift transition-all duration-300 group">
       <div className="relative h-56 overflow-hidden">
-        <img
+        <SafeImg
           src={domain.cardImage}
           alt={domain.name}
           className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-          loading="lazy"
+          icon={ImageOff}
         />
         <span className="absolute top-4 left-4 w-10 h-10 rounded-full bg-white flex items-center justify-center text-brand-600 shadow">
           <DomainIcon icon={domain.icon} className="w-5 h-5" />

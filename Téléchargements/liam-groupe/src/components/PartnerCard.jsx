@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
-import { ExternalLink } from "lucide-react";
+import { ExternalLink, ImageOff } from "lucide-react";
+import SafeImg from "./SafeImg";
 
 export default function PartnerCard({ partner }) {
   const { t } = useTranslation();
@@ -8,10 +9,11 @@ export default function PartnerCard({ partner }) {
       <div className="p-8 pb-6">
         {partner.logo ? (
           <div className="w-20 h-20 flex items-center justify-center mb-4">
-            <img
+            <SafeImg
               src={partner.logo}
               alt={partner.name}
               className="max-w-full max-h-full object-contain"
+              icon={ImageOff}
             />
           </div>
         ) : (

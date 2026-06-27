@@ -1,12 +1,15 @@
+import { ImageOff } from "lucide-react";
+import SafeImg from "./SafeImg";
+
 export default function TeamCard({ member }) {
   return (
     <div className="bg-white rounded-2xl border border-gray-100 shadow-card overflow-hidden hover:lift transition-all duration-300 group">
       <div className="h-72 overflow-hidden">
-        <img
+        <SafeImg
           src={member.image}
           alt={member.name}
           className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-          loading="lazy"
+          icon={ImageOff}
         />
       </div>
       <div className="p-6">
