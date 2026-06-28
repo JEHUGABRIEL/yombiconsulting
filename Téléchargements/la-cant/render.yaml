@@ -1,6 +1,0 @@
-services:
-  - type: web
-    name: lacant
-    runtime: static
-    buildCommand: npm run build
-    staticPublishPath: dist
