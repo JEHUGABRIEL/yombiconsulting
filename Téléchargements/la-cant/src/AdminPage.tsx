@@ -1,5 +1,5 @@
 import { useState, useMemo, useRef, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   LayoutDashboard,
   Package,
@@ -16,10 +16,10 @@ import {
   CheckCircle2,
   XCircle,
   TrendingUp,
-  ArrowLeft,
   LogOut,
   Star,
-  ChevronRight,
+  Menu,
+  X,
   Save,
   Eye,
   EyeOff,
@@ -37,6 +37,7 @@ import { useSite } from "./SiteContext";
 import { useToast } from "./ToastContext";
 import { AdminProductForm } from "./AdminProductForm";
 import type { Product, HeroSlide, Testimonial, Partner } from "./data";
+import { Pagination } from "./Pagination";
 
 // ===== Navigation items =====
 type Section =
@@ -127,10 +128,12 @@ function ProductsSection() {
   const { products, addProduct, updateProduct, deleteProduct } = useProducts();
   const { showToast, showUndoToast } = useToast();
   const [search, setSearch] = useState("");
+  const [page, setPage] = useState(1);
   const [showForm, setShowForm] = useState(false);
   const [editingProduct, setEditingProduct] = useState<Product | undefined>();
   const [deletingProduct, setDeletingProduct] = useState<Product | undefined>();
   const undoRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const PAGE_SIZE = 10;
 
   useEffect(() => {
     return () => { if (undoRef.current) clearTimeout(undoRef.current); };
@@ -145,6 +148,16 @@ function ProductsSection() {
       ),
     [products, search]
   );
+
+  const paginatedProducts = useMemo(() => {
+    const start = (page - 1) * PAGE_SIZE;
+    return filteredProducts.slice(start, start + PAGE_SIZE);
+  }, [filteredProducts, page]);
+
+  // Reset page on search
+  useEffect(() => {
+    setPage(1);
+  }, [search]);
 
   const handleSave = (data: Omit<Product, "id">) => {
     if (editingProduct) {
@@ -204,7 +217,7 @@ function ProductsSection() {
                   </td>
                 </tr>
               ) : (
-                filteredProducts.map((product) => (
+                paginatedProducts.map((product) => (
                   <tr key={product.id} className="hover:bg-slate-50 transition-colors">
                     <td className="px-5 py-4">
                       <div className="flex items-center gap-3">
@@ -250,9 +263,13 @@ function ProductsSection() {
             </tbody>
           </table>
         </div>
-        <div className="px-5 py-3 border-t border-slate-100 bg-slate-50 text-xs text-slate-400">
-          {filteredProducts.length} produit{filteredProducts.length > 1 ? "s" : ""}
-          {search && ` (filtré sur ${products.length})`}
+        <div className="px-5 py-3 border-t border-slate-100 bg-slate-50">
+          <Pagination
+            currentPage={page}
+            totalItems={filteredProducts.length}
+            itemsPerPage={PAGE_SIZE}
+            onPageChange={setPage}
+          />
         </div>
       </div>
 
@@ -429,11 +446,22 @@ function TestimonialsSection() {
   const { testimonials, addTestimonial, updateTestimonial, removeTestimonial } = useSite();
   const { showToast, showUndoToast } = useToast();
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
+  const [page, setPage] = useState(1);
   const undoRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const PAGE_SIZE = 10;
 
   useEffect(() => {
     return () => { if (undoRef.current) clearTimeout(undoRef.current); };
   }, []);
+
+  const paginatedTestimonials = useMemo(() => {
+    const start = (page - 1) * PAGE_SIZE;
+    return testimonials.slice(start, start + PAGE_SIZE);
+  }, [testimonials, page]);
+
+  useEffect(() => {
+    setPage(1);
+  }, [testimonials.length]);
 
   const [form, setForm] = useState<Testimonial>({
     name: "",
@@ -542,12 +570,14 @@ function TestimonialsSection() {
 
       {/* List */}
       <div className="space-y-3">
-        {testimonials.map((t, idx) => (
-          <div key={idx} className="bg-white rounded-xl border border-slate-200 shadow-sm p-5 flex items-start justify-between gap-4">
-            <div className="flex items-start gap-4 min-w-0">
-              <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
-                {t.initials}
-              </div>
+        {paginatedTestimonials.map((t, idx) => {
+          const originalIdx = (page - 1) * PAGE_SIZE + idx;
+          return (
+            <div key={originalIdx} className="bg-white rounded-xl border border-slate-200 shadow-sm p-5 flex items-start justify-between gap-4">
+              <div className="flex items-start gap-4 min-w-0">
+                <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-sm flex-shrink-0">
+                  {t.initials}
+                </div>
               <div className="min-w-0">
                 <p className="font-semibold text-slate-900 text-sm">{t.name}</p>
                 <p className="text-xs text-slate-500">{t.role}{t.company ? ` — ${t.company}` : ""}</p>
@@ -560,15 +590,22 @@ function TestimonialsSection() {
               </div>
             </div>
             <div className="flex gap-1 flex-shrink-0">
-              <button onClick={() => openEdit(idx)} className="p-1.5 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all">
+              <button onClick={() => openEdit(originalIdx)} className="p-1.5 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-all">
                 <Pencil className="w-4 h-4" />
               </button>
-              <button onClick={() => handleRemove(idx)} className="p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all">
+              <button onClick={() => handleRemove(originalIdx)} className="p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-all">
                 <Trash2 className="w-4 h-4" />
               </button>
             </div>
           </div>
-        ))}
+          );
+        })}
+        <Pagination
+          currentPage={page}
+          totalItems={testimonials.length}
+          itemsPerPage={PAGE_SIZE}
+          onPageChange={setPage}
+        />
       </div>
     </div>
   );
@@ -684,9 +721,11 @@ function QuotesSection() {
   const { showUndoToast } = useToast();
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
+  const [page, setPage] = useState(1);
   const [expandedId, setExpandedId] = useState<number | null>(null);
   const [confirmDelete, setConfirmDelete] = useState<number | null>(null);
   const undoRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const PAGE_SIZE = 10;
 
   useEffect(() => {
     return () => { if (undoRef.current) clearTimeout(undoRef.current); };
@@ -704,6 +743,16 @@ function QuotesSection() {
       return matchSearch && matchStatus;
     });
   }, [quoteRequests, search, statusFilter]);
+
+  const paginatedQuotes = useMemo(() => {
+    const start = (page - 1) * PAGE_SIZE;
+    return filtered.slice(start, start + PAGE_SIZE);
+  }, [filtered, page]);
+
+  // Reset page on search/filter change
+  useEffect(() => {
+    setPage(1);
+  }, [search, statusFilter]);
 
   const stats = useMemo(() => {
     return {
@@ -805,7 +854,7 @@ function QuotesSection() {
         </div>
       ) : (
         <div className="space-y-3">
-          {filtered.map((q) => (
+          {paginatedQuotes.map((q) => (
             <div
               key={q.id}
               className={`bg-white rounded-xl border shadow-sm overflow-hidden transition-all ${
@@ -925,6 +974,18 @@ function QuotesSection() {
               )}
             </div>
           ))}
+        </div>
+      )}
+
+      {/* Pagination */}
+      {filtered.length > 0 && (
+        <div className="mt-4">
+          <Pagination
+            currentPage={page}
+            totalItems={filtered.length}
+            itemsPerPage={PAGE_SIZE}
+            onPageChange={setPage}
+          />
         </div>
       )}
 
@@ -1107,8 +1168,13 @@ export function AdminPage() {
   const { heroSlides, testimonials, partners, settings, quoteRequests } = useSite();
   const [section, setSection] = useState<Section>("dashboard");
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
 
-  const handleLogout = () => {
+  const handleLogoutClick = () => {
+    setShowLogoutConfirm(true);
+  };
+
+  const confirmLogout = () => {
     logout();
     navigate("/", { replace: true });
   };
@@ -1126,21 +1192,18 @@ export function AdminPage() {
       {/* Top bar */}
       <div className="fixed top-0 left-0 right-0 z-40 bg-white border-b border-slate-200" style={{ marginTop: settings.promoEnabled ? "40px" : 0 }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <Link to="/" className="text-sm text-slate-500 hover:text-blue-600 transition-colors flex items-center gap-1.5">
-              <ArrowLeft className="w-4 h-4" /> Site
-            </Link>
-            <div className="h-4 w-px bg-slate-200" />
+          <div className="flex items-center gap-3">
             <h1 className="text-lg font-bold text-slate-900">Administration</h1>
           </div>
           <div className="flex items-center gap-2">
             <button
               onClick={() => setMobileNavOpen(!mobileNavOpen)}
               className="lg:hidden p-2 text-slate-500 hover:bg-slate-100 rounded-lg transition-all"
+              aria-label={mobileNavOpen ? "Fermer le menu" : "Ouvrir le menu"}
             >
-              <ChevronRight className={`w-5 h-5 transition-transform ${mobileNavOpen ? "rotate-180" : ""}`} />
+              {mobileNavOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
-            <button onClick={handleLogout} className="px-3 py-1.5 rounded-lg text-xs font-medium border border-slate-200 text-slate-600 hover:bg-red-50 hover:text-red-600 transition-all flex items-center gap-1.5">
+            <button onClick={handleLogoutClick} className="px-3 py-1.5 rounded-lg text-xs font-medium border border-slate-200 text-slate-600 hover:bg-red-50 hover:text-red-600 transition-all flex items-center gap-1.5">
               <LogOut className="w-3.5 h-3.5" /> Déconnexion
             </button>
           </div>
@@ -1150,7 +1213,7 @@ export function AdminPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex gap-8">
           {/* Sidebar */}
-          <aside className={`lg:w-56 flex-shrink-0 ${mobileNavOpen ? "block" : "hidden"} lg:block`}>
+          <aside className={`lg:w-56 flex-shrink-0 h-screen overflow-y-auto ${mobileNavOpen ? "block" : "hidden"} lg:block`}>
             <nav className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden sticky top-28">
               {NAV_ITEMS.map((item) => (
                 <button
@@ -1268,6 +1331,47 @@ export function AdminPage() {
           </main>
         </div>
       </div>
+
+      {/* Logout confirmation modal */}
+      {showLogoutConfirm && (
+        <div className="fixed inset-0 z-[70] flex items-center justify-center p-4">
+          <div
+            className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+            onClick={() => setShowLogoutConfirm(false)}
+          />
+          <div className="relative bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 border border-slate-200">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center text-orange-600 flex-shrink-0">
+                <LogOut className="w-6 h-6" />
+              </div>
+              <div>
+                <h3 className="font-bold text-slate-900 text-lg">Déconnexion</h3>
+                <p className="text-sm text-slate-500 mt-1">
+                  Vous allez être redirigé vers le site public.
+                </p>
+              </div>
+            </div>
+            <p className="text-slate-600 mb-6">
+              Êtes-vous sûr de vouloir vous déconnecter de l'interface d'administration ?
+            </p>
+            <div className="flex gap-3 justify-end">
+              <button
+                onClick={() => setShowLogoutConfirm(false)}
+                className="px-4 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-lg transition-all"
+              >
+                Annuler
+              </button>
+              <button
+                onClick={confirmLogout}
+                className="px-5 py-2.5 bg-red-600 hover:bg-red-500 text-white text-sm font-semibold rounded-lg transition-all flex items-center gap-2"
+              >
+                <LogOut className="w-4 h-4" />
+                Se déconnecter
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
