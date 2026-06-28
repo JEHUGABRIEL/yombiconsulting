@@ -129,11 +129,11 @@ function ProductsSection() {
   const { showToast, showUndoToast } = useToast();
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
   const [showForm, setShowForm] = useState(false);
   const [editingProduct, setEditingProduct] = useState<Product | undefined>();
   const [deletingProduct, setDeletingProduct] = useState<Product | undefined>();
   const undoRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const PAGE_SIZE = 10;
 
   useEffect(() => {
     return () => { if (undoRef.current) clearTimeout(undoRef.current); };
@@ -150,9 +150,9 @@ function ProductsSection() {
   );
 
   const paginatedProducts = useMemo(() => {
-    const start = (page - 1) * PAGE_SIZE;
-    return filteredProducts.slice(start, start + PAGE_SIZE);
-  }, [filteredProducts, page]);
+    const start = (page - 1) * pageSize;
+    return filteredProducts.slice(start, start + pageSize);
+  }, [filteredProducts, page, pageSize]);
 
   // Reset page on search
   useEffect(() => {
@@ -267,8 +267,9 @@ function ProductsSection() {
           <Pagination
             currentPage={page}
             totalItems={filteredProducts.length}
-            itemsPerPage={PAGE_SIZE}
+            itemsPerPage={pageSize}
             onPageChange={setPage}
+            onPageSizeChange={setPageSize}
           />
         </div>
       </div>
@@ -447,17 +448,17 @@ function TestimonialsSection() {
   const { showToast, showUndoToast } = useToast();
   const [editingIndex, setEditingIndex] = useState<number | null>(null);
   const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
   const undoRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const PAGE_SIZE = 10;
 
   useEffect(() => {
     return () => { if (undoRef.current) clearTimeout(undoRef.current); };
   }, []);
 
   const paginatedTestimonials = useMemo(() => {
-    const start = (page - 1) * PAGE_SIZE;
-    return testimonials.slice(start, start + PAGE_SIZE);
-  }, [testimonials, page]);
+    const start = (page - 1) * pageSize;
+    return testimonials.slice(start, start + pageSize);
+  }, [testimonials, page, pageSize]);
 
   useEffect(() => {
     setPage(1);
@@ -571,7 +572,7 @@ function TestimonialsSection() {
       {/* List */}
       <div className="space-y-3">
         {paginatedTestimonials.map((t, idx) => {
-          const originalIdx = (page - 1) * PAGE_SIZE + idx;
+          const originalIdx = (page - 1) * pageSize + idx;
           return (
             <div key={originalIdx} className="bg-white rounded-xl border border-slate-200 shadow-sm p-5 flex items-start justify-between gap-4">
               <div className="flex items-start gap-4 min-w-0">
@@ -603,8 +604,9 @@ function TestimonialsSection() {
         <Pagination
           currentPage={page}
           totalItems={testimonials.length}
-          itemsPerPage={PAGE_SIZE}
+          itemsPerPage={pageSize}
           onPageChange={setPage}
+          onPageSizeChange={setPageSize}
         />
       </div>
     </div>
@@ -722,10 +724,10 @@ function QuotesSection() {
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<string>("all");
   const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
   const [expandedId, setExpandedId] = useState<number | null>(null);
   const [confirmDelete, setConfirmDelete] = useState<number | null>(null);
   const undoRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const PAGE_SIZE = 10;
 
   useEffect(() => {
     return () => { if (undoRef.current) clearTimeout(undoRef.current); };
@@ -745,9 +747,9 @@ function QuotesSection() {
   }, [quoteRequests, search, statusFilter]);
 
   const paginatedQuotes = useMemo(() => {
-    const start = (page - 1) * PAGE_SIZE;
-    return filtered.slice(start, start + PAGE_SIZE);
-  }, [filtered, page]);
+    const start = (page - 1) * pageSize;
+    return filtered.slice(start, start + pageSize);
+  }, [filtered, page, pageSize]);
 
   // Reset page on search/filter change
   useEffect(() => {
@@ -983,8 +985,9 @@ function QuotesSection() {
           <Pagination
             currentPage={page}
             totalItems={filtered.length}
-            itemsPerPage={PAGE_SIZE}
+            itemsPerPage={pageSize}
             onPageChange={setPage}
+            onPageSizeChange={setPageSize}
           />
         </div>
       )}
@@ -1213,7 +1216,7 @@ export function AdminPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="flex gap-8">
           {/* Sidebar */}
-          <aside className={`lg:w-56 flex-shrink-0 h-screen overflow-y-auto ${mobileNavOpen ? "block" : "hidden"} lg:block`}>
+          <aside className={`w-[380px] xl:w-[500px] flex-shrink-0 h-screen overflow-y-auto bg-white shadow-lg border-r border-slate-200 ${mobileNavOpen ? "block" : "hidden"} lg:block`}>
             <nav className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden sticky top-28">
               {NAV_ITEMS.map((item) => (
                 <button
