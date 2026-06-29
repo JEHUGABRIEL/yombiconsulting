@@ -1,37 +1,29 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { Phone, MapPin, Mail, Clock } from 'lucide-react';
+import { Phone, MapPin, Clock } from 'lucide-react';
+
 export function Contact() {
+  const { t } = useTranslation();
   return (
     <section id="contact" className="py-24 bg-brand-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Contact Info */}
           <motion.div
-            initial={{
-              opacity: 0,
-              y: 20
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0
-            }}
-            viewport={{
-              once: true
-            }}
-            transition={{
-              duration: 0.6
-            }}>
-            
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
             <h2 className="text-brand-600 font-medium tracking-widest uppercase text-sm mb-3">
-              Réservations & Contact
+              {t('contact.badge')}
             </h2>
             <h3 className="text-4xl font-serif text-slate-900 mb-6">
-              Prêt à séjourner au KM Hotel ?
+              {t('contact.title')}
             </h3>
             <p className="text-slate-600 font-light mb-10">
-              Notre équipe est à votre entière disposition pour organiser votre
-              séjour, vos événements professionnels ou vos réceptions privées.
+              {t('contact.subtitle')}
             </p>
 
             <div className="space-y-8">
@@ -40,16 +32,12 @@ export function Contact() {
                   <Phone className="w-6 h-6" />
                 </div>
                 <div>
-                  <h4 className="font-serif text-lg text-slate-900 mb-1">
-                    Téléphone
-                  </h4>
-                  <p className="text-slate-600 font-light">
-                    Direction de l'hôtel :
-                  </p>
+                  <h4 className="font-serif text-lg text-slate-900 mb-1">{t('contact.phone')}</h4>
+                  <p className="text-slate-600 font-light">{t('contact.phoneLabel')}</p>
                   <a
                     href="tel:+23675494969"
-                    className="text-xl font-medium text-brand-600 hover:text-brand-700 transition-colors">
-                    
+                    className="text-xl font-medium text-brand-600 hover:text-brand-700 transition-colors"
+                  >
                     +236 75 49 49 69
                   </a>
                 </div>
@@ -60,15 +48,11 @@ export function Contact() {
                   <MapPin className="w-6 h-6" />
                 </div>
                 <div>
-                  <h4 className="font-serif text-lg text-slate-900 mb-1">
-                    Adresse
-                  </h4>
+                  <h4 className="font-serif text-lg text-slate-900 mb-1">{t('contact.address')}</h4>
                   <p className="text-slate-600 font-light">
-                    Ancien Hôtel Somba
-                    <br />
-                    Centre-ville, Bangui
-                    <br />
-                    République Centrafricaine
+                    {t('contact.addressLine1')}<br />
+                    {t('contact.addressLine2')}<br />
+                    {t('contact.addressLine3')}
                   </p>
                 </div>
               </div>
@@ -78,13 +62,10 @@ export function Contact() {
                   <Clock className="w-6 h-6" />
                 </div>
                 <div>
-                  <h4 className="font-serif text-lg text-slate-900 mb-1">
-                    Réception
-                  </h4>
+                  <h4 className="font-serif text-lg text-slate-900 mb-1">{t('contact.reception')}</h4>
                   <p className="text-slate-600 font-light">
-                    Ouverte 24h/24 et 7j/7
-                    <br />
-                    Accueil chaleureux garanti
+                    {t('contact.receptionLine1')}<br />
+                    {t('contact.receptionLine2')}
                   </p>
                 </div>
               </div>
@@ -93,96 +74,82 @@ export function Contact() {
 
           {/* Contact Form (Visual only for demo) */}
           <motion.div
-            initial={{
-              opacity: 0,
-              y: 20
-            }}
-            whileInView={{
-              opacity: 1,
-              y: 0
-            }}
-            viewport={{
-              once: true
-            }}
-            transition={{
-              duration: 0.6,
-              delay: 0.2
-            }}
-            className="bg-white p-8 md:p-10 rounded-sm shadow-xl border border-slate-100">
-            
-            <h4 className="text-2xl font-serif text-slate-900 mb-6">
-              Demande de réservation
-            </h4>
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="bg-white p-8 md:p-10 rounded-sm shadow-xl border border-slate-100"
+          >
+            <h4 className="text-2xl font-serif text-slate-900 mb-6">{t('contact.formTitle')}</h4>
             <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-2">
-                    Prénom & Nom
+                    {t('contact.formName')}
                   </label>
                   <input
                     type="text"
                     className="w-full px-4 py-3 border border-slate-200 rounded-sm focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all"
-                    placeholder="Jean Dupont" />
-                  
+                    placeholder={t('contact.formPlaceholderName')}
+                  />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-2">
-                    Téléphone / Email
+                    {t('contact.formContact')}
                   </label>
                   <input
                     type="text"
                     className="w-full px-4 py-3 border border-slate-200 rounded-sm focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all"
-                    placeholder="contact@email.com" />
-                  
+                    placeholder={t('contact.formPlaceholderContact')}
+                  />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-2">
-                    Date d'arrivée
+                    {t('contact.formArrival')}
                   </label>
                   <input
                     type="date"
-                    className="w-full px-4 py-3 border border-slate-200 rounded-sm focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all text-slate-500" />
-                  
+                    className="w-full px-4 py-3 border border-slate-200 rounded-sm focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all text-slate-500"
+                  />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-slate-700 mb-2">
-                    Date de départ
+                    {t('contact.formDeparture')}
                   </label>
                   <input
                     type="date"
-                    className="w-full px-4 py-3 border border-slate-200 rounded-sm focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all text-slate-500" />
-                  
+                    className="w-full px-4 py-3 border border-slate-200 rounded-sm focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all text-slate-500"
+                  />
                 </div>
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-slate-700 mb-2">
-                  Message ou Demande spéciale
+                  {t('contact.formMessage')}
                 </label>
                 <textarea
                   rows={4}
                   className="w-full px-4 py-3 border border-slate-200 rounded-sm focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition-all resize-none"
-                  placeholder="Je souhaiterais réserver une chambre pour...">
-                </textarea>
+                  placeholder={t('contact.formPlaceholder')}
+                />
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-brand-600 text-white font-medium py-4 rounded-sm hover:bg-brand-700 transition-colors uppercase tracking-wider text-sm">
-                
-                Envoyer la demande
+                className="w-full bg-brand-600 text-white font-medium py-4 rounded-sm hover:bg-brand-700 transition-colors uppercase tracking-wider text-sm"
+              >
+                {t('contact.formSubmit')}
               </button>
               <p className="text-xs text-center text-slate-500 mt-4">
-                Pour une réservation immédiate, privilégiez l'appel téléphonique
-                au +236 75 49 49 69.
+                {t('contact.formHint')}
               </p>
             </form>
           </motion.div>
         </div>
       </div>
-    </section>);
-
+    </section>
+  );
 }

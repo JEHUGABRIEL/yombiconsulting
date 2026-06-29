@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import {
   ChevronDown,
@@ -9,9 +9,11 @@ import {
   Star,
   Phone,
   MapPin,
-  Sparkles
+  Sparkles,
+  Eye
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { DetailModal, type DishDetail } from '../components/DetailModal';
 
 const restaurantHighlights = [
   {
@@ -43,26 +45,66 @@ const restaurantHighlights = [
   }
 ];
 
-const signatureDishes = [
+const signatureDishes: DishDetail[] = [
   {
+    type: 'dish',
     name: 'Brochettes de Capitaine',
     desc: 'Poisson du fleuve Oubangui mariné aux épices locales, servi avec riz parfumé et légumes sautés',
-    price: 'À partir de 8 500 XAF'
+    price: 'À partir de 8 500 XAF',
+    image:
+      'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?auto=format&fit=crop&q=80',
+    highlights: [
+      'Poisson frais du fleuve Oubangui',
+      'Mariné aux épices locales',
+      'Accompagné de riz parfumé',
+      'Légumes de saison sautés'
+    ],
+    ingredients: ['Capitaine (poisson)', 'Épices locales', 'Riz parfumé', 'Légumes frais', 'Huile de palme', 'Ail', 'Citron']
   },
   {
+    type: 'dish',
     name: 'Filet de Bœuf au Poivre',
     desc: 'Filet tendre grillé, sauce au poivre vert, gratin dauphinois et haricots verts',
-    price: 'À partir de 12 000 XAF'
+    price: 'À partir de 12 000 XAF',
+    image:
+      'https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&q=80',
+    highlights: [
+      'Filet de bœuf tendre grillé',
+      'Sauce au poivre vert maison',
+      'Gratin dauphinois crémeux',
+      'Haricots verts frais'
+    ],
+    ingredients: ['Filet de bœuf', 'Poivre vert', 'Crème fraîche', 'Pommes de terre', 'Haricots verts', 'Beurre', 'Thym']
   },
   {
+    type: 'dish',
     name: 'Poulet Yassa revisité',
     desc: 'Cuisses de poulet confites dans une marinade oignons-citron, purée de patate douce',
-    price: 'À partir de 9 500 XAF'
+    price: 'À partir de 9 500 XAF',
+    image:
+      'https://images.unsplash.com/photo-1598103442097-8b74394b95c6?auto=format&fit=crop&q=80',
+    highlights: [
+      'Cuisses de poulet confites',
+      'Marinade oignons-citron',
+      'Purée de patate douce onctueuse',
+      'Recette traditionnelle revisitée'
+    ],
+    ingredients: ['Cuisses de poulet', 'Oignons', 'Citron', 'Patate douce', 'Moutarde', 'Huile d\'olive', 'Persil']
   },
   {
+    type: 'dish',
     name: 'Assiette Végétarienne',
     desc: 'Légumes de saison rôtis, quinoa aux herbes, sauce vierge et croustillant de parmesan',
-    price: 'À partir de 7 000 XAF'
+    price: 'À partir de 7 000 XAF',
+    image:
+      'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80',
+    highlights: [
+      'Légumes de saison rôtis',
+      'Quinoa aux herbes fraîches',
+      'Sauce vierge maison',
+      'Croustillant de parmesan'
+    ],
+    ingredients: ['Légumes de saison', 'Quinoa', 'Herbes fraîches', 'Parmesan', 'Tomates cerises', 'Huile d\'olive', 'Basilic']
   }
 ];
 
@@ -89,6 +131,29 @@ const signatureCocktails = [
   }
 ];
 
+const heroSlides = [
+  {
+    image:
+      'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80',
+    alt: 'Restaurant KM Hotel'
+  },
+  {
+    image:
+      'https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&q=80',
+    alt: 'Salle à manger KM Hotel'
+  },
+  {
+    image:
+      'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&q=80',
+    alt: 'Plat gastronomique KM Hotel'
+  },
+  {
+    image:
+      'https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&q=80',
+    alt: 'Bar lounge KM Hotel'
+  }
+];
+
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },
@@ -96,26 +161,117 @@ const fadeUp = {
   transition: { duration: 0.6 }
 };
 
+function DishCard({ dish, index }: { dish: DishDetail; index: number }) {
+  const [selectedDish, setSelectedDish] = useState<DishDetail | null>(null);
+
+  return (
+    <>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: index * 0.1 }}
+        onClick={() => setSelectedDish(dish)}
+        className="group cursor-pointer bg-white rounded-sm overflow-hidden border border-slate-100 hover:shadow-xl transition-all duration-500"
+      >
+        {/* Image */}
+        <div className="relative h-48 sm:h-56 overflow-hidden">
+          <img
+            src={dish.image}
+            alt={dish.name}
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+          {/* Badge */}
+          <div className="absolute top-3 left-3">
+            <span className="px-2.5 py-1 bg-brand-600 text-white text-[10px] font-bold uppercase tracking-wider rounded-sm shadow-sm">
+              Signature
+            </span>
+          </div>
+
+          {/* Price badge */}
+          <div className="absolute top-3 right-3">
+            <span className="px-2.5 py-1 bg-white/90 backdrop-blur-sm text-brand-700 text-xs font-bold rounded-sm shadow-sm">
+              {dish.price}
+            </span>
+          </div>
+
+          {/* Hover overlay */}
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            <div className="flex items-center gap-2 px-5 py-2.5 bg-white/90 backdrop-blur-sm rounded-sm text-slate-800 text-sm font-medium translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+              <Eye className="w-4 h-4" />
+              Voir les détails
+            </div>
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="p-5 sm:p-6">
+          <div className="flex items-start justify-between gap-3 mb-2">
+            <h4 className="text-lg font-serif text-slate-900 group-hover:text-brand-600 transition-colors duration-300">
+              {dish.name}
+            </h4>
+            <span className="text-xs text-brand-600 font-medium whitespace-nowrap mt-1">
+              {dish.price}
+            </span>
+          </div>
+          <p className="text-sm text-slate-500 font-light leading-relaxed line-clamp-2">
+            {dish.desc}
+          </p>
+
+          {/* Stars */}
+          <div className="flex items-center gap-0.5 mt-3">
+            <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+            <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+            <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+            <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+            <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+          </div>
+        </div>
+      </motion.div>
+
+      <DetailModal item={selectedDish} onClose={() => setSelectedDish(null)} />
+    </>
+  );
+}
+
 export function RestaurantBarPage() {
+  const [current, setCurrent] = useState(0);
+
+  const next = useCallback(() => {
+    setCurrent((prev) => (prev + 1) % heroSlides.length);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(next, 5000);
+    return () => clearInterval(timer);
+  }, [next]);
+
   return (
     <div className="min-h-screen bg-slate-50">
       {/* ===== HERO ===== */}
       <section className="relative h-[60vh] md:h-[70vh] flex items-center justify-center overflow-hidden">
-        <div
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage:
-              'url("https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80")',
-            backgroundPosition: 'center',
-            backgroundSize: 'cover'
-          }}
-        >
-          <div className="absolute inset-0 bg-slate-900/55 mix-blend-multiply" />
-          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/50 via-slate-900/20 to-slate-900/80" />
-        </div>
+        {/* Background Slides */}
+        {heroSlides.map((slide, index) => (
+          <div
+            key={slide.image}
+            className="absolute inset-0 z-0 transition-opacity duration-1000 ease-in-out"
+            style={{
+              backgroundImage: `url("${slide.image}")`,
+              backgroundPosition: 'center',
+              backgroundSize: 'cover',
+              opacity: index === current ? 1 : 0
+            }}
+          >
+            <div className="absolute inset-0 bg-slate-900/55 mix-blend-multiply" />
+            <div className="absolute inset-0 bg-gradient-to-b from-slate-900/50 via-slate-900/20 to-slate-900/80" />
+          </div>
+        ))}
 
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto mt-16">
           <motion.div
+            key={current}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: 'easeOut' }}
@@ -289,35 +445,9 @@ export function RestaurantBarPage() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mb-16">
             {signatureDishes.map((dish, index) => (
-              <motion.div
-                key={dish.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="flex gap-5 p-6 bg-slate-50 rounded-sm border border-slate-100 hover:shadow-md transition-all duration-300 group"
-              >
-                <div className="shrink-0 mt-1">
-                  <div className="w-10 h-10 bg-brand-50 text-brand-600 rounded-full flex items-center justify-center group-hover:bg-brand-600 group-hover:text-white transition-colors duration-300">
-                    <Star className="w-5 h-5" />
-                  </div>
-                </div>
-                <div>
-                  <div className="flex items-start justify-between gap-4 mb-2">
-                    <h4 className="text-xl font-serif text-slate-900">
-                      {dish.name}
-                    </h4>
-                    <span className="text-sm font-medium text-brand-600 whitespace-nowrap">
-                      {dish.price}
-                    </span>
-                  </div>
-                  <p className="text-sm text-slate-500 font-light leading-relaxed">
-                    {dish.desc}
-                  </p>
-                </div>
-              </motion.div>
+              <DishCard key={dish.name} dish={dish} index={index} />
             ))}
           </div>
         </div>

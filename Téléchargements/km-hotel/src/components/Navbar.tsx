@@ -1,9 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { Menu, X, Phone } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Menu, X, Phone, Globe, ChevronDown } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
 export function Navbar() {
+  const { t, i18n } = useTranslation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
+  const [isSejourMenuOpen, setIsSejourMenuOpen] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
 
@@ -19,118 +24,263 @@ export function Navbar() {
     setIsMobileMenuOpen(false);
   }, [location.pathname]);
 
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+    setIsLangMenuOpen(false);
+  };
+
   const navLinks = [
-  {
-    name: 'Accueil',
-    href: '/'
-  },
-  {
-    name: 'À Propos',
-    href: isHomePage ? '#about' : '/#about'
-  },
-  {
-    name: 'Chambres',
-    href: '/chambres'
-  },
-  {
-    name: 'Services',
-    href: isHomePage ? '#services' : '/#services'
-  },
-  {
-    name: 'Restaurant & Bar',
-    href: '/restaurant-bar'
-  }];
+    { name: t('nav.home'), href: '/' },
+    { name: t('nav.about'), href: isHomePage ? '#about' : '/#about' },
+    { name: t('nav.bienEtre'), href: '/bien-etre' },
+    { name: t('nav.services'), href: isHomePage ? '#services' : '/#services' },
+    { name: t('nav.restaurantBar'), href: '/restaurant-bar' }
+  ];
+
+  const sejourSubLinks = [
+    { name: t('nav.roomsSub'), href: '/chambres' },
+    { name: t('nav.suitesSub'), href: '/suites' }
+  ];
+
+  const currentLang = i18n.language?.startsWith('fr') ? 'FR' : 'EN';
 
   return (
     <nav
-      className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 backdrop-blur-sm shadow-md py-4' : 'bg-transparent py-6'}`}>
-      
+      className={`fixed w-full z-50 transition-all duration-300 ${
+        isScrolled
+          ? 'bg-white/95 backdrop-blur-sm shadow-md py-4'
+          : 'bg-transparent py-6'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           <div className="flex-shrink-0">
             <Link
               to="/"
-              className={`font-serif text-2xl font-bold tracking-wider ${isScrolled ? 'text-slate-900' : 'text-white'}`}>
+              className={`font-serif text-2xl font-bold tracking-wider ${
+                isScrolled ? 'text-slate-900' : 'text-white'
+              }`}
+            >
               KM HOTEL
             </Link>
           </div>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
+            {/* Séjour Dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => setIsSejourMenuOpen(true)}
+              onMouseLeave={() => setIsSejourMenuOpen(false)}
+            >
+              <button
+                className={`flex items-center gap-1 text-sm font-medium uppercase tracking-wider hover:text-brand-500 transition-colors ${
+                  isScrolled ? 'text-slate-600' : 'text-white/90'
+                }`}
+              >
+                {t('nav.rooms')}
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                  isSejourMenuOpen ? 'rotate-180' : ''
+                }`} />
+              </button>
+              {isSejourMenuOpen && (
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-44 bg-white shadow-lg border border-slate-100 rounded-sm overflow-hidden">
+                  {sejourSubLinks.map((sub) => (
+                    <Link
+                      key={sub.name}
+                      to={sub.href}
+                      onClick={() => setIsSejourMenuOpen(false)}
+                      className="block px-5 py-3 text-sm font-medium text-slate-700 hover:text-brand-600 hover:bg-brand-50 transition-colors"
+                    >
+                      {sub.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
             {navLinks.map((link) =>
               link.href.startsWith('/') && !link.href.startsWith('/#') ? (
                 <Link
                   key={link.name}
                   to={link.href}
-                  className={`text-sm font-medium uppercase tracking-wider hover:text-brand-500 transition-colors ${isScrolled ? 'text-slate-600' : 'text-white/90'}`}>
+                  className={`text-sm font-medium uppercase tracking-wider hover:text-brand-500 transition-colors ${
+                    isScrolled ? 'text-slate-600' : 'text-white/90'
+                  }`}
+                >
                   {link.name}
                 </Link>
               ) : (
                 <a
                   key={link.name}
                   href={link.href}
-                  className={`text-sm font-medium uppercase tracking-wider hover:text-brand-500 transition-colors ${isScrolled ? 'text-slate-600' : 'text-white/90'}`}>
+                  className={`text-sm font-medium uppercase tracking-wider hover:text-brand-500 transition-colors ${
+                    isScrolled ? 'text-slate-600' : 'text-white/90'
+                  }`}
+                >
                   {link.name}
                 </a>
               )
             )}
+
+            {/* Language Switcher */}
+            <div className="relative">
+              <button
+                onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
+                className={`flex items-center gap-1.5 px-3 py-2 text-sm font-medium uppercase tracking-wider border transition-all ${
+                  isScrolled
+                    ? 'text-slate-600 border-slate-300 hover:border-brand-500 hover:text-brand-600'
+                    : 'text-white/90 border-white/30 hover:border-white/60'
+                }`}
+              >
+                <Globe className="w-3.5 h-3.5" />
+                {currentLang}
+              </button>
+              {isLangMenuOpen && (
+                <div className="absolute right-0 mt-1 w-28 bg-white shadow-lg border border-slate-100 rounded-sm overflow-hidden">
+                  <button
+                    onClick={() => changeLanguage('fr')}
+                    className={`w-full text-left px-4 py-2.5 text-sm font-medium transition-colors hover:bg-brand-50 ${
+                      currentLang === 'FR'
+                        ? 'text-brand-600 bg-brand-50'
+                        : 'text-slate-700'
+                    }`}
+                  >
+                    Français
+                  </button>
+                  <button
+                    onClick={() => changeLanguage('en')}
+                    className={`w-full text-left px-4 py-2.5 text-sm font-medium transition-colors hover:bg-brand-50 ${
+                      currentLang === 'EN'
+                        ? 'text-brand-600 bg-brand-50'
+                        : 'text-slate-700'
+                    }`}
+                  >
+                    English
+                  </button>
+                </div>
+              )}
+            </div>
+
             <Link
               to="/contact"
-              className={`flex items-center px-5 py-2.5 rounded-none border transition-all ${isScrolled ? 'border-brand-600 text-brand-600 hover:bg-brand-600 hover:text-white' : 'border-white text-white hover:bg-white hover:text-slate-900'}`}>
+              className={`flex items-center px-5 py-2.5 rounded-none border transition-all ${
+                isScrolled
+                  ? 'border-brand-600 text-brand-600 hover:bg-brand-600 hover:text-white'
+                  : 'border-white text-white hover:bg-white hover:text-slate-900'
+              }`}
+            >
               <Phone className="w-4 h-4 mr-2" />
-              <span className="text-sm font-medium">Réserver</span>
+              <span className="text-sm font-medium">{t('nav.book')}</span>
             </Link>
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center">
+          <div className="md:hidden flex items-center gap-2">
+            <button
+              onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
+              className={`flex items-center gap-1 px-2.5 py-1.5 text-xs font-medium uppercase tracking-wider border ${
+                isScrolled
+                  ? 'text-slate-600 border-slate-300'
+                  : 'text-white/90 border-white/30'
+              }`}
+            >
+              <Globe className="w-3 h-3" />
+              {currentLang}
+            </button>
+            {isLangMenuOpen && (
+              <div className="absolute top-full right-16 mt-1 w-28 bg-white shadow-lg border border-slate-100 rounded-sm overflow-hidden z-50">
+                <button
+                  onClick={() => changeLanguage('fr')}
+                  className={`w-full text-left px-4 py-2.5 text-sm font-medium transition-colors hover:bg-brand-50 ${
+                    currentLang === 'FR'
+                      ? 'text-brand-600 bg-brand-50'
+                      : 'text-slate-700'
+                  }`}
+                >
+                  Français
+                </button>
+                <button
+                  onClick={() => changeLanguage('en')}
+                  className={`w-full text-left px-4 py-2.5 text-sm font-medium transition-colors hover:bg-brand-50 ${
+                    currentLang === 'EN'
+                      ? 'text-brand-600 bg-brand-50'
+                      : 'text-slate-700'
+                  }`}
+                >
+                  English
+                </button>
+              </div>
+            )}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={`${isScrolled ? 'text-slate-900' : 'text-white'}`}>
-              
-              {isMobileMenuOpen ?
-              <X className="w-6 h-6" /> :
-
-              <Menu className="w-6 h-6" />
-              }
+              className={`${isScrolled ? 'text-slate-900' : 'text-white'}`}
+            >
+              {isMobileMenuOpen ? (
+                <X className="w-6 h-6" />
+              ) : (
+                <Menu className="w-6 h-6" />
+              )}
             </button>
           </div>
         </div>
       </div>
 
       {/* Mobile Menu */}
-      {isMobileMenuOpen &&
-      <div className="md:hidden bg-white absolute top-full left-0 w-full shadow-lg border-t border-slate-100">
+      {isMobileMenuOpen && (
+        <div className="md:hidden bg-white absolute top-full left-0 w-full shadow-lg border-t border-slate-100">
           <div className="px-4 pt-2 pb-6 space-y-1">
+            {/* Séjour section in mobile */}
+            <div className="px-3 py-2">
+              <span className={`text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1`}>
+                {t('nav.rooms')}
+              </span>
+              <div className="space-y-0.5 ml-2">
+                {sejourSubLinks.map((sub) => (
+                  <Link
+                    key={sub.name}
+                    to={sub.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block px-3 py-2 text-base font-medium text-slate-800 hover:text-brand-600 hover:bg-slate-50 rounded-sm"
+                  >
+                    {sub.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
             {navLinks.map((link) =>
-            link.href.startsWith('/') && !link.href.startsWith('/#') ? (
-              <Link
-                key={link.name}
-                to={link.href}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block px-3 py-3 text-base font-medium text-slate-800 hover:text-brand-600 hover:bg-slate-50">
-                {link.name}
-              </Link>
-            ) : (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="block px-3 py-3 text-base font-medium text-slate-800 hover:text-brand-600 hover:bg-slate-50">
-                {link.name}
-              </a>
-            )
-          )}
+              link.href.startsWith('/') && !link.href.startsWith('/#') ? (
+                <Link
+                  key={link.name}
+                  to={link.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block px-3 py-3 text-base font-medium text-slate-800 hover:text-brand-600 hover:bg-slate-50"
+                >
+                  {link.name}
+                </Link>
+              ) : (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="block px-3 py-3 text-base font-medium text-slate-800 hover:text-brand-600 hover:bg-slate-50"
+                >
+                  {link.name}
+                </a>
+              )
+            )}
             <Link
               to="/contact"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="mt-4 flex items-center justify-center w-full px-5 py-3 border border-brand-600 text-brand-600 font-medium hover:bg-brand-50">
+              className="mt-4 flex items-center justify-center w-full px-5 py-3 border border-brand-600 text-brand-600 font-medium hover:bg-brand-50"
+            >
               <Phone className="w-4 h-4 mr-2" />
-              Réserver au +236 75 49 49 69
+              {t('nav.bookPhone')}
             </Link>
           </div>
         </div>
-      }
-    </nav>);
-
+      )}
+    </nav>
+  );
 }

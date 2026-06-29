@@ -1,0 +1,437 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About Us",
+    "rooms": "Stay",
+    "roomsSub": "Rooms",
+    "suitesSub": "Suites",
+    "services": "Services",
+    "restaurantBar": "Restaurant & Bar",
+    "bienEtre": "Wellness",
+    "book": "Book Now",
+    "bookPhone": "Book at +236 75 49 49 69"
+  },
+  "hero": {
+    "badge": "Bangui's New Hospitality Gem",
+    "title": "Elegance & Comfort",
+    "titleAccent": "in the heart of the capital",
+    "subtitle": "Discover a 3-star boutique hotel with refined design, offering warm hospitality and international-class services.",
+    "ctaBook": "Book Your Stay",
+    "ctaDiscover": "Discover the Hotel",
+    "slideAlt1": "KM Hotel Facade",
+    "slideAlt2": "Luxurious Entrance Hall",
+    "slideAlt3": "Elegant KM Hotel Interior",
+    "slideAlt4": "Aerial View of the Property",
+    "ariaPrev": "Previous image",
+    "ariaNext": "Next image",
+    "ariaDot": "Go to image {{n}}"
+  },
+  "about": {
+    "badge": "Our Story",
+    "title": "A unique concept setting a new standard in Bangui",
+    "p1": "Opened on <strong>June 5, 2026</strong>, KM Hotel was born from the vision of Central African entrepreneur <strong>Francis Kopaye</strong>. Built on the historic walls of the former Hotel Somba, in the heart of the capital, this boutique hotel revitalizes the local hospitality sector.",
+    "p2": "While the market faces challenging times with few internationally-standard establishments, KM Hotel focuses on refined style and a unique concept. Our ambition? To become the undisputed reference in hospitality in the Central African Republic.",
+    "p3": "We deploy an array of services designed to attract guests from all corners of the globe, blending the charm of Central African hospitality with international standards.",
+    "statRooms": "Rooms & Suites",
+    "statStars": "International Standing",
+    "imgAlt1": "Elegant KM Hotel Interior",
+    "imgAlt2": "Architectural Details"
+  },
+  "amenities": {
+    "badge": "Our Services",
+    "title": "Absolute Comfort & Serenity",
+    "subtitle": "KM Hotel has been designed to meet all your expectations. From our complete energy autonomy to our relaxation spaces, every detail matters.",
+    "items": [
+      { "title": "Electrical Autonomy", "desc": "Enjoy an uninterrupted stay thanks to our 100% autonomous and reliable power supply system." },
+      { "title": "Water Autonomy", "desc": "An independent water reserve ensuring optimal and continuous comfort in all our facilities." },
+      { "title": "High-Speed Internet", "desc": "Stay connected with the world through our fast and free Wi-Fi throughout the establishment." },
+      { "title": "Gourmet Restaurant", "desc": "A refined menu blending local flavors and international cuisine to delight the most discerning palates." },
+      { "title": "Cozy Bar Lounge", "desc": "Unwind with our wide selection of wines, champagnes and spirits in an elegant setting." },
+      { "title": "Conference Rooms", "desc": "Two modular spaces perfectly equipped for your professional meetings or private events." }
+    ]
+  },
+  "rooms": {
+    "badge": "Accommodation",
+    "title": "Our 31 Rooms",
+    "subtitle": "Refined design and modern comfort for an unforgettable stay in the heart of Bangui. All our rooms benefit from our electrical and water autonomy.",
+    "cta": "Check availability",
+    "card1": {
+      "name": "Comfort Room",
+      "desc": "Queen Size Bed, Desk, High-speed Wi-Fi, Air conditioning.",
+      "imgAlt": "Standard Room"
+    },
+    "card2": {
+      "name": "Executive Suite",
+      "desc": "King Size Bed, Separate Lounge, City View, VIP Services.",
+      "imgAlt": "Premium Suite"
+    }
+  },
+  "dining": {
+    "badge": "Gastronomy & Relaxation",
+    "title": "Refined Restaurant &",
+    "titleBr": "Cozy Bar Lounge",
+    "p1": "Discover a unique culinary experience in our gourmet restaurant. Our chef offers a refined menu, subtly blending quality local produce with the great classics of international cuisine.",
+    "p2": "At the end of the day, our Bar Lounge welcomes you in a warm and cozy atmosphere. Enjoy our curated selection offering a wide range of wines, champagnes and spirits for your relaxation moments or business meetings.",
+    "breakfast": "Breakfast",
+    "breakfastHours": "06:30 - 10:00",
+    "dinner": "Dinner",
+    "dinnerHours": "19:00 - 22:30",
+    "imgAlt1": "Gourmet Restaurant",
+    "imgAlt2": "Bar Lounge and Cocktails"
+  },
+  "testimonials": {
+    "badge": "Testimonials",
+    "title": "What Our Guests Say",
+    "subtitle": "Discover the reviews of our guests who have experienced KM Hotel. Their satisfaction is our greatest reward.",
+    "ariaPrev": "Previous testimonial",
+    "ariaNext": "Next testimonial",
+    "ariaDot": "Go to testimonial {{n}}"
+  },
+  "contact": {
+    "badge": "Reservations & Contact",
+    "title": "Ready to Stay at KM Hotel?",
+    "subtitle": "Our team is at your disposal to organize your stay, professional events or private receptions.",
+    "phone": "Phone",
+    "phoneLabel": "Hotel Management:",
+    "address": "Address",
+    "addressLine1": "Former Hotel Somba",
+    "addressLine2": "Downtown, Bangui",
+    "addressLine3": "Central African Republic",
+    "reception": "Reception",
+    "receptionLine1": "Open 24/7",
+    "receptionLine2": "Warm welcome guaranteed",
+    "formTitle": "Reservation Request",
+    "formName": "First & Last Name",
+    "formContact": "Phone / Email",
+    "formArrival": "Arrival Date",
+    "formDeparture": "Departure Date",
+    "formMessage": "Message or Special Request",
+    "formPlaceholder": "I would like to book a room for...",
+    "formPlaceholderName": "John Doe",
+    "formPlaceholderContact": "contact@email.com",
+    "formSubmit": "Send Request",
+    "formHint": "For immediate booking, please call +236 75 49 49 69."
+  },
+  "footer": {
+    "description": "Bangui's new hospitality gem. A 3-star boutique hotel offering comfort, elegance and total autonomy in the heart of the Central African capital.",
+    "quickLinks": "Quick Links",
+    "contact": "Contact",
+    "address": "Former Hotel Somba, Downtown",
+    "city": "Bangui, Central African Republic",
+    "copyright": "KM Hotel Bangui. All rights reserved.",
+    "founded": "Founded by Francis Kopaye",
+    "followUs": "Follow Us",
+    "whatsappTooltip": "Chat with us on WhatsApp"
+  },
+  "chambres": {
+    "hero": {
+      "badge": "Luxury Accommodation",
+      "title": "Our Rooms",
+      "subtitle": "Rooms with refined design, designed for your absolute comfort in the heart of Bangui."
+    },
+    "intro": {
+      "badge": "Unmatched Comfort",
+      "title": "The Art of Hospitality",
+      "text": "Each room at KM Hotel has been meticulously designed to offer a unique stay experience. Contemporary design, noble materials, premium bedding and modern technologies combine to create an elegant and soothing atmosphere. Enjoy our complete electrical and water autonomy, a guarantee of tranquility at all times."
+    },
+    "amenities": [
+      { "label": "Electrical Autonomy" },
+      { "label": "Water Autonomy" },
+      { "label": "Fiber Wi-Fi" },
+      { "label": "Smart Satellite TV" },
+      { "label": "Reversible AC" },
+      { "label": "Individual Safe" },
+      { "label": "Mini-bar / Nespresso" },
+      { "label": "Private Bathroom" }
+    ],
+    "rooms": [
+      {
+        "name": "Comfort Room",
+        "price": "From 65,000 XAF",
+        "size": "25 m²",
+        "capacity": "1-2 guests",
+        "bed": "Queen Size Bed (160x200)",
+        "description": "Our Comfort rooms combine contemporary design and functionality. Ideal for business travelers or short stays, they offer an ergonomic workspace and everything needed for a pleasant stay.",
+        "features": [
+          "Queen Size Bed with premium linens",
+          "Desk with reading lamp",
+          "Individual reversible air conditioning",
+          "43\" Smart TV with satellite channels",
+          "High-speed Wi-Fi (fiber optic)",
+          "Private bathroom with walk-in shower",
+          "Courtesy kit (robe, slippers)",
+          "Mini-bar and safe"
+        ],
+        "badge": "Popular"
+      },
+      {
+        "name": "Deluxe Room",
+        "price": "From 85,000 XAF",
+        "size": "32 m²",
+        "capacity": "1-2 guests",
+        "bed": "King Size Bed (180x200)",
+        "description": "A step above, the Deluxe room offers generous space and premium amenities. Its refined decoration creates a soothing atmosphere for an exceptional stay experience.",
+        "features": [
+          "King Size Bed with memory foam topper",
+          "Lounge area with armchair",
+          "Large bay window with city view",
+          "Silent air conditioning",
+          "50\" Smart TV",
+          "Priority high-speed Wi-Fi",
+          "Bathroom with whirlpool bathtub",
+          "Nespresso coffee machine",
+          "Complimentary welcome tray"
+        ],
+        "badge": "Recommended"
+      },
+      {
+        "name": "Executive Suite",
+        "price": "From 120,000 XAF",
+        "size": "45 m²",
+        "capacity": "1-3 guests",
+        "bed": "King Size Bed (180x200) + Sofa bed",
+        "description": "Our Executive Suite is the embodiment of discreet luxury. With its vast separate living space, it is equally suited for high-level business stays or couples seeking an unforgettable experience.",
+        "features": [
+          "Separate bedroom with King Size Bed",
+          "Spacious lounge with convertible corner sofa",
+          "Dining area with table for 4",
+          "Private terrace or panoramic balcony",
+          "Multi-zone air conditioning",
+          "65\" Smart TV (bedroom) + 50\" (lounge)",
+          "Luxurious bathroom with shower and bathtub",
+          "VIP services (concierge, priority access)",
+          "Champagne and fresh fruit upon arrival"
+        ],
+        "badge": "Premium"
+      },
+      {
+        "name": "Presidential Suite",
+        "price": "Upon request",
+        "size": "70 m²",
+        "capacity": "1-4 guests",
+        "bed": "King Size Bed (200x200) + Separate Lounge",
+        "description": "The pinnacle of elegance at KM Hotel. The Presidential Suite occupies the top floor with breathtaking views of Bangui. Every detail has been designed to offer a royal experience to our most discerning guests.",
+        "features": [
+          "Corner suite with 180° panoramic view",
+          "Grand lounge with designer furniture",
+          "Private dining room",
+          "Executive desk space",
+          "Private terrace with jacuzzi",
+          "Walk-in closet and dressing room",
+          "Integrated home automation (lights, blinds, sound)",
+          "Dedicated butler service 24/7",
+          "Private airport transfer included",
+          "VIP lounge access"
+        ],
+        "badge": "Exclusive"
+      }
+    ],
+    "cta": {
+      "title": "Experience KM Hotel",
+      "text": "Treat yourself to the best of Central African hospitality. Book your room or suite now.",
+      "button": "Book Now"
+    },
+    "detailButton": "Details",
+    "bookButton": "Book"
+  },
+  "suites": {
+    "hero": {
+      "badge": "Luxury & Prestige",
+      "title": "Our Suites",
+      "subtitle": "Generous and refined spaces for an exceptional stay experience at KM Hotel."
+    },
+    "intro": {
+      "badge": "Absolute Prestige",
+      "title": "Excellence in Every Detail",
+      "text": "Our suites are designed to offer the ultimate luxury experience. Generous spaces, bespoke services and attention to the smallest details make every stay an unforgettable moment."
+    },
+    "suites": [
+      {
+        "name": "Executive Suite",
+        "price": "From 120,000 XAF",
+        "size": "45 m²",
+        "capacity": "1-3 guests",
+        "bed": "King Size Bed (180x200) + Sofa bed",
+        "description": "Our Executive Suite is the embodiment of discreet luxury. With its vast separate living space, it is equally suited for high-level business stays or couples seeking an unforgettable experience.",
+        "features": [
+          "Separate bedroom with King Size Bed",
+          "Spacious lounge with convertible corner sofa",
+          "Dining area with table for 4",
+          "Private terrace or panoramic balcony",
+          "Multi-zone air conditioning",
+          "65\" Smart TV (bedroom) + 50\" (lounge)",
+          "Luxurious bathroom with shower and bathtub",
+          "VIP services (concierge, priority access)",
+          "Champagne and fresh fruit upon arrival"
+        ],
+        "badge": "Premium"
+      },
+      {
+        "name": "Presidential Suite",
+        "price": "Upon request",
+        "size": "70 m²",
+        "capacity": "1-4 guests",
+        "bed": "King Size Bed (200x200) + Separate Lounge",
+        "description": "The pinnacle of elegance at KM Hotel. The Presidential Suite occupies the top floor with breathtaking views of Bangui. Every detail has been designed to offer a royal experience to our most discerning guests.",
+        "features": [
+          "Corner suite with 180° panoramic view",
+          "Grand lounge with designer furniture",
+          "Private dining room",
+          "Executive desk space",
+          "Private terrace with jacuzzi",
+          "Walk-in closet and dressing room",
+          "Integrated home automation (lights, blinds, sound)",
+          "Dedicated butler service 24/7",
+          "Private airport transfer included",
+          "VIP lounge access"
+        ],
+        "badge": "Exclusive"
+      }
+    ],
+    "cta": {
+      "title": "Experience KM Hotel",
+      "text": "Treat yourself to the best of Central African hospitality. Book your suite now.",
+      "button": "Book Now"
+    },
+    "detailButton": "Details",
+    "bookButton": "Book"
+  },
+  "bienEtre": {
+    "nav": "Wellness",
+    "hero": {
+      "badge": "Relaxation & Wellness",
+      "title": "Wellness & Relaxation Area",
+      "subtitle": "Pools, spa, hammam and zen garden: a wellness sanctuary at the heart of KM Hotel to recharge your mind and body."
+    },
+    "intro": {
+      "badge": "Your sanctuary",
+      "title": "The Art of Well-Being",
+      "text": "At KM Hotel, we have created a space dedicated to your well-being. Between our luxurious pools, intimate spa and lush relaxation areas, every moment is an invitation to unwind. Let yourself be carried away by a soothing atmosphere and treat yourself to a moment of serenity."
+    },
+    "stats": [
+      { "label": "2 Pools", "desc": "Outdoor & Indoor" },
+      { "label": "Spa Treatments", "desc": "Massages & Rituals" },
+      { "label": "Hammam & Sauna", "desc": "Absolute Relaxation" },
+      { "label": "Zen Space", "desc": "Garden & Terrace" }
+    ],
+    "pools": {
+      "badge": "Swimming Pools",
+      "title": "Swim in Luxury",
+      "subtitle": "Two pools designed for your pleasure: an outdoor infinity pool bathed in sunlight, and a heated indoor pool accessible year-round.",
+      "items": [
+        {
+          "title": "Outdoor Pool",
+          "desc": "A large infinity pool surrounded by sunbeds and umbrellas, perfect for cooling off and relaxing under the Central African sun.",
+          "details": ["Length: 20 meters", "Depth: 1.20m - 2.50m", "Temperature: 28°C", "Sunbeds & umbrellas", "Poolside service", "Hours: 7am - 7pm"]
+        },
+        {
+          "title": "Heated Indoor Pool",
+          "desc": "Our heated indoor pool lets you enjoy swimming year-round. A bright and elegant space with panoramic views.",
+          "details": ["Length: 15 meters", "Depth: 1.10m - 2m", "Temperature: 30°C", "Integrated jacuzzi", "Adjacent hammam", "Hours: 6am - 10pm"]
+        }
+      ]
+    },
+    "relaxation": {
+      "badge": "Relaxation & Care",
+      "title": "Relaxation Spaces",
+      "subtitle": "Spa, hammam, sauna and zen garden: a range of wellness experiences to deeply recharge your batteries.",
+      "servicesLabel": "Services & Care",
+      "items": [
+        {
+          "title": "Spa & Massages",
+          "desc": "An intimate spa offering a full range of treatments: relaxing massages, facial treatments, body wraps and wellness rituals.",
+          "treatments": ["Essential oil massage", "Hydrating facial treatment", "Body wrap", "2h wellness ritual", "Couples massage cabin"]
+        },
+        {
+          "title": "Hammam & Sauna",
+          "desc": "Relax in our traditional hammam or dry sauna. A purifying experience for body and mind, ideal after a work day.",
+          "treatments": ["Traditional hammam", "Finnish dry sauna", "Sensory shower", "Body scrub", "Relaxation area with tea"]
+        },
+        {
+          "title": "Zen Garden & Terrace",
+          "desc": "A calm, lush landscaped garden with a shaded terrace. The perfect place to read, meditate or simply enjoy the peace and quiet.",
+          "treatments": ["Landscaped garden", "Shaded terrace", "Zen fountain", "Reading corner", "Tea & coffee service"]
+        }
+      ]
+    },
+    "hours": {
+      "pools": { "title": "Pools", "hours": "7am - 7pm", "note": "Outdoor • Indoor" },
+      "spa": { "title": "Spa & Care", "hours": "9am - 8pm", "note": "By appointment" },
+      "sauna": { "title": "Hammam & Sauna", "hours": "6am - 10pm", "note": "Free access" }
+    },
+    "cta": {
+      "title": "Treat Yourself to a Wellness Moment",
+      "text": "Whether for a relaxation day or a specific treatment, our team is at your disposal to offer you an unforgettable experience.",
+      "button": "Book a treatment"
+    }
+  },
+  "restaurantBar": {
+    "hero": {
+      "badge": "Gastronomy & Relaxation",
+      "title": "Restaurant & Bar Lounge",
+      "subtitle": "A refined culinary experience and a cozy bar lounge for your relaxation moments at KM Hotel."
+    },
+    "intro": {
+      "badge": "An Exceptional Table",
+      "title": "Culinary Journey in the Heart of Africa",
+      "p1": "The KM Hotel restaurant invites you on a unique culinary journey. Our talented chef enhances the finest local produce — fresh fish from the Oubangui River, quality meats, sun-drenched fruits and vegetables — adding a touch of modernity and refinement.",
+      "p2": "In an elegant setting with warm, natural tones, every meal becomes a memorable experience. Whether for a business breakfast, a lunch with colleagues, or a romantic dinner, our team takes great care of you.",
+      "imgAlt1": "KM Hotel Restaurant",
+      "imgAlt2": "Restaurant Ambiance"
+    },
+    "highlights": {
+      "badge": "Our Services",
+      "title": "On-site Dining",
+      "subtitle": "Whether you are a hotel guest or an outside visitor, our dining spaces are open to you.",
+      "items": [
+        {
+          "title": "Breakfast Buffet",
+          "hours": "06:30 - 10:00",
+          "desc": "A generous buffet featuring artisan pastries, fresh fruit, local specialties and hot drinks. A great way to start the day."
+        },
+        {
+          "title": "Lunch & Dinner",
+          "hours": "12:00 - 14:00 / 19:00 - 22:30",
+          "desc": "A refined menu that celebrates local produce: Oubangui River fish, grilled meat, fresh market vegetables, all enhanced with international flavors."
+        },
+        {
+          "title": "Bar Lounge & Cocktails",
+          "hours": "17:00 - 00:00",
+          "desc": "A curated selection of wines, champagnes and spirits, signature cocktails crafted by our bartender, all in a warm and elegant atmosphere."
+        }
+      ]
+    },
+    "menu": {
+      "badge": "À la Carte",
+      "title": "Chef's Suggestions",
+      "subtitle": "Our chef selects the best seasonal produce to offer a regularly renewed menu.",
+      "dishes": [
+        { "name": "Captain Fish Skewers", "desc": "Oubangui River fish marinated in local spices, served with fragrant rice and sautéed vegetables", "price": "From 8,500 XAF" },
+        { "name": "Pepper-Crusted Beef Tenderloin", "desc": "Tender grilled fillet, green peppercorn sauce, dauphinoise gratin and green beans", "price": "From 12,000 XAF" },
+        { "name": "Revisited Yassa Chicken", "desc": "Confit chicken thighs in onion-lemon marinade, sweet potato mash", "price": "From 9,500 XAF" },
+        { "name": "Vegetarian Plate", "desc": "Seasonal roasted vegetables, herb quinoa, vinaigrette sauce and parmesan crisp", "price": "From 7,000 XAF" }
+      ]
+    },
+    "bar": {
+      "label": "Bar Lounge",
+      "title": "The Art of Relaxation",
+      "text": "At the end of the day, our Bar Lounge welcomes you in a warm and cozy atmosphere. Deep sofas, dim lighting, background music: the perfect place to unwind after a day of work or exploration.",
+      "hours": "17:00 - 00:00",
+      "location": "Ground floor",
+      "cocktailTitle": "Our Cocktail Menu",
+      "cocktails": [
+        { "name": "KM Sunset", "desc": "Rum, passion fruit juice, ginger syrup, fresh mint", "price": "5,000 XAF" },
+        { "name": "Bangui Mule", "desc": "Vodka, local ginger beer, lime, angostura", "price": "4,500 XAF" },
+        { "name": "Tropical Sangria", "desc": "Red wine, exotic fruits, cinnamon, sparkling water", "price": "4,000 XAF" },
+        { "name": "Hibiscus Mocktail", "desc": "Hibiscus infusion, lemongrass, honey syrup, sparkling water (non-alcoholic)", "price": "3,000 XAF" }
+      ],
+      "imgAlt1": "Cocktail bar",
+      "imgAlt2": "Bar ambiance"
+    },
+    "cta": {
+      "title": "Reserve Your Table",
+      "text": "Whether for a romantic dinner, a business lunch or an evening with friends, our team offers you a warm welcome.",
+      "button": "Reserve a Table"
+    }
+  }
+}

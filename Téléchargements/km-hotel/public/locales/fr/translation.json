@@ -1,0 +1,437 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "about": "À Propos",
+    "rooms": "Séjour",
+    "roomsSub": "Chambres",
+    "suitesSub": "Suites",
+    "services": "Services",
+    "restaurantBar": "Restaurant & Bar",
+    "bienEtre": "Bien-être",
+    "book": "Réserver",
+    "bookPhone": "Réserver au +236 75 49 49 69"
+  },
+  "hero": {
+    "badge": "Nouvelle pépite de l'hôtellerie à Bangui",
+    "title": "L'Élégance & Le Confort",
+    "titleAccent": "au cœur de la capitale",
+    "subtitle": "Découvrez un boutique hôtel 3 étoiles au design raffiné, offrant un accueil chaleureux et des services de standing international.",
+    "ctaBook": "Réserver votre séjour",
+    "ctaDiscover": "Découvrir l'hôtel",
+    "slideAlt1": "Façade du KM Hotel",
+    "slideAlt2": "Hall d'entrée luxueux",
+    "slideAlt3": "Intérieur élégant du KM Hotel",
+    "slideAlt4": "Vue aérienne de l'établissement",
+    "ariaPrev": "Image précédente",
+    "ariaNext": "Image suivante",
+    "ariaDot": "Aller à l'image {{n}}"
+  },
+  "about": {
+    "badge": "Notre Histoire",
+    "title": "Un concept unique pour une nouvelle référence à Bangui",
+    "p1": "Ouvert le <strong>5 juin 2026</strong>, le KM Hotel est né de la vision de l'homme d'affaires centrafricain <strong>Francis Kopaye</strong>. Bâti sur les murs historiques de l'ancien Hôtel Somba, en plein centre-ville de la capitale, ce boutique hôtel vient redynamiser le secteur hôtelier local.",
+    "p2": "Alors que le marché traverse une période difficile avec peu d'établissements au standing international, le KM Hotel met l'accent sur un style raffiné et un concept unique. Notre ambition ? Devenir la référence incontournable de l'hôtellerie en République Centrafricaine.",
+    "p3": "Nous déployons une armada de services destinés à séduire une clientèle venant des quatre coins du globe, en alliant le charme de l'hospitalité centrafricaine aux exigences internationales.",
+    "statRooms": "Chambres & Suites",
+    "statStars": "Standing International",
+    "imgAlt1": "Intérieur élégant du KM Hotel",
+    "imgAlt2": "Détails architecturaux"
+  },
+  "amenities": {
+    "badge": "Nos Services",
+    "title": "Confort absolu & Sérénité",
+    "subtitle": "Le KM Hotel a été pensé pour répondre à toutes vos exigences. De notre autonomie énergétique totale à nos espaces de détente, chaque détail compte.",
+    "items": [
+      { "title": "Autonomie Électrique", "desc": "Profitez d'un séjour sans interruption grâce à notre système d'alimentation électrique 100% autonome et fiable." },
+      { "title": "Autonomie Hydraulique", "desc": "Une réserve d'eau indépendante garantissant un confort optimal et continu dans toutes nos installations." },
+      { "title": "Internet Haut Débit", "desc": "Restez connecté avec le monde grâce à notre connexion Wi-Fi rapide et gratuite dans tout l'établissement." },
+      { "title": "Restaurant Gastronomique", "desc": "Une carte soignée mêlant saveurs locales et cuisine internationale pour ravir les palais les plus exigeants." },
+      { "title": "Bar Lounge Cosy", "desc": "Détendez-vous avec notre gamme variée de vins, champagnes et spiritueux dans une ambiance élégante." },
+      { "title": "Salles de Conférence", "desc": "Deux espaces modulables parfaitement équipés pour vos réunions professionnelles ou événements privés." }
+    ]
+  },
+  "rooms": {
+    "badge": "Hébergement",
+    "title": "Nos 31 Chambres",
+    "subtitle": "Un design raffiné et un confort moderne pour un séjour inoubliable au cœur de Bangui. Toutes nos chambres bénéficient de notre autonomie électrique et hydraulique.",
+    "cta": "Voir les disponibilités",
+    "card1": {
+      "name": "Chambre Confort",
+      "desc": "Lit Queen Size, Espace bureau, Wi-Fi haut débit, Climatisation.",
+      "imgAlt": "Chambre Standard"
+    },
+    "card2": {
+      "name": "Suite Exécutive",
+      "desc": "Lit King Size, Coin salon séparé, Vue sur la ville, Prestations VIP.",
+      "imgAlt": "Suite Premium"
+    }
+  },
+  "dining": {
+    "badge": "Gastronomie & Détente",
+    "title": "Restaurant Soigné &",
+    "titleBr": "Bar Lounge Cosy",
+    "p1": "Découvrez une expérience culinaire unique dans notre restaurant gastronomique. Notre chef vous propose une carte raffinée, mêlant avec subtilité les produits locaux de qualité et les grands classiques de la cuisine internationale.",
+    "p2": "En fin de journée, notre Bar Lounge vous accueille dans une atmosphère feutrée et cosy. Profitez de notre sélection pointue offrant une gamme variée de vins, champagnes et spiritueux pour vos moments de détente ou vos rendez-vous d'affaires.",
+    "breakfast": "Petit-déjeuner",
+    "breakfastHours": "06:30 - 10:00",
+    "dinner": "Dîner",
+    "dinnerHours": "19:00 - 22:30",
+    "imgAlt1": "Restaurant gastronomique",
+    "imgAlt2": "Bar Lounge et cocktails"
+  },
+  "testimonials": {
+    "badge": "Témoignages",
+    "title": "Ce que Disent Nos Hôtes",
+    "subtitle": "Découvrez les avis de nos clients qui ont vécu l'expérience KM Hotel. Leur satisfaction est notre plus belle récompense.",
+    "ariaPrev": "Témoignage précédent",
+    "ariaNext": "Témoignage suivant",
+    "ariaDot": "Aller au témoignage {{n}}"
+  },
+  "contact": {
+    "badge": "Réservations & Contact",
+    "title": "Prêt à séjourner au KM Hotel ?",
+    "subtitle": "Notre équipe est à votre entière disposition pour organiser votre séjour, vos événements professionnels ou vos réceptions privées.",
+    "phone": "Téléphone",
+    "phoneLabel": "Direction de l'hôtel :",
+    "address": "Adresse",
+    "addressLine1": "Ancien Hôtel Somba",
+    "addressLine2": "Centre-ville, Bangui",
+    "addressLine3": "République Centrafricaine",
+    "reception": "Réception",
+    "receptionLine1": "Ouverte 24h/24 et 7j/7",
+    "receptionLine2": "Accueil chaleureux garanti",
+    "formTitle": "Demande de réservation",
+    "formName": "Prénom & Nom",
+    "formContact": "Téléphone / Email",
+    "formArrival": "Date d'arrivée",
+    "formDeparture": "Date de départ",
+    "formMessage": "Message ou Demande spéciale",
+    "formPlaceholder": "Je souhaiterais réserver une chambre pour...",
+    "formPlaceholderName": "Jean Dupont",
+    "formPlaceholderContact": "contact@email.com",
+    "formSubmit": "Envoyer la demande",
+    "formHint": "Pour une réservation immédiate, privilégiez l'appel téléphonique au +236 75 49 49 69."
+  },
+  "footer": {
+    "description": "La nouvelle pépite de l'hôtellerie à Bangui. Un boutique hôtel 3 étoiles offrant confort, élégance et autonomie totale au cœur de la capitale centrafricaine.",
+    "quickLinks": "Liens Rapides",
+    "contact": "Contact",
+    "address": "Ancien Hôtel Somba, Centre-ville",
+    "city": "Bangui, République Centrafricaine",
+    "copyright": "KM Hotel Bangui. Tous droits réservés.",
+    "founded": "Fondé par Francis Kopaye",
+    "followUs": "Suivez-nous",
+    "whatsappTooltip": "Discutez avec nous sur WhatsApp"
+  },
+  "chambres": {
+    "hero": {
+      "badge": "Hébergement de luxe",
+      "title": "Nos Chambres",
+      "subtitle": "Des chambres au design raffiné, pensées pour votre confort absolu au cœur de Bangui."
+    },
+    "intro": {
+      "badge": "Un confort inégalé",
+      "title": "L'Art de l'Hospitalité",
+      "text": "Chaque chambre du KM Hotel a été méticuleusement conçue pour offrir une expérience de séjour unique. Design contemporain, matériaux nobles, literie haut de gamme et technologies modernes se conjuguent pour créer une atmosphère élégante et apaisante. Profitez de notre autonomie électrique et hydraulique totale, gage de tranquillité en toutes circonstances."
+    },
+    "amenities": [
+      { "label": "Autonomie électrique" },
+      { "label": "Autonomie hydraulique" },
+      { "label": "Wi-Fi fibre haut débit" },
+      { "label": "Smart TV satellite" },
+      { "label": "Climatisation réversible" },
+      { "label": "Coffre-fort individuel" },
+      { "label": "Mini-bar / Nespresso" },
+      { "label": "Salle de bain privative" }
+    ],
+    "rooms": [
+      {
+        "name": "Chambre Confort",
+        "price": "À partir de 65 000 XAF",
+        "size": "25 m²",
+        "capacity": "1-2 personnes",
+        "bed": "Lit Queen Size (160x200)",
+        "description": "Nos chambres Confort allient design contemporain et fonctionnalité. Idéales pour les voyageurs d'affaires ou les courts séjours, elles offrent un espace de travail ergonomique et tout le nécessaire pour un séjour agréable.",
+        "features": [
+          "Lit Queen Size avec linge de lit haut de gamme",
+          "Espace bureau avec lampe de lecture",
+          "Climatisation individuelle réversible",
+          "Smart TV 43\" avec chaînes satellite",
+          "Wi-Fi haut débit (fibre optique)",
+          "Salle de bain privative avec douche italienne",
+          "Nécessaire de courtoisie (peignoir, chaussons)",
+          "Mini-bar et coffre-fort"
+        ],
+        "badge": "Populaire"
+      },
+      {
+        "name": "Chambre Deluxe",
+        "price": "À partir de 85 000 XAF",
+        "size": "32 m²",
+        "capacity": "1-2 personnes",
+        "bed": "Lit King Size (180x200)",
+        "description": "Un cran au-dessus, la chambre Deluxe vous offre un espace généreux et des prestations premium. Sa décoration raffinée crée une atmosphère apaisante pour une expérience de séjour exceptionnelle.",
+        "features": [
+          "Lit King Size avec surmatelas en mousse à mémoire",
+          "Coin salon avec fauteuil lounge",
+          "Grande baie vitrée avec vue sur la ville",
+          "Climatisation silencieuse",
+          "Smart TV 50\"",
+          "Wi-Fi haut débit prioritaire",
+          "Salle de bain avec baignoire balnéo",
+          "Machine à café Nespresso",
+          "Plateau de bienvenue offert"
+        ],
+        "badge": "Recommandée"
+      },
+      {
+        "name": "Suite Exécutive",
+        "price": "À partir de 120 000 XAF",
+        "size": "45 m²",
+        "capacity": "1-3 personnes",
+        "bed": "Lit King Size (180x200) + Canapé-lit",
+        "description": "Notre Suite Exécutive est l'incarnation du luxe discret. Avec son vaste espace de vie séparé, elle convient aussi bien aux séjours d'affaires de haut niveau qu'aux couples en quête d'une expérience inoubliable.",
+        "features": [
+          "Chambre séparée avec Lit King Size",
+          "Salon spacieux avec canapé d'angle convertible",
+          "Espace repas avec table pour 4 personnes",
+          "Terrasse privative ou balcon panoramique",
+          "Climatisation multi-zones",
+          "Smart TV 65\" (chambre) + 50\" (salon)",
+          "Salle de bain luxueuse avec douche et baignoire",
+          "Prestations VIP (conciergerie, accès prioritaire)",
+          "Champagne et fruits frais à l'arrivée"
+        ],
+        "badge": "Premium"
+      },
+      {
+        "name": "Suite Présidentielle",
+        "price": "Sur demande",
+        "size": "70 m²",
+        "capacity": "1-4 personnes",
+        "bed": "Lit King Size (200x200) + Salon séparé",
+        "description": "Le summum de l'élégance au KM Hotel. La Suite Présidentielle occupe le dernier étage avec une vue imprenable sur Bangui. Chaque détail a été pensé pour offrir une expérience royale à nos hôtes les plus exigeants.",
+        "features": [
+          "Suite d'angle avec vue panoramique à 180°",
+          "Grand salon avec mobilier design",
+          "Salle à manger privée",
+          "Espace bureau directorial",
+          "Terrasse privée avec jacuzzi",
+          "Dressing et walk-in closet",
+          "Domotique intégrée (éclairage, stores, son)",
+          "Service majordome dédié 24h/24",
+          "Transfert aéroport privé inclus",
+          "Accès au lounge VIP"
+        ],
+        "badge": "Exclusive"
+      }
+    ],
+    "cta": {
+      "title": "Vivez l'Expérience KM Hotel",
+      "text": "Offrez-vous le meilleur de l'hôtellerie centrafricaine. Réservez dès maintenant votre chambre ou suite.",
+      "button": "Réserver maintenant"
+    },
+    "detailButton": "Détails",
+    "bookButton": "Réserver"
+  },
+  "suites": {
+    "hero": {
+      "badge": "Luxe & Prestige",
+      "title": "Nos Suites",
+      "subtitle": "Des espaces généreux et raffinés pour une expérience de séjour d'exception au KM Hotel."
+    },
+    "intro": {
+      "badge": "Prestige absolu",
+      "title": "L'Excellence en Toute Discrétion",
+      "text": "Nos suites sont conçues pour offrir une expérience de luxe ultime. Espaces généreux, prestations sur mesure et attention portée aux moindres détails font de chaque séjour un moment inoubliable."
+    },
+    "suites": [
+      {
+        "name": "Suite Exécutive",
+        "price": "À partir de 120 000 XAF",
+        "size": "45 m²",
+        "capacity": "1-3 personnes",
+        "bed": "Lit King Size (180x200) + Canapé-lit",
+        "description": "Notre Suite Exécutive est l'incarnation du luxe discret. Avec son vaste espace de vie séparé, elle convient aussi bien aux séjours d'affaires de haut niveau qu'aux couples en quête d'une expérience inoubliable.",
+        "features": [
+          "Chambre séparée avec Lit King Size",
+          "Salon spacieux avec canapé d'angle convertible",
+          "Espace repas avec table pour 4 personnes",
+          "Terrasse privative ou balcon panoramique",
+          "Climatisation multi-zones",
+          "Smart TV 65\" (chambre) + 50\" (salon)",
+          "Salle de bain luxueuse avec douche et baignoire",
+          "Prestations VIP (conciergerie, accès prioritaire)",
+          "Champagne et fruits frais à l'arrivée"
+        ],
+        "badge": "Premium"
+      },
+      {
+        "name": "Suite Présidentielle",
+        "price": "Sur demande",
+        "size": "70 m²",
+        "capacity": "1-4 personnes",
+        "bed": "Lit King Size (200x200) + Salon séparé",
+        "description": "Le summum de l'élégance au KM Hotel. La Suite Présidentielle occupe le dernier étage avec une vue imprenable sur Bangui. Chaque détail a été pensé pour offrir une expérience royale à nos hôtes les plus exigeants.",
+        "features": [
+          "Suite d'angle avec vue panoramique à 180°",
+          "Grand salon avec mobilier design",
+          "Salle à manger privée",
+          "Espace bureau directorial",
+          "Terrasse privée avec jacuzzi",
+          "Dressing et walk-in closet",
+          "Domotique intégrée (éclairage, stores, son)",
+          "Service majordome dédié 24h/24",
+          "Transfert aéroport privé inclus",
+          "Accès au lounge VIP"
+        ],
+        "badge": "Exclusive"
+      }
+    ],
+    "cta": {
+      "title": "Vivez l'Expérience KM Hotel",
+      "text": "Offrez-vous le meilleur de l'hôtellerie centrafricaine. Réservez dès maintenant votre suite.",
+      "button": "Réserver maintenant"
+    },
+    "detailButton": "Détails",
+    "bookButton": "Réserver"
+  },
+  "bienEtre": {
+    "nav": "Bien-être",
+    "hero": {
+      "badge": "Détente & Bien-être",
+      "title": "Espace Bien-être & Relaxation",
+      "subtitle": "Piscines, spa, hammam et jardin zen : un sanctuaire de bien-être au cœur du KM Hotel pour vous ressourcer."
+    },
+    "intro": {
+      "badge": "Votre sanctuaire",
+      "title": "L'Art du Bien-Être",
+      "text": "Au KM Hotel, nous avons créé un espace dédié à votre bien-être. Entre nos piscines luxueuses, notre spa intimiste et nos espaces de détente verdoyants, chaque instant est une invitation à la relaxation. Laissez-vous porter par une atmosphère apaisante et offrez-vous une parenthèse de sérénité."
+    },
+    "stats": [
+      { "label": "2 Piscines", "desc": "Extérieure & Intérieure" },
+      { "label": "Soins Spa", "desc": "Massages & Rituels" },
+      { "label": "Hammam & Sauna", "desc": "Détente absolue" },
+      { "label": "Espace Zen", "desc": "Jardin & Terrasse" }
+    ],
+    "pools": {
+      "badge": "Piscines",
+      "title": "Nagez dans le Luxe",
+      "subtitle": "Deux piscines conçues pour votre plaisir : une extérieure à débordement baignée de soleil, et une intérieure chauffée accessible toute l'année.",
+      "items": [
+        {
+          "title": "Piscine Extérieure",
+          "desc": "Une grande piscine à débordement entourée de transats et de parasols, idéale pour se rafraîchir et se détendre sous le soleil centrafricain.",
+          "details": ["Longueur : 20 mètres", "Profondeur : 1,20m - 2,50m", "Température : 28°C", "Transats & parasols", "Service au bord de l'eau", "Horaires : 07h - 19h"]
+        },
+        {
+          "title": "Piscine Intérieure Chauffée",
+          "desc": "Notre piscine intérieure chauffée vous permet de profiter de la natation toute l'année. Un espace lumineux et élégant avec vue panoramique.",
+          "details": ["Longueur : 15 mètres", "Profondeur : 1,10m - 2m", "Température : 30°C", "Jacuzzi intégré", "Hammam adjacent", "Horaires : 06h - 22h"]
+        }
+      ]
+    },
+    "relaxation": {
+      "badge": "Détente & Soins",
+      "title": "Espaces de Relaxation",
+      "subtitle": "Spa, hammam, sauna et jardin zen : un éventail d'expériences bien-être pour vous ressourcer en profondeur.",
+      "servicesLabel": "Services & Soins",
+      "items": [
+        {
+          "title": "Spa & Massages",
+          "desc": "Un espace spa intimiste proposant une gamme complète de soins : massages relaxants, soins du visage, enveloppements corporels et rituels bien-être.",
+          "treatments": ["Massage aux huiles essentielles", "Soin visage hydratant", "Enveloppement corps", "Rituel bien-être 2h", "Massage duo en cabine"]
+        },
+        {
+          "title": "Hammam & Sauna",
+          "desc": "Détendez-vous dans notre hammam traditionnel ou notre sauna sec. Une expérience purifiante pour le corps et l'esprit, idéale après une journée de travail.",
+          "treatments": ["Hammam traditionnel", "Sauna sec finlandais", "Douche sensorielle", "Gommage corps", "Espace repos avec tisane"]
+        },
+        {
+          "title": "Jardin Zen & Terrasse",
+          "desc": "Un jardin paysagé calme et verdoyant avec une terrasse ombragée. L'endroit parfait pour lire, méditer ou simplement profiter du calme.",
+          "treatments": ["Jardin paysagé", "Terrasse ombragée", "Fontaine zen", "Coin lecture", "Service thé & café"]
+        }
+      ]
+    },
+    "hours": {
+      "pools": { "title": "Piscines", "hours": "07h00 - 19h00", "note": "Extérieure • Intérieure" },
+      "spa": { "title": "Spa & Soins", "hours": "09h00 - 20h00", "note": "Sur rendez-vous" },
+      "sauna": { "title": "Hammam & Sauna", "hours": "06h00 - 22h00", "note": "Accès libre" }
+    },
+    "cta": {
+      "title": "Offrez-Vous un Moment de Bien-Être",
+      "text": "Que ce soit pour une journée détente ou un soin spécifique, notre équipe est à votre disposition pour vous offrir une expérience inoubliable.",
+      "button": "Réserver un soin"
+    }
+  },
+  "restaurantBar": {
+    "hero": {
+      "badge": "Gastronomie & Détente",
+      "title": "Restaurant & Bar Lounge",
+      "subtitle": "Une expérience culinaire raffinée et un bar lounge cosy pour vos moments de détente au KM Hotel."
+    },
+    "intro": {
+      "badge": "Une Table d'Exception",
+      "title": "Voyage Culinaire au Cœur de l'Afrique",
+      "p1": "Le restaurant du KM Hotel vous invite à un voyage gustatif unique. Notre chef talentueux sublime les produits locaux les plus nobles — poisson frais du fleuve Oubangui, viandes de qualité, fruits et légumes gorgés de soleil — en leur apportant une touche de modernité et de raffinement.",
+      "p2": "Dans un cadre élégant aux tons chauds et naturels, chaque repas devient une expérience mémorable. Que ce soit pour un petit-déjeuner d'affaires, un déjeuner entre collègues ou un dîner romantique, notre équipe est aux petits soins pour vous.",
+      "imgAlt1": "Restaurant KM Hotel",
+      "imgAlt2": "Ambiance du restaurant"
+    },
+    "highlights": {
+      "badge": "Nos Services",
+      "title": "Restauration sur Place",
+      "subtitle": "Que vous soyez hôte de l'hôtel ou visiteur extérieur, nos espaces de restauration vous sont ouverts.",
+      "items": [
+        {
+          "title": "Petit-Déjeuner Buffet",
+          "hours": "06:30 - 10:00",
+          "desc": "Un buffet généreux mêlant viennoiseries artisanales, fruits frais, spécialités locales et boissons chaudes. De quoi bien démarrer la journée."
+        },
+        {
+          "title": "Déjeuner & Dîner",
+          "hours": "12:00 - 14:00 / 19:00 - 22:30",
+          "desc": "Une carte raffinée qui sublime les produits locaux : poisson du fleuve Oubangui, viande grillée, légumes frais du marché, le tout relevé de saveurs internationales."
+        },
+        {
+          "title": "Bar Lounge & Cocktails",
+          "hours": "17:00 - 00:00",
+          "desc": "Une sélection pointue de vins, champagnes et spiritueux, des cocktails signatures créés par notre barman, le tout dans une ambiance feutrée et élégante."
+        }
+      ]
+    },
+    "menu": {
+      "badge": "À la Carte",
+      "title": "Suggestions du Chef",
+      "subtitle": "Notre chef sélectionne les meilleurs produits de saison pour vous offrir une carte renouvelée régulièrement.",
+      "dishes": [
+        { "name": "Brochettes de Capitaine", "desc": "Poisson du fleuve Oubangui mariné aux épices locales, servi avec riz parfumé et légumes sautés", "price": "À partir de 8 500 XAF" },
+        { "name": "Filet de Bœuf au Poivre", "desc": "Filet tendre grillé, sauce au poivre vert, gratin dauphinois et haricots verts", "price": "À partir de 12 000 XAF" },
+        { "name": "Poulet Yassa revisité", "desc": "Cuisses de poulet confites dans une marinade oignons-citron, purée de patate douce", "price": "À partir de 9 500 XAF" },
+        { "name": "Assiette Végétarienne", "desc": "Légumes de saison rôtis, quinoa aux herbes, sauce vierge et croustillant de parmesan", "price": "À partir de 7 000 XAF" }
+      ]
+    },
+    "bar": {
+      "label": "Bar Lounge",
+      "title": "L'Art de la Détente",
+      "text": "En fin de journée, notre Bar Lounge vous accueille dans une atmosphère feutrée et cosy. Canapés profonds, éclairage tamisé, musique d'ambiance : l'endroit idéal pour se détendre après une journée de travail ou de découverte.",
+      "hours": "17:00 - 00:00",
+      "location": "Rez-de-chaussée",
+      "cocktailTitle": "Notre Carte de Cocktails",
+      "cocktails": [
+        { "name": "KM Sunset", "desc": "Rhum, jus de fruits de la passion, sirop de gingembre, menthe fraîche", "price": "5 000 XAF" },
+        { "name": "Bangui Mule", "desc": "Vodka, ginger beer locale, citron vert, angostura", "price": "4 500 XAF" },
+        { "name": "Sangria Tropicale", "desc": "Vin rouge, fruits exotiques, cannelle, eau gazeuse", "price": "4 000 XAF" },
+        { "name": "Mocktail Hibiscus", "desc": "Infusion d'hibiscus, citronnelle, sirop de miel, eau pétillante (sans alcool)", "price": "3 000 XAF" }
+      ],
+      "imgAlt1": "Cocktail bar",
+      "imgAlt2": "Bar ambiance"
+    },
+    "cta": {
+      "title": "Réservez Votre Table",
+      "text": "Que ce soit pour un dîner romantique, un déjeuner d'affaires ou une soirée entre amis, notre équipe vous réserve un accueil chaleureux.",
+      "button": "Réserver une table"
+    }
+  }
+}
