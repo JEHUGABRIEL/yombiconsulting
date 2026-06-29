@@ -11,9 +11,9 @@ import {
   Heart,
   Star
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useDataBuilder } from '../hooks/useDataBuilder';
+import { useContactModal } from '../context/ContactModalContext';
 
 const heroSlides = [
   {
@@ -95,6 +95,7 @@ const sectionIds = ['piscines', 'detente'];
 
 export function BienEtrePage() {
   const { t } = useTranslation();
+  const { openModal } = useContactModal();
   const [current, setCurrent] = useState(0);
   const [activeSection, setActiveSection] = useState('');
   const poolFeatures = useDataBuilder(buildPoolFeatures, t);
@@ -427,12 +428,12 @@ export function BienEtrePage() {
               {t('bienEtre.cta.text')}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link
-                to="/contact"
+              <button
+                onClick={openModal}
                 className="px-8 py-4 bg-brand-600 text-white font-medium tracking-wide hover:bg-brand-700 transition-colors"
               >
                 {t('bienEtre.cta.button')}
-              </Link>
+              </button>
               <a
                 href="tel:+23675494969"
                 className="flex items-center gap-2 px-8 py-4 border border-brand-600 text-brand-600 hover:bg-brand-50 transition-colors"

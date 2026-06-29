@@ -17,10 +17,10 @@ import {
   Eye,
   Home
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useDataBuilder } from '../hooks/useDataBuilder';
 import { DetailModal, type RoomDetail } from '../components/DetailModal';
+import { useContactModal } from '../context/ContactModalContext';
 
 const ROOM_COUNT = 2;
 const FEATURE_COUNTS = [8, 9]; // features per room
@@ -111,6 +111,7 @@ function RoomDetailButton({ room, label }: { room: RoomDetail; label: string }) 
 
 export function ChambresPage() {
   const { t } = useTranslation();
+  const { openModal } = useContactModal();
   const [current, setCurrent] = useState(0);
   const [activeSection, setActiveSection] = useState('');
 
@@ -354,12 +355,12 @@ export function ChambresPage() {
                     </span>
                     <div className="flex items-center gap-2">
                       <RoomDetailButton room={room} label={t('chambres.detailButton')} />
-                      <Link
-                        to="/contact"
+                      <button
+                        onClick={openModal}
                         className="px-6 py-3 bg-brand-600 text-white font-medium text-sm uppercase tracking-wider hover:bg-brand-700 transition-colors"
                       >
                         {t('chambres.bookButton')}
-                      </Link>
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -395,12 +396,12 @@ export function ChambresPage() {
               {t('chambres.cta.text')}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link
-                to="/contact"
+              <button
+                onClick={openModal}
                 className="px-8 py-4 bg-brand-600 text-white font-medium tracking-wide hover:bg-brand-700 transition-colors"
               >
                 {t('chambres.cta.button')}
-              </Link>
+              </button>
               <a
                 href="tel:+23675494969"
                 className="flex items-center gap-2 px-8 py-4 bg-white/10 backdrop-blur-sm text-white border border-white/30 hover:bg-white/20 transition-colors"

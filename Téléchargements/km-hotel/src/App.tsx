@@ -15,6 +15,8 @@ import { BienEtrePage } from './pages/BienEtrePage';
 import { SuitesPage } from './pages/SuitesPage';
 import { EvenementsPage } from './pages/EvenementsPage';
 import { WhatsAppFab } from './components/WhatsAppFab';
+import { ContactModalProvider } from './context/ContactModalContext';
+import { ContactModal } from './components/ContactModal';
 
 function HomePage() {
   return (
@@ -32,20 +34,23 @@ function HomePage() {
 
 export function App() {
   return (
-    <BrowserRouter>
-      <div className="min-h-screen bg-slate-50 font-sans selection:bg-brand-200 selection:text-brand-900">
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/chambres" element={<ChambresPage />} />
-          <Route path="/restaurant-bar" element={<RestaurantBarPage />} />
-          <Route path="/bien-etre" element={<BienEtrePage />} />
-          <Route path="/suites" element={<SuitesPage />} />
-          <Route path="/evenements" element={<EvenementsPage />} />
-        </Routes>
-        <WhatsAppFab />
-        <Footer />
-      </div>
-    </BrowserRouter>
+    <ContactModalProvider>
+      <BrowserRouter>
+        <div className="min-h-screen bg-slate-50 font-sans selection:bg-brand-200 selection:text-brand-900">
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/chambres" element={<ChambresPage />} />
+            <Route path="/restaurant-bar" element={<RestaurantBarPage />} />
+            <Route path="/bien-etre" element={<BienEtrePage />} />
+            <Route path="/suites" element={<SuitesPage />} />
+            <Route path="/evenements" element={<EvenementsPage />} />
+          </Routes>
+          <WhatsAppFab />
+          <ContactModal />
+          <Footer />
+        </div>
+      </BrowserRouter>
+    </ContactModalProvider>
   );
 }

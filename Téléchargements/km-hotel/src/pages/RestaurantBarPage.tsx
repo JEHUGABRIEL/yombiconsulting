@@ -12,8 +12,8 @@ import {
   Sparkles,
   Eye
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import { DetailModal, type DishDetail } from '../components/DetailModal';
+import { useContactModal } from '../context/ContactModalContext';
 
 const restaurantHighlights = [
   {
@@ -237,6 +237,7 @@ function DishCard({ dish, index }: { dish: DishDetail; index: number }) {
 }
 
 export function RestaurantBarPage() {
+  const { openModal } = useContactModal();
   const [current, setCurrent] = useState(0);
 
   const next = useCallback(() => {
@@ -571,12 +572,12 @@ export function RestaurantBarPage() {
               chaleureux.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link
-                to="/contact"
+              <button
+                onClick={openModal}
                 className="px-8 py-4 bg-brand-600 text-white font-medium tracking-wide hover:bg-brand-700 transition-colors"
               >
                 Réserver une table
-              </Link>
+              </button>
               <a
                 href="tel:+23675494969"
                 className="flex items-center gap-2 px-8 py-4 border border-brand-600 text-brand-600 hover:bg-brand-50 transition-colors"

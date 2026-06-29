@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Menu, X, Phone, Globe, ChevronDown } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useContactModal } from '../context/ContactModalContext';
 
 export function Navbar() {
   const { t, i18n } = useTranslation();
@@ -10,6 +11,33 @@ export function Navbar() {
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const [isSejourMenuOpen, setIsSejourMenuOpen] = useState(false);
   const [isRestoMenuOpen, setIsRestoMenuOpen] = useState(false);
+  const sejourTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const restoTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const { openModal } = useContactModal();
+
+  const DROPDOWN_DELAY = 150;
+
+  const openSejour = () => {
+    if (sejourTimeoutRef.current) clearTimeout(sejourTimeoutRef.current);
+    setIsSejourMenuOpen(true);
+  };
+
+  const closeSejourDelayed = () => {
+    sejourTimeoutRef.current = setTimeout(() => {
+      setIsSejourMenuOpen(false);
+    }, DROPDOWN_DELAY);
+  };
+
+  const openResto = () => {
+    if (restoTimeoutRef.current) clearTimeout(restoTimeoutRef.current);
+    setIsRestoMenuOpen(true);
+  };
+
+  const closeRestoDelayed = () => {
+    restoTimeoutRef.current = setTimeout(() => {
+      setIsRestoMenuOpen(false);
+    }, DROPDOWN_DELAY);
+  };
   const location = useLocation();
   const isHomePage = location.pathname === '/';
 
@@ -34,7 +62,6 @@ export function Navbar() {
     { name: t('nav.home'), href: '/' },
     { name: t('nav.bienEtre'), href: '/bien-etre' },
     { name: t('nav.services'), href: isHomePage ? '#services' : '/#services' },
-    { name: t('nav.restaurantBar'), href: '/restaurant-bar' },
     { name: t('nav.evenements'), href: '/evenements' }
   ];
 
@@ -76,8 +103,8 @@ export function Navbar() {
             {/* Séjour Dropdown */}
             <div
               className="relative"
-              onMouseEnter={() => setIsSejourMenuOpen(true)}
-              onMouseLeave={() => setIsSejourMenuOpen(false)}
+              onMouseEnter={openSejour}
+              onMouseLeave={closeSejourDelayed}
             >
               <button
                 className={`flex items-center gap-1 text-sm font-medium uppercase tracking-wider hover:text-brand-500 transition-colors ${
@@ -90,17 +117,19 @@ export function Navbar() {
                 }`} />
               </button>
               {isSejourMenuOpen && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-44 bg-white shadow-lg border border-slate-100 rounded-sm overflow-hidden">
-                  {sejourSubLinks.map((sub) => (
-                    <Link
-                      key={sub.name}
-                      to={sub.href}
-                      onClick={() => setIsSejourMenuOpen(false)}
-                      className="block px-5 py-3 text-sm font-medium text-slate-700 hover:text-brand-600 hover:bg-brand-50 transition-colors"
-                    >
-                      {sub.name}
-                    </Link>
-                  ))}
+                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2">
+                  <div className="w-44 bg-white shadow-lg border border-slate-100 rounded-sm overflow-hidden">
+                    {sejourSubLinks.map((sub) => (
+                      <Link
+                        key={sub.name}
+                        to={sub.href}
+                        onClick={() => { setIsSejourMenuOpen(false); if (sejourTimeoutRef.current) clearTimeout(sejourTimeoutRef.current); }}
+                        className="block px-5 py-3 text-sm font-medium text-slate-700 hover:text-brand-600 hover:bg-brand-50 transition-colors"
+                      >
+                        {sub.name}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
@@ -132,8 +161,8 @@ export function Navbar() {
             {/* Restaurant & Bar Dropdown */}
             <div
               className="relative"
-              onMouseEnter={() => setIsRestoMenuOpen(true)}
-              onMouseLeave={() => setIsRestoMenuOpen(false)}
+              onMouseEnter={openResto}
+              onMouseLeave={closeRestoDelayed}
             >
               <button
                 className={`flex items-center gap-1 text-sm font-medium uppercase tracking-wider hover:text-brand-500 transition-colors ${
@@ -146,17 +175,19 @@ export function Navbar() {
                 }`} />
               </button>
               {isRestoMenuOpen && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-44 bg-white shadow-lg border border-slate-100 rounded-sm overflow-hidden">
-                  {restoSubLinks.map((sub) => (
-                    <a
-                      key={sub.name}
-                      href={sub.href}
-                      onClick={() => setIsRestoMenuOpen(false)}
-                      className="block px-5 py-3 text-sm font-medium text-slate-700 hover:text-brand-600 hover:bg-brand-50 transition-colors"
-                    >
-                      {sub.name}
-                    </a>
-                  ))}
+                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2">
+                  <div className="w-44 bg-white shadow-lg border border-slate-100 rounded-sm overflow-hidden">
+                    {restoSubLinks.map((sub) => (
+                      <a
+                        key={sub.name}
+                        href={sub.href}
+                        onClick={() => { setIsRestoMenuOpen(false); if (restoTimeoutRef.current) clearTimeout(restoTimeoutRef.current); }}
+                        className="block px-5 py-3 text-sm font-medium text-slate-700 hover:text-brand-600 hover:bg-brand-50 transition-colors"
+                      >
+                        {sub.name}
+                      </a>
+                    ))}
+                  </div>
                 </div>
               )}
             </div>
@@ -200,8 +231,8 @@ export function Navbar() {
               )}
             </div>
 
-            <Link
-              to="/contact"
+            <button
+              onClick={openModal}
               className={`flex items-center px-5 py-2.5 rounded-none border transition-all ${
                 isScrolled
                   ? 'border-brand-600 text-brand-600 hover:bg-brand-600 hover:text-white'
@@ -210,7 +241,7 @@ export function Navbar() {
             >
               <Phone className="w-4 h-4 mr-2" />
               <span className="text-sm font-medium">{t('nav.book')}</span>
-            </Link>
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -328,14 +359,13 @@ export function Navbar() {
               </div>
             </div>
 
-            <Link
-              to="/contact"
-              onClick={() => setIsMobileMenuOpen(false)}
+            <button
+              onClick={() => { setIsMobileMenuOpen(false); openModal(); }}
               className="mt-4 flex items-center justify-center w-full px-5 py-3 border border-brand-600 text-brand-600 font-medium hover:bg-brand-50"
             >
               <Phone className="w-4 h-4 mr-2" />
               {t('nav.bookPhone')}
-            </Link>
+            </button>
           </div>
         </div>
       )}
