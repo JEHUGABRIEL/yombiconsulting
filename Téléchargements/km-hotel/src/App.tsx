@@ -18,6 +18,7 @@ import { EvenementsPage } from './pages/EvenementsPage';
 import { WhatsAppFab } from './components/WhatsAppFab';
 import { ContactModalProvider } from './context/ContactModalContext';
 import { ContactModal } from './components/ContactModal';
+import { TopBar } from './components/TopBar';
 
 function HomePage() {
   return (
@@ -38,6 +39,7 @@ export function App() {
     <ContactModalProvider>
       <BrowserRouter>
         <div className="min-h-screen bg-slate-50 font-sans selection:bg-brand-200 selection:text-brand-900">
+          <TopBar />
           <Navbar />
           <Routes>
             <Route path="/" element={<HomePage />} />
