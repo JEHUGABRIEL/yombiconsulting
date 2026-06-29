@@ -9,6 +9,7 @@ export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const [isSejourMenuOpen, setIsSejourMenuOpen] = useState(false);
+  const [isRestoMenuOpen, setIsRestoMenuOpen] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
 
@@ -31,15 +32,20 @@ export function Navbar() {
 
   const navLinks = [
     { name: t('nav.home'), href: '/' },
-    { name: t('nav.about'), href: isHomePage ? '#about' : '/#about' },
     { name: t('nav.bienEtre'), href: '/bien-etre' },
     { name: t('nav.services'), href: isHomePage ? '#services' : '/#services' },
-    { name: t('nav.restaurantBar'), href: '/restaurant-bar' }
+    { name: t('nav.restaurantBar'), href: '/restaurant-bar' },
+    { name: t('nav.evenements'), href: '/evenements' }
   ];
 
   const sejourSubLinks = [
     { name: t('nav.roomsSub'), href: '/chambres' },
     { name: t('nav.suitesSub'), href: '/suites' }
+  ];
+
+  const restoSubLinks = [
+    { name: t('nav.restaurantSub'), href: '/restaurant-bar#restaurant' },
+    { name: t('nav.barSub'), href: '/restaurant-bar#bar' }
   ];
 
   const currentLang = i18n.language?.startsWith('fr') ? 'FR' : 'EN';
@@ -122,6 +128,38 @@ export function Navbar() {
                 </a>
               )
             )}
+
+            {/* Restaurant & Bar Dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => setIsRestoMenuOpen(true)}
+              onMouseLeave={() => setIsRestoMenuOpen(false)}
+            >
+              <button
+                className={`flex items-center gap-1 text-sm font-medium uppercase tracking-wider hover:text-brand-500 transition-colors ${
+                  isScrolled ? 'text-slate-600' : 'text-white/90'
+                }`}
+              >
+                {t('nav.restaurantBar')}
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                  isRestoMenuOpen ? 'rotate-180' : ''
+                }`} />
+              </button>
+              {isRestoMenuOpen && (
+                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-44 bg-white shadow-lg border border-slate-100 rounded-sm overflow-hidden">
+                  {restoSubLinks.map((sub) => (
+                    <a
+                      key={sub.name}
+                      href={sub.href}
+                      onClick={() => setIsRestoMenuOpen(false)}
+                      className="block px-5 py-3 text-sm font-medium text-slate-700 hover:text-brand-600 hover:bg-brand-50 transition-colors"
+                    >
+                      {sub.name}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
 
             {/* Language Switcher */}
             <div className="relative">
@@ -270,6 +308,26 @@ export function Navbar() {
                 </a>
               )
             )}
+
+            {/* Restaurant & Bar section in mobile */}
+            <div className="px-3 py-2">
+              <span className="text-xs font-bold uppercase tracking-wider text-slate-400 block mb-1">
+                {t('nav.restaurantBar')}
+              </span>
+              <div className="space-y-0.5 ml-2">
+                {restoSubLinks.map((sub) => (
+                  <a
+                    key={sub.name}
+                    href={sub.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block px-3 py-2 text-base font-medium text-slate-800 hover:text-brand-600 hover:bg-slate-50 rounded-sm"
+                  >
+                    {sub.name}
+                  </a>
+                ))}
+              </div>
+            </div>
+
             <Link
               to="/contact"
               onClick={() => setIsMobileMenuOpen(false)}

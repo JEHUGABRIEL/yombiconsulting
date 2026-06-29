@@ -358,7 +358,7 @@ export function RestaurantBarPage() {
       </section>
 
       {/* ===== RESTAURANT HIGHLIGHTS ===== */}
-      <section className="py-24 bg-slate-50">
+      <section id="restaurant" className="py-24 bg-slate-50 scroll-mt-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div {...fadeUp} className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-brand-600 font-medium tracking-widest uppercase text-sm mb-3">
@@ -454,7 +454,7 @@ export function RestaurantBarPage() {
       </section>
 
       {/* ===== BAR LOUNGE SECTION ===== */}
-      <section className="py-24 bg-slate-900 text-white relative overflow-hidden">
+      <section id="bar" className="py-24 bg-slate-900 text-white relative overflow-hidden scroll-mt-24">
         <div
           className="absolute inset-0 opacity-15"
           style={{

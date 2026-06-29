@@ -13,6 +13,7 @@ import { ChambresPage } from './pages/ChambresPage';
 import { RestaurantBarPage } from './pages/RestaurantBarPage';
 import { BienEtrePage } from './pages/BienEtrePage';
 import { SuitesPage } from './pages/SuitesPage';
+import { EvenementsPage } from './pages/EvenementsPage';
 import { WhatsAppFab } from './components/WhatsAppFab';
 
 function HomePage() {
@@ -40,6 +41,7 @@ export function App() {
           <Route path="/restaurant-bar" element={<RestaurantBarPage />} />
           <Route path="/bien-etre" element={<BienEtrePage />} />
           <Route path="/suites" element={<SuitesPage />} />
+          <Route path="/evenements" element={<EvenementsPage />} />
         </Routes>
         <WhatsAppFab />
         <Footer />

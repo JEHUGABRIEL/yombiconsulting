@@ -7,7 +7,10 @@
     "suitesSub": "Suites",
     "services": "Services",
     "restaurantBar": "Restaurant & Bar",
+    "restaurantSub": "Restaurant",
+    "barSub": "Bar",
     "bienEtre": "Bien-être",
+    "evenements": "Événements",
     "book": "Réserver",
     "bookPhone": "Réserver au +236 75 49 49 69"
   },
@@ -363,6 +366,57 @@
       "title": "Offrez-Vous un Moment de Bien-Être",
       "text": "Que ce soit pour une journée détente ou un soin spécifique, notre équipe est à votre disposition pour vous offrir une expérience inoubliable.",
       "button": "Réserver un soin"
+    }
+  },
+  "evenements": {
+    "hero": {
+      "badge": "Réceptions & Séminaires",
+      "title": "Événements & Réceptions",
+      "subtitle": "Organisez vos événements professionnels et privés dans un cadre d'exception au cœur de Bangui."
+    },
+    "intro": {
+      "badge": "Votre événement, notre expertise",
+      "title": "Des Espaces Modulables pour Toutes vos Occasions",
+      "text": "Que ce soit pour un séminaire d'entreprise, une conférence, un mariage ou une réception privée, le KM Hotel met à votre disposition des espaces élégants et entièrement modulables. Notre équipe dédiée vous accompagne dans l'organisation de chaque détail pour faire de votre événement un moment inoubliable."
+    },
+    "seminaires": {
+      "badge": "Professionnel",
+      "title": "Séminaires & Conférences",
+      "subtitle": "Deux salles modulables parfaitement équipées pour vos réunions, séminaires et conférences.",
+      "galleryTitle": "Nos salles de conférence",
+      "features": [
+        "Capacité : jusqu'à 50 personnes en conférence",
+        "Équipement audiovisuel complet (vidéoprojecteur, écran, sonorisation)",
+        "Connexion Wi-Fi haut débit (fibre optique)",
+        "Paperboard et matériel de présentation",
+        "Climatisation réversible et éclairage modulable",
+        "Pause-café et collations incluses"
+      ],
+      "options": [
+        { "title": "Demi-journée", "desc": "Matin ou après-midi : salle + équipement + pause-café", "price": "Sur demande" },
+        { "title": "Journée complète", "desc": "Salle + équipement + déjeuner affaires + pauses", "price": "Sur demande" },
+        { "title": "Forfait Séminaire", "desc": "Salle + hébergement + restauration complète + équipement", "price": "Sur demande" }
+      ]
+    },
+    "mariages": {
+      "badge": "Privé",
+      "title": "Mariages & Réceptions",
+      "subtitle": "Célébrez vos moments les plus précieux dans un cadre élégant et raffiné.",
+      "text": "Le KM Hotel vous ouvre ses portes pour vos plus beaux événements. Notre équipe dédiée met tout en œuvre pour créer une atmosphère unique et personnalisée, du cocktail au dîner de gala. Avec nos espaces intérieurs et extérieurs, laissez-vous séduire par un cadre exceptionnel au cœur de Bangui.",
+      "galleryTitle": "Galerie mariage",
+      "highlights": [
+        "Capacité jusqu'à 120 personnes en réception",
+        "Espace extérieur pour cocktails et cérémonies",
+        "Menu personnalisé avec notre chef",
+        "Coordination événementielle dédiée",
+        "Décoration et éclairage sur mesure",
+        "Pack mariage clé en main disponible"
+      ]
+    },
+    "cta": {
+      "title": "Prêt à Organiser Votre Événement ?",
+      "text": "Contactez notre équipe événementielle pour discuter de votre projet et recevoir un devis personnalisé.",
+      "button": "Demander un devis"
     }
   },
   "restaurantBar": {
