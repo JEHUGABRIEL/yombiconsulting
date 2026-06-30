@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Phone, Calendar, Mail, Users, BedDouble, ChevronRight, Check, MessageSquare } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useContactModal } from '../context/ContactModalContext';
+import { FcfaCurrency } from './FcfaCurrency';
 
 const roomTypes = [
   { key: 'comfort', icon: '🛏️' },
@@ -185,7 +186,7 @@ export function ContactModal() {
                             <span className={`text-[10px] block mt-0.5 ${
                               selectedRoom === room.key ? 'text-brand-500' : 'text-slate-400'
                             }`}>
-                              {t(`chambres.rooms.${i}.price`)}
+                              <FcfaCurrency price={t(`chambres.rooms.${i}.price`)} />
                             </span>
                             {selectedRoom === room.key && (
                               <span className="absolute top-1.5 right-1.5 w-4 h-4 bg-brand-600 rounded-full flex items-center justify-center">

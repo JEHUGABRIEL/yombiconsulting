@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   ChevronDown,
   Clock,
@@ -10,6 +10,7 @@ import {
   Sparkles
 } from 'lucide-react';
 import { useContactModal } from '../context/ContactModalContext';
+import { FcfaCurrency } from '../components/FcfaCurrency';
 
 const heroSlides = [
   {
@@ -43,6 +44,9 @@ export function BarPage() {
     return () => clearInterval(timer);
   }, [next]);
 
+  const heroSlidesData = t('bar.hero.slides', { returnObjects: true }) as { badge: string; title: string }[];
+  const currentSlide = heroSlidesData?.[current] ?? { badge: '', title: '' };
+
   const signatureCocktails = t('bar.cocktails', { returnObjects: true }) as {
     name: string; desc: string; price: string;
   }[];
@@ -68,22 +72,22 @@ export function BarPage() {
         ))}
 
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto mt-16">
-          <motion.div
-            key={current}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-          >
-            <span className="text-brand-300 font-medium tracking-[0.2em] uppercase text-sm md:text-base mb-4 block">
-              {t('bar.hero.badge')}
-            </span>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif text-white font-bold mb-6 leading-tight">
-              {t('bar.hero.title')}
-            </h1>
-            <p className="text-lg md:text-xl text-slate-200 max-w-2xl mx-auto font-light">
-              {t('bar.hero.subtitle')}
-            </p>
-          </motion.div>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={current}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.6, ease: 'easeOut' }}
+            >
+              <span className="text-brand-300 font-medium tracking-[0.2em] uppercase text-sm md:text-base mb-4 block">
+                {currentSlide.badge}
+              </span>
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif text-white font-bold mb-6 leading-tight">
+                {currentSlide.title}
+              </h1>
+            </motion.div>
+          </AnimatePresence>
         </div>
 
         <motion.div
@@ -179,7 +183,7 @@ export function BarPage() {
                     {cocktail.desc}
                   </p>
                   <span className="text-brand-400 font-medium text-sm">
-                    {cocktail.price}
+                    <FcfaCurrency price={cocktail.price} />
                   </span>
                 </div>
               ))}

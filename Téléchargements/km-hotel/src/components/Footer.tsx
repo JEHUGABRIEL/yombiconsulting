@@ -48,9 +48,11 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           <div>
-            <h5 className="font-serif text-2xl text-white mb-4 tracking-wider">
-              KM HOTEL
-            </h5>
+            <img
+              src="/logo/kmh-logo.svg"
+              alt="KM Hotel"
+              className="h-16 w-auto mb-4"
+            />
             <p className="text-sm font-light leading-relaxed text-slate-400 max-w-xs">
               {t('footer.description')}
             </p>

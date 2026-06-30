@@ -1,39 +1,31 @@
 import { useState, useEffect, useCallback } from 'react';
-import { motion } from 'framer-motion';
-import {
-  Users,
-  Bed,
-  Square,
-  ChevronDown,
-  Phone,
-  Eye,
-  Home
-} from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronDown, Phone, BedDouble, Bath, Utensils, Wifi } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useDataBuilder } from '../hooks/useDataBuilder';
 import { DetailModal, type RoomDetail } from '../components/DetailModal';
 import { useContactModal } from '../context/ContactModalContext';
+import { FcfaCurrency } from '../components/FcfaCurrency';
 
-const SUITE_COUNT = 2;
-const FEATURE_COUNTS = [9, 10]; // features per suite
+const FEATURE_COUNTS = [9, 10];
 
 const suiteImages = [
-  'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&q=80',
-  'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&q=80'
+  '/images/salles/716170411_1520481436109369_3501784672869103090_n.jpg',
+  '/images/salles/730332558_1555637016227635_6869706089490226393_n.jpeg'
 ];
 
 const heroSlides = [
   {
-    image:
-      'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&q=80',
+    image: '/images/salles/716170411_1520481436109369_3501784672869103090_n.jpg',
     alt: 'Suite Exécutive KM Hotel'
   },
   {
-    image:
-      'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&q=80',
+    image: '/images/salles/730332558_1555637016227635_6869706089490226393_n.jpeg',
     alt: 'Suite Présidentielle KM Hotel'
   }
 ];
+
+const hoverAmenityIcons = [BedDouble, Bath, Utensils, Wifi];
 
 const fadeUp = {
   initial: { opacity: 0, y: 30 },
@@ -41,8 +33,6 @@ const fadeUp = {
   viewport: { once: true },
   transition: { duration: 0.6 }
 };
-
-const sectionIds = Array.from({ length: SUITE_COUNT }, (_, i) => `suite-${i}`);
 
 function buildSuitesData(t: (key: string) => string): RoomDetail[] {
   return [0, 1].map((i) => ({
@@ -61,28 +51,14 @@ function buildSuitesData(t: (key: string) => string): RoomDetail[] {
   }));
 }
 
-function SuiteDetailButton({ suite, label }: { suite: RoomDetail; label: string }) {
-  const [selectedSuite, setSelectedSuite] = useState<RoomDetail | null>(null);
-
-  return (
-    <>
-      <button
-        onClick={() => setSelectedSuite(suite)}
-        className="flex items-center gap-1.5 px-5 py-3 border border-brand-600 text-brand-600 font-medium text-sm uppercase tracking-wider hover:bg-brand-50 transition-colors"
-      >
-        <Eye className="w-4 h-4" />
-        {label}
-      </button>
-      <DetailModal item={selectedSuite} onClose={() => setSelectedSuite(null)} />
-    </>
-  );
-}
-
 export function SuitesPage() {
   const { t } = useTranslation();
   const { openModal } = useContactModal();
   const [current, setCurrent] = useState(0);
-  const [activeSection, setActiveSection] = useState('');
+  const [selectedSuite, setSelectedSuite] = useState<RoomDetail | null>(null);
+
+  const heroSlidesData = t('suites.hero.slides', { returnObjects: true }) as { badge: string; title: string }[];
+  const currentSlide = heroSlidesData?.[current] ?? { badge: '', title: '' };
 
   const suites = useDataBuilder(buildSuitesData, t);
 
@@ -95,30 +71,8 @@ export function SuitesPage() {
     return () => clearInterval(timer);
   }, [next]);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries.filter((e) => e.isIntersecting);
-        if (visible.length > 0) {
-          const topmost = visible.reduce((best, curr) =>
-            curr.boundingClientRect.top < best.boundingClientRect.top ? curr : best
-          );
-          setActiveSection(topmost.target.id);
-        }
-      },
-      { threshold: 0.2, rootMargin: '-72px 0px -10% 0px' }
-    );
-
-    sectionIds.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-white">
       {/* ===== HERO ===== */}
       <section className="relative h-[60vh] md:h-[70vh] flex items-center justify-center overflow-hidden">
         {heroSlides.map((slide, index) => (
@@ -138,22 +92,22 @@ export function SuitesPage() {
         ))}
 
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto mt-16">
-          <motion.div
-            key={current}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-          >
-            <span className="text-brand-300 font-medium tracking-[0.2em] uppercase text-sm md:text-base mb-4 block">
-              {t('suites.hero.badge')}
-            </span>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif text-white font-bold mb-6 leading-tight">
-              {t('suites.hero.title')}
-            </h1>
-            <p className="text-lg md:text-xl text-slate-200 max-w-2xl mx-auto font-light">
-              {t('suites.hero.subtitle')}
-            </p>
-          </motion.div>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={current}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.6, ease: 'easeOut' }}
+            >
+              <span className="text-brand-300 font-medium tracking-[0.2em] uppercase text-sm md:text-base mb-4 block">
+                {currentSlide.badge}
+              </span>
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif text-white font-bold mb-6 leading-tight">
+                {currentSlide.title}
+              </h1>
+            </motion.div>
+          </AnimatePresence>
         </div>
 
         <motion.div
@@ -165,35 +119,10 @@ export function SuitesPage() {
         </motion.div>
       </section>
 
-      {/* ===== ANCHOR NAVIGATION ===== */}
-      <div className="sticky top-[72px] z-30 bg-white/95 backdrop-blur-sm border-b border-slate-100 shadow-sm">
+      {/* ===== INTRODUCTION ===== */}
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-center gap-1 py-3">
-            {suites.map((suite, i) => {
-              const id = `suite-${i}`;
-              return (
-                <a
-                  key={suite.name}
-                  href={`#${id}`}
-                  className={`flex items-center gap-2 px-5 py-2.5 text-sm font-medium uppercase tracking-wider rounded-sm transition-all duration-200 ${
-                    activeSection === id
-                      ? 'text-brand-600 bg-brand-50'
-                      : 'text-slate-600 hover:text-brand-600 hover:bg-brand-50'
-                  }`}
-                >
-                  <Home className="w-4 h-4" />
-                  {suite.name}
-                </a>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-
-      {/* ===== SUITES GRID ===== */}
-      <section className="py-24 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div {...fadeUp} className="text-center max-w-3xl mx-auto mb-16">
+          <motion.div {...fadeUp} className="text-center max-w-3xl mx-auto">
             <h2 className="text-brand-600 font-medium tracking-widest uppercase text-sm mb-3">
               {t('suites.intro.badge')}
             </h2>
@@ -204,107 +133,73 @@ export function SuitesPage() {
               {t('suites.intro.text')}
             </p>
           </motion.div>
+        </div>
+      </section>
 
-          <div className="space-y-24">
+      {/* ===== SUITES GRID ===== */}
+      <section className="py-[100px] max-md:py-[60px] bg-[#f9f6f0]">
+        <div className="max-w-[1140px] mx-auto px-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[30px] max-md:gap-5">
             {suites.map((suite, index) => (
               <motion.div
-                id={`suite-${index}`}
                 key={suite.name}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.7 }}
-                className={`scroll-mt-24 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${
-                  index % 2 === 1 ? 'lg:direction-rtl' : ''
-                }`}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="group relative w-full aspect-[4/5] overflow-hidden cursor-pointer bg-white mx-auto"
+                style={suites.length === 1 ? { gridColumn: '2 / 3' } : {}}
               >
-                <div
-                  className={`relative ${
-                    index % 2 === 1 ? 'lg:order-2' : 'lg:order-1'
-                  }`}
-                >
-                  <div className="aspect-[4/3] overflow-hidden rounded-sm shadow-xl">
-                    <img
-                      src={suite.image}
-                      alt={suite.name}
-                      className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-black/10" />
-                  </div>
+                {/* Image */}
+                <img
+                  src={suite.image}
+                  alt={suite.name}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                />
 
-                  <span
-                    className={`absolute top-4 left-4 px-4 py-1.5 text-xs font-bold uppercase tracking-wider rounded-sm ${
-                      index === 1
-                        ? 'bg-amber-400 text-slate-900'
-                        : 'bg-brand-600 text-white'
-                    }`}
-                  >
-                    {suite.badge}
+                {/* Booking Tag */}
+                <div className="absolute top-0 right-[25px] bg-[#222222] z-[3] px-[8px] pt-[15px] pb-[20px]">
+                  <span className="font-sans text-white text-[10px] tracking-[2px] uppercase block leading-none" style={{ writingMode: 'vertical-rl' }}>
+                    BOOKING
                   </span>
                 </div>
 
-                <div
-                  className={`${
-                    index % 2 === 1 ? 'lg:order-1 lg:text-right' : 'lg:order-2'
-                  }`}
+                {/* Bottom Details (price + name on gradient) */}
+                <div className="absolute bottom-0 left-0 w-full z-[2] px-[30px] pb-[40px] pt-[40px] box-border"
+                  style={{ background: 'linear-gradient(transparent, rgba(0,0,0,0.8))' }}
                 >
-                  <h3 className="text-3xl md:text-4xl font-serif text-slate-900 mb-2">
+                  <p className="font-sans text-[#bfa37a] text-[12px] font-medium uppercase tracking-[2px] mb-[5px]">
+                    <FcfaCurrency price={suite.price} />
+                  </p>
+                  <h3 className="font-serif text-white text-[24px] font-normal m-0">
                     {suite.name}
                   </h3>
+                </div>
 
-                  <div className="flex flex-wrap gap-4 mt-4 mb-6 text-sm text-slate-500">
-                    <span className="flex items-center gap-1.5">
-                      <Square className="w-4 h-4 text-brand-500" />
-                      {suite.size}
-                    </span>
-                    <span className="flex items-center gap-1.5">
-                      <Users className="w-4 h-4 text-brand-500" />
-                      {suite.capacity}
-                    </span>
-                    <span className="flex items-center gap-1.5">
-                      <Bed className="w-4 h-4 text-brand-500" />
-                      {suite.bed}
-                    </span>
-                  </div>
-
-                  <p
-                    className={`text-slate-600 font-light leading-relaxed mb-6 ${
-                      index % 2 === 1 ? 'lg:ml-auto' : ''
-                    }`}
-                  >
-                    {suite.description}
-                  </p>
-
-                  <ul
-                    className={`space-y-2.5 mb-8 ${
-                      index % 2 === 1 ? 'lg:flex lg:flex-col lg:items-end' : ''
-                    }`}
-                  >
-                    {suite.features.slice(0, 6).map((feature) => (
-                      <li
-                        key={feature}
-                        className="flex items-center gap-3 text-sm text-slate-700"
-                      >
-                        <span className="w-1.5 h-1.5 rounded-full bg-brand-500 shrink-0" />
-                        <span className="font-light">{feature}</span>
-                      </li>
+                {/* Hover Overlay */}
+                <div className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-400 z-[1]">
+                  {/* Amenity Icons */}
+                  <div className="flex gap-[15px] mb-5">
+                    {hoverAmenityIcons.map((Icon, i) => (
+                      <Icon key={i} className="w-[22px] h-[22px] text-white" />
                     ))}
-                  </ul>
-
-                  <div className="flex items-center gap-3 flex-wrap">
-                    <span className="text-2xl font-serif text-brand-600">
-                      {suite.price}
-                    </span>
-                    <div className="flex items-center gap-2">
-                      <SuiteDetailButton suite={suite} label={t('suites.detailButton')} />
-                      <button
-                        onClick={openModal}
-                        className="px-6 py-3 bg-brand-600 text-white font-medium text-sm uppercase tracking-wider hover:bg-brand-700 transition-colors"
-                      >
-                        {t('suites.bookButton')}
-                      </button>
-                    </div>
                   </div>
+
+                  {/* DETAILS Button */}
+                  <button
+                    onClick={(e) => { e.stopPropagation(); setSelectedSuite(suite); }}
+                    className="font-sans text-white text-[12px] uppercase tracking-[2px] no-underline border-b border-white pb-[2px] hover:text-[#bfa37a] hover:border-[#bfa37a] transition-colors duration-300"
+                  >
+                    {t('suites.detailButton')}
+                  </button>
+
+                  {/* BOOKING Button */}
+                  <button
+                    onClick={(e) => { e.stopPropagation(); openModal(); }}
+                    className="mt-4 font-sans text-white text-[11px] uppercase tracking-[2px] px-5 py-2 border border-white/50 hover:bg-white hover:text-[#222] transition-all duration-300"
+                  >
+                    {t('suites.bookButton')}
+                  </button>
                 </div>
               </motion.div>
             ))}
@@ -318,7 +213,7 @@ export function SuitesPage() {
           className="absolute inset-0 opacity-10"
           style={{
             backgroundImage:
-              'url("https://images.unsplash.com/photo-1563911302283-d2bc129e7570?auto=format&fit=crop&q=80")',
+              'url("/images/chambres/718118971_1000553526056865_5978524769432572536_n.jpeg")',
             backgroundPosition: 'center',
             backgroundSize: 'cover',
             backgroundAttachment: 'fixed'
@@ -355,6 +250,8 @@ export function SuitesPage() {
           </motion.div>
         </div>
       </section>
+
+      <DetailModal item={selectedSuite} onClose={() => setSelectedSuite(null)} />
     </div>
   );
 }

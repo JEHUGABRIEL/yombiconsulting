@@ -1,55 +1,39 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useTranslation, Trans } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { Calendar, User, Star } from 'lucide-react';
+import { Calendar, Star } from 'lucide-react';
 
-function AnimatedCounter({ value, suffix = '', label, icon }: { value: number; suffix?: string; label: string; icon: React.ReactNode }) {
-  const [count, setCount] = useState(0);
-  const [hasAnimated, setHasAnimated] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasAnimated) {
-          setHasAnimated(true);
-          const duration = 1500;
-          const start = performance.now();
-
-          const animate = (now: number) => {
-            const elapsed = now - start;
-            const progress = Math.min(elapsed / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3);
-            setCount(Math.floor(eased * value));
-            if (progress < 1) requestAnimationFrame(animate);
-          };
-
-          requestAnimationFrame(animate);
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [value, hasAnimated]);
-
-  return (
-    <div ref={ref} className="text-center p-5 bg-slate-50 rounded-sm border border-slate-100 hover:border-brand-200 hover:bg-brand-50/50 transition-all duration-300">
-      <div className="text-brand-500 mb-2 flex justify-center">{icon}</div>
-      <p className="text-3xl font-serif text-slate-900 mb-1">
-        {count}{suffix}
-      </p>
-      <p className="text-xs text-slate-500 uppercase tracking-wider font-medium">{label}</p>
-    </div>
-  );
-}
+const aboutSlides = [
+  {
+    src: '/images/accueil/715360332_1520481719442674_7442289924839588376_n.jpg',
+    altKey: 'about.imgAlt1'
+  },
+  {
+    src: '/images/vue generale/711368992_1520475199443326_5136543548879226338_n.jpg',
+    altKey: 'about.imgAlt1'
+  },
+  {
+    src: '/images/salles/715501064_1520480982776081_4982796264975860234_n.jpg',
+    altKey: 'about.imgAlt1'
+  },
+  {
+    src: '/images/Piscine/715790289_1520474689443377_7403351497039086571_n.jpg',
+    altKey: 'about.imgAlt2'
+  }
+];
 
 export function About() {
   const { t } = useTranslation();
+  const [aboutCurrent, setAboutCurrent] = useState(0);
+
+  const aboutNext = useCallback(() => {
+    setAboutCurrent((prev) => (prev + 1) % aboutSlides.length);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(aboutNext, 5000);
+    return () => clearInterval(timer);
+  }, [aboutNext]);
   return (
     <section id="about" className="py-24 bg-white relative overflow-hidden">
       {/* Subtle background pattern */}
@@ -75,29 +59,56 @@ export function About() {
             transition={{ duration: 0.8 }}
             className="relative"
           >
-            {/* Main image */}
+            {/* Main image - Carousel */}
             <div className="aspect-[4/5] overflow-hidden rounded-sm shadow-xl relative group">
-              <img
-                src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&q=80"
-                alt={t('about.imgAlt1')}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              />
+              {aboutSlides.map((slide, index) => (
+                <img
+                  key={slide.src}
+                  src={slide.src}
+                  alt={t(slide.altKey)}
+                  className="absolute inset-0 w-full h-full object-cover transition-all duration-1000 ease-in-out group-hover:scale-105"
+                  style={{ opacity: index === aboutCurrent ? 1 : 0 }}
+                />
+              ))}
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+              {/* Slide Dots */}
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 z-10">
+                {aboutSlides.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setAboutCurrent(index)}
+                    className={`transition-all duration-300 ${
+                      index === aboutCurrent
+                        ? 'w-5 h-1.5 bg-white'
+                        : 'w-1.5 h-1.5 bg-white/50 hover:bg-white/70'
+                    }`}
+                    aria-label={`Slide ${index + 1}`}
+                  />
+                ))}
+              </div>
             </div>
 
             {/* Offset image */}
             <div className="absolute -bottom-8 -right-8 w-2/3 aspect-square border-8 border-white overflow-hidden rounded-sm hidden md:block shadow-xl">
               <img
-                src="https://images.unsplash.com/photo-1551882547-ff40c0d13c05?auto=format&fit=crop&q=80"
+                src="/images/accueil/714955422_1539365217603523_2794173171042398636_n.jpeg"
                 alt={t('about.imgAlt2')}
                 className="w-full h-full object-cover"
               />
             </div>
 
-            {/* Decorative badge on image */}
-            <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-sm shadow-sm hidden md:flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-brand-500 animate-pulse" />
-              <span className="text-xs font-medium text-slate-700 uppercase tracking-wider">KM Hotel</span>
+            {/* Stars badge on image - top right */}
+            <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1.5 rounded-sm shadow-sm hidden md:flex items-center gap-1.5 z-10">
+              {[1, 2, 3].map((i) => (
+                <Star
+                  key={i}
+                  className="w-3.5 h-3.5 fill-current text-brand-500"
+                />
+              ))}
+              <span className="text-[10px] font-semibold text-slate-700 uppercase tracking-wider ml-0.5">
+                {t('about.statStars')}
+              </span>
             </div>
           </motion.div>
 
@@ -140,40 +151,10 @@ export function About() {
                 </p>
               </div>
             </motion.div>
+
+
           </motion.div>
         </div>
-
-        {/* Stats Counters */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-4"
-        >
-          <AnimatedCounter
-            value={31}
-            label={t('about.statRooms')}
-            icon={<Star className="w-5 h-5" />}
-          />
-          <AnimatedCounter
-            value={3}
-            suffix="★"
-            label={t('about.statStars')}
-            icon={<Star className="w-5 h-5" />}
-          />
-          <AnimatedCounter
-            value={2026}
-            label="Ouverture"
-            icon={<Calendar className="w-5 h-5" />}
-          />
-          <AnimatedCounter
-            value={1}
-            suffix=" F.K."
-            label="Fondateur"
-            icon={<User className="w-5 h-5" />}
-          />
-        </motion.div>
       </div>
     </section>
   );

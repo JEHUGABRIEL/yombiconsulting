@@ -1,7 +1,6 @@
 {
   "nav": {
     "home": "Accueil",
-    "about": "À Propos",
     "rooms": "Séjour",
     "roomsSub": "Chambres",
     "suitesSub": "Suites",
@@ -12,7 +11,12 @@
     "bienEtre": "Bien-être",
     "evenements": "Événements",
     "book": "Réserver",
-    "bookPhone": "Réserver au +236 75 49 49 69"
+    "bookPhone": "Réserver au +236 75 49 49 69",
+    "roomsSuites": "Chambres & Suites",
+    "pages": "Pages",
+    "shop": "Boutique",
+    "news": "Actualités",
+    "contact": "Contact"
   },
   "hero": {
         "ctaBook": "Réserver votre séjour",
@@ -79,17 +83,55 @@
     "badge": "Hébergement",
     "title": "Nos 31 Chambres",
     "subtitle": "Un design raffiné et un confort moderne pour un séjour inoubliable au cœur de Bangui. Toutes nos chambres bénéficient de notre autonomie électrique et hydraulique.",
+    "seeMore": "Voir Plus",
     "cta": "Voir les disponibilités",
-    "card1": {
-      "name": "Chambre Confort",
-      "desc": "Lit Queen Size, Espace bureau, Wi-Fi haut débit, Climatisation.",
-      "imgAlt": "Chambre Standard"
-    },
-    "card2": {
-      "name": "Suite Exécutive",
-      "desc": "Lit King Size, Coin salon séparé, Vue sur la ville, Prestations VIP.",
-      "imgAlt": "Suite Premium"
-    }
+    "cards": [
+      {
+        "name": "Junior Suite",
+        "price": "90 000 FCFA / NUIT",
+        "size": "28 m²",
+        "capacity": "1-2 personnes",
+        "bed": "Lit Queen Size (160x200)",
+        "desc": "Une suite élégante au design contemporain, idéale pour les voyages d'affaires ou les courts séjours en amoureux.",
+        "features": ["Lit Queen Size premium", "Espace bureau", "Climatisation réversible", "Smart TV 43\"", "Wi-Fi fibre optique", "Douche italienne", "Mini-bar", "Coffre-fort"]
+      },
+      {
+        "name": "Family Room",
+        "price": "120 000 FCFA / NUIT",
+        "size": "35 m²",
+        "capacity": "2-4 personnes",
+        "bed": "Lit King Size + Canapé-lit",
+        "desc": "Un espace généreux conçu pour les familles, alliant confort et fonctionnalité pour des séjours en toute sérénité.",
+        "features": ["Lit King Size premium", "Canapé-lit convertible", "Coin salon séparé", "Smart TV 50\"", "Wi-Fi fibre optique", "Salle de bain complète", "Mini-bar", "Nespresso"]
+      },
+      {
+        "name": "Double Room",
+        "price": "150 000 FCFA / NUIT",
+        "size": "30 m²",
+        "capacity": "1-2 personnes",
+        "bed": "Lit Queen Size (160x200)",
+        "desc": "Une chambre raffinée offrant un cadre paisible et élégant pour un séjour relaxant au cœur de Bangui.",
+        "features": ["Lit Queen Size premium", "Bureau ergonomique", "Climatisation silencieuse", "Smart TV 43\"", "Wi-Fi haut débit", "Salle de bain privative", "Plateau de courtoisie", "Coffre-fort"]
+      },
+      {
+        "name": "Deluxe Room",
+        "price": "180 000 FCFA / NUIT",
+        "size": "32 m²",
+        "capacity": "1-2 personnes",
+        "bed": "Lit King Size (180x200)",
+        "desc": "Une chambre supérieure avec des prestations premium et une décoration soignée pour une expérience exceptionnelle.",
+        "features": ["Lit King Size", "Coin salon lounge", "Baie vitrée panoramique", "Smart TV 50\"", "Wi-Fi prioritaire", "Baignoire balnéo", "Machine Nespresso", "Plateau de bienvenue"]
+      },
+      {
+        "name": "Superior Room",
+        "price": "210 000 FCFA / NUIT",
+        "size": "38 m²",
+        "capacity": "1-3 personnes",
+        "bed": "Lit King Size (180x200)",
+        "desc": "Notre catégorie la plus exclusive, offrant un espace généreux et des prestations haut de gamme pour un séjour d'exception.",
+        "features": ["Lit King Size premium", "Salon spacieux", "Terrasse ou balcon", "Smart TV 55\"", "Wi-Fi prioritaire", "Douche + Baignoire", "Nespresso","Service en chambre"]
+      }
+    ]
   },
   "dining": {
     "badge": "Gastronomie & Détente",
@@ -103,6 +145,19 @@
     "dinnerHours": "19:00 - 22:30",
     "imgAlt1": "Restaurant gastronomique",
     "imgAlt2": "Bar Lounge et cocktails"
+  },
+  "extraServices": {
+    "badge": "Services Complémentaires",
+    "title": "Des Services sur Mesure",
+    "subtitle": "Profitez de prestations pensées pour rendre votre séjour encore plus agréable et sans contrainte.",
+    "items": [
+      { "title": "Navette Aéroport", "desc": "Un service de transfert privé pour vous accueillir à l'aéroport international de Bangui et vous conduire à l'hôtel en tout confort." },
+      { "title": "Service en Chambre 24h/24", "desc": "Commandez depuis votre chambre à toute heure : petit-déjeuner, collations, plats du restaurant ou boissons, servis avec élégance." },
+      { "title": "Blanchisserie & Nettoyage", "desc": "Un service de blanchisserie rapide et soigné pour que votre garde-robe reste impeccable tout au long de votre séjour." },
+      { "title": "Conciergerie", "desc": "Notre concierge est à votre disposition pour organiser vos sorties, réservations, excursions et toute demande spéciale." },
+      { "title": "Location de Véhicules", "desc": "Louez une voiture avec ou sans chauffeur pour explorer Bangui et ses environs en toute liberté et sécurité." },
+      { "title": "Organisation d'Excursions", "desc": "Découvrez les trésors de la Centrafrique : chutes de Boali, parc national, marchés locaux et visites culturelles guidées." }
+    ]
   },
   "testimonials": {
     "badge": "Témoignages",
@@ -150,9 +205,20 @@
   },
   "chambres": {
     "hero": {
-      "badge": "Hébergement de luxe",
-      "title": "Nos Chambres",
-      "subtitle": "Des chambres au design raffiné, pensées pour votre confort absolu au cœur de Bangui."
+      "slides": [
+        {
+          "badge": "Hébergement de luxe",
+          "title": "Nos Chambres"
+        },
+        {
+          "badge": "Confort absolu",
+          "title": "L'Élégance Contemporaine"
+        },
+        {
+          "badge": "Design raffiné",
+          "title": "Le Luxe Discret"
+        }
+      ]
     },
     "intro": {
       "badge": "Un confort inégalé",
@@ -172,7 +238,7 @@
     "rooms": [
       {
         "name": "Chambre Confort",
-        "price": "À partir de 65 000 XAF",
+        "price": "À partir de 65 000 FCFA",
         "size": "25 m²",
         "capacity": "1-2 personnes",
         "bed": "Lit Queen Size (160x200)",
@@ -191,7 +257,7 @@
       },
       {
         "name": "Chambre Deluxe",
-        "price": "À partir de 85 000 XAF",
+        "price": "À partir de 85 000 FCFA",
         "size": "32 m²",
         "capacity": "1-2 personnes",
         "bed": "Lit King Size (180x200)",
@@ -211,7 +277,7 @@
       },
       {
         "name": "Suite Exécutive",
-        "price": "À partir de 120 000 XAF",
+        "price": "À partir de 120 000 FCFA",
         "size": "45 m²",
         "capacity": "1-3 personnes",
         "bed": "Lit King Size (180x200) + Canapé-lit",
@@ -261,9 +327,16 @@
   },
   "suites": {
     "hero": {
-      "badge": "Luxe & Prestige",
-      "title": "Nos Suites",
-      "subtitle": "Des espaces généreux et raffinés pour une expérience de séjour d'exception au KM Hotel."
+      "slides": [
+        {
+          "badge": "Luxe & Prestige",
+          "title": "Nos Suites"
+        },
+        {
+          "badge": "Excellence absolue",
+          "title": "L'Art de Vivre"
+        }
+      ]
     },
     "intro": {
       "badge": "Prestige absolu",
@@ -273,7 +346,7 @@
     "suites": [
       {
         "name": "Suite Exécutive",
-        "price": "À partir de 120 000 XAF",
+        "price": "À partir de 120 000 FCFA",
         "size": "45 m²",
         "capacity": "1-3 personnes",
         "bed": "Lit King Size (180x200) + Canapé-lit",
@@ -324,9 +397,28 @@
   "bienEtre": {
     "nav": "Bien-être",
     "hero": {
-      "badge": "Détente & Bien-être",
-      "title": "Espace Bien-être & Relaxation",
-      "subtitle": "Piscines, spa, hammam et jardin zen : un sanctuaire de bien-être au cœur du KM Hotel pour vous ressourcer."
+      "slides": [
+        {
+          "badge": "Détente & Bien-être",
+          "title": "Espace Bien-être & Relaxation"
+        },
+        {
+          "badge": "Piscines de Rêve",
+          "title": "Nagez dans le Luxe"
+        },
+        {
+          "badge": "Spa & Massages",
+          "title": "Un Sanctuaire de Paix"
+        },
+        {
+          "badge": "Hammam & Sauna",
+          "title": "Détente Absolue"
+        },
+        {
+          "badge": "Massages & Soins",
+          "title": "Relaxation Profonde"
+        }
+      ]
     },
     "intro": {
       "badge": "Votre sanctuaire",
@@ -392,9 +484,24 @@
   },
   "evenements": {
     "hero": {
-      "badge": "Réceptions & Séminaires",
-      "title": "Événements & Réceptions",
-      "subtitle": "Organisez vos événements professionnels et privés dans un cadre d'exception au cœur de Bangui."
+      "slides": [
+        {
+          "badge": "Réceptions & Séminaires",
+          "title": "Événements & Réceptions"
+        },
+        {
+          "badge": "Séminaires Professionnels",
+          "title": "Espaces Modulables"
+        },
+        {
+          "badge": "Mariages de Rêve",
+          "title": "Célébrez l'Amour"
+        },
+        {
+          "badge": "Réceptions Privées",
+          "title": "Moment d'Exception"
+        }
+      ]
     },
     "intro": {
       "badge": "Votre événement, notre expertise",
@@ -443,9 +550,20 @@
   },
   "restaurant": {
     "hero": {
-      "badge": "Gastronomie & Détente",
-      "title": "Notre Restaurant",
-      "subtitle": "Une expérience culinaire raffinée au cœur de Bangui, où les saveurs locales rencontrent la gastronomie internationale."
+      "slides": [
+        {
+          "badge": "Gastronomie & Détente",
+          "title": "Notre Restaurant"
+        },
+        {
+          "badge": "Une Table d'Exception",
+          "title": "Voyage Culinaire"
+        },
+        {
+          "badge": "Saveurs du Monde",
+          "title": "L'Excellence Gastronomique"
+        }
+      ]
     },
     "intro": {
       "badge": "Une Table d'Exception",
@@ -479,35 +597,35 @@
       {
         "name": "Brochettes de Capitaine",
         "desc": "Poisson du fleuve Oubangui mariné aux épices locales, servi avec riz parfumé et légumes sautés",
-        "price": "À partir de 8 500 XAF",
+        "price": "À partir de 8 500 FCFA",
         "highlights": ["Poisson frais du fleuve Oubangui", "Mariné aux épices locales", "Accompagné de riz parfumé", "Légumes de saison sautés"],
         "ingredients": ["Capitaine (poisson)", "Épices locales", "Riz parfumé", "Légumes frais", "Huile de palme", "Ail", "Citron"]
       },
       {
         "name": "Filet de Bœuf au Poivre",
         "desc": "Filet tendre grillé, sauce au poivre vert, gratin dauphinois et haricots verts",
-        "price": "À partir de 12 000 XAF",
+        "price": "À partir de 12 000 FCFA",
         "highlights": ["Filet de bœuf tendre grillé", "Sauce au poivre vert maison", "Gratin dauphinois crémeux", "Haricots verts frais"],
         "ingredients": ["Filet de bœuf", "Poivre vert", "Crème fraîche", "Pommes de terre", "Haricots verts", "Beurre", "Thym"]
       },
       {
         "name": "Poulet Yassa revisité",
         "desc": "Cuisses de poulet confites dans une marinade oignons-citron, purée de patate douce",
-        "price": "À partir de 9 500 XAF",
+        "price": "À partir de 9 500 FCFA",
         "highlights": ["Cuisses de poulet confites", "Marinade oignons-citron", "Purée de patate douce onctueuse", "Recette traditionnelle revisitée"],
         "ingredients": ["Cuisses de poulet", "Oignons", "Citron", "Patate douce", "Moutarde", "Huile d'olive", "Persil"]
       },
       {
         "name": "Assiette Végétarienne",
         "desc": "Légumes de saison rôtis, quinoa aux herbes, sauce vierge et croustillant de parmesan",
-        "price": "À partir de 7 000 XAF",
+        "price": "À partir de 7 000 FCFA",
         "highlights": ["Légumes de saison rôtis", "Quinoa aux herbes fraîches", "Sauce vierge maison", "Croustillant de parmesan"],
         "ingredients": ["Légumes de saison", "Quinoa", "Herbes fraîches", "Parmesan", "Tomates cerises", "Huile d'olive", "Basilic"]
       },
       {
         "name": "Panna Cotta Tropicale",
         "desc": "Panna cotta vanille maison, assortiment de fruits tropicaux frais, coulis d'hibiscus et tuile croustillante",
-        "price": "À partir de 6 500 XAF",
+        "price": "À partir de 6 500 FCFA",
         "highlights": ["Panna cotta vanille maison", "Sélection de fruits tropicaux frais", "Coulis d'hibiscus", "Tuile aux amandes croustillante"],
         "ingredients": ["Crème fraîche", "Gousse de vanille", "Mangue", "Ananas", "Fruit de la passion", "Hibiscus", "Amandes", "Blancs d'œufs"]
       }
@@ -524,9 +642,20 @@
   },
   "bar": {
     "hero": {
-      "badge": "Détente & Ambiance",
-      "title": "Bar Lounge",
-      "subtitle": "Un cadre feutré et cosy pour vos moments de détente, avec une sélection pointue de cocktails, vins et spiritueux."
+      "slides": [
+        {
+          "badge": "Détente & Ambiance",
+          "title": "Bar Lounge"
+        },
+        {
+          "badge": "Cocktails Signatures",
+          "title": "L'Art de la Dégustation"
+        },
+        {
+          "badge": "Ambiance Cosy",
+          "title": "Soirées Inoubliables"
+        }
+      ]
     },
     "lounge": {
       "label": "Bar Lounge",
@@ -537,16 +666,26 @@
       "cocktailTitle": "Notre Carte de Cocktails"
     },
     "cocktails": [
-      { "name": "KM Sunset", "desc": "Rhum, jus de fruits de la passion, sirop de gingembre, menthe fraîche", "price": "5 000 XAF" },
-      { "name": "Bangui Mule", "desc": "Vodka, ginger beer locale, citron vert, angostura", "price": "4 500 XAF" },
-      { "name": "Sangria Tropicale", "desc": "Vin rouge, fruits exotiques, cannelle, eau gazeuse", "price": "4 000 XAF" },
-      { "name": "Mocktail Hibiscus", "desc": "Infusion d'hibiscus, citronnelle, sirop de miel, eau pétillante (sans alcool)", "price": "3 000 XAF" }
+      { "name": "KM Sunset", "desc": "Rhum, jus de fruits de la passion, sirop de gingembre, menthe fraîche", "price": "5 000 FCFA" },
+      { "name": "Bangui Mule", "desc": "Vodka, ginger beer locale, citron vert, angostura", "price": "4 500 FCFA" },
+      { "name": "Sangria Tropicale", "desc": "Vin rouge, fruits exotiques, cannelle, eau gazeuse", "price": "4 000 FCFA" },
+      { "name": "Mocktail Hibiscus", "desc": "Infusion d'hibiscus, citronnelle, sirop de miel, eau pétillante (sans alcool)", "price": "3 000 FCFA" }
     ],
     "cta": {
       "title": "Vivez l'Ambiance du Bar",
       "text": "Que ce soit pour un afterwork entre collègues, un rendez-vous en amoureux ou une soirée entre amis, venez découvrir notre sélection de cocktails signatures.",
       "button": "Réserver une table"
     }
+  },
+  "shop": {
+    "title": "Boutique — Coming Soon",
+    "text": "Notre boutique en ligne ouvrira bientôt. Vous pourrez y retrouver des produits exclusifs KM Hotel, des articles de bien-être et bien plus encore.",
+    "cta": "Retour à l'accueil"
+  },
+  "news": {
+    "title": "Actualités — Coming Soon",
+    "text": "Notre section actualités arrive bientôt. Vous pourrez y suivre les dernières nouvelles du KM Hotel, nos événements à venir et les offres exclusives.",
+    "cta": "Retour à l'accueil"
   },
   "restaurantBar": {
     "hero": {
@@ -589,10 +728,10 @@
       "title": "Suggestions du Chef",
       "subtitle": "Notre chef sélectionne les meilleurs produits de saison pour vous offrir une carte renouvelée régulièrement.",
       "dishes": [
-        { "name": "Brochettes de Capitaine", "desc": "Poisson du fleuve Oubangui mariné aux épices locales, servi avec riz parfumé et légumes sautés", "price": "À partir de 8 500 XAF" },
-        { "name": "Filet de Bœuf au Poivre", "desc": "Filet tendre grillé, sauce au poivre vert, gratin dauphinois et haricots verts", "price": "À partir de 12 000 XAF" },
-        { "name": "Poulet Yassa revisité", "desc": "Cuisses de poulet confites dans une marinade oignons-citron, purée de patate douce", "price": "À partir de 9 500 XAF" },
-        { "name": "Assiette Végétarienne", "desc": "Légumes de saison rôtis, quinoa aux herbes, sauce vierge et croustillant de parmesan", "price": "À partir de 7 000 XAF" }
+        { "name": "Brochettes de Capitaine", "desc": "Poisson du fleuve Oubangui mariné aux épices locales, servi avec riz parfumé et légumes sautés", "price": "À partir de 8 500 FCFA" },
+        { "name": "Filet de Bœuf au Poivre", "desc": "Filet tendre grillé, sauce au poivre vert, gratin dauphinois et haricots verts", "price": "À partir de 12 000 FCFA" },
+        { "name": "Poulet Yassa revisité", "desc": "Cuisses de poulet confites dans une marinade oignons-citron, purée de patate douce", "price": "À partir de 9 500 FCFA" },
+        { "name": "Assiette Végétarienne", "desc": "Légumes de saison rôtis, quinoa aux herbes, sauce vierge et croustillant de parmesan", "price": "À partir de 7 000 FCFA" }
       ]
     },
     "bar": {
@@ -603,10 +742,10 @@
       "location": "Rez-de-chaussée",
       "cocktailTitle": "Notre Carte de Cocktails",
       "cocktails": [
-        { "name": "KM Sunset", "desc": "Rhum, jus de fruits de la passion, sirop de gingembre, menthe fraîche", "price": "5 000 XAF" },
-        { "name": "Bangui Mule", "desc": "Vodka, ginger beer locale, citron vert, angostura", "price": "4 500 XAF" },
-        { "name": "Sangria Tropicale", "desc": "Vin rouge, fruits exotiques, cannelle, eau gazeuse", "price": "4 000 XAF" },
-        { "name": "Mocktail Hibiscus", "desc": "Infusion d'hibiscus, citronnelle, sirop de miel, eau pétillante (sans alcool)", "price": "3 000 XAF" }
+        { "name": "KM Sunset", "desc": "Rhum, jus de fruits de la passion, sirop de gingembre, menthe fraîche", "price": "5 000 FCFA" },
+        { "name": "Bangui Mule", "desc": "Vodka, ginger beer locale, citron vert, angostura", "price": "4 500 FCFA" },
+        { "name": "Sangria Tropicale", "desc": "Vin rouge, fruits exotiques, cannelle, eau gazeuse", "price": "4 000 FCFA" },
+        { "name": "Mocktail Hibiscus", "desc": "Infusion d'hibiscus, citronnelle, sirop de miel, eau pétillante (sans alcool)", "price": "3 000 FCFA" }
       ],
       "imgAlt1": "Cocktail bar",
       "imgAlt2": "Bar ambiance"

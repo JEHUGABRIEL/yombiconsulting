@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Clock, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -13,6 +13,24 @@ const galleryImages = [
 
 export function Dining() {
   const { t } = useTranslation();
+  const [currentSet, setCurrentSet] = React.useState(0);
+
+  const totalSets = galleryImages.length;
+
+  // Rotation infinie des images
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSet((prev) => (prev + 1) % totalSets);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [totalSets]);
+
+  // Générer 4 images pour la grille : rotation circulaire à partir de currentSet
+  const visibleImages = Array.from({ length: 4 }, (_, i) => {
+    const idx = (currentSet + i) % galleryImages.length;
+    return { src: galleryImages[idx], key: `img-${currentSet}-${i}` };
+  });
+
   return (
     <section id="dining" className="py-24 bg-slate-900 text-white relative overflow-hidden">
       {/* Parallax background */}
@@ -50,30 +68,35 @@ export function Dining() {
           </p>
         </motion.div>
 
-        {/* Image gallery */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-14"
-        >
-          {galleryImages.map((src, i) => (
-            <div
-              key={src}
-              className={`relative overflow-hidden rounded-sm aspect-[4/3] ${
-                i === 0 ? 'md:col-span-2 md:row-span-2' : ''
-              }`}
+        {/* Image gallery - infinite rotating */}
+        <div className="relative mb-14 overflow-hidden">
+          <AnimatePresence mode="popLayout">
+            <motion.div
+              key={currentSet}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.8, ease: 'easeInOut' }}
+              className="grid grid-cols-2 md:grid-cols-4 md:grid-rows-2 gap-3"
             >
-              <img
-                src={src}
-                alt=""
-                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500" />
-            </div>
-          ))}
-        </motion.div>
+              {visibleImages.map((img, i) => (
+                <div
+                  key={img.key}
+                  className={`relative overflow-hidden rounded-sm aspect-[4/3] md:aspect-auto ${
+                    i === 0 ? 'md:col-span-2 md:row-span-2' : i === 3 ? 'md:col-span-2' : ''
+                  }`}
+                >
+                  <img
+                    src={img.src}
+                    alt=""
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out hover:scale-125 will-change-transform origin-center"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500" />
+                </div>
+              ))}
+            </motion.div>
+          </AnimatePresence>
+        </div>
 
         {/* Info + CTA row */}
         <motion.div

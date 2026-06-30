@@ -295,21 +295,6 @@ export function Testimonials() {
                 <ChevronLeft className="w-5 h-5" />
               </button>
 
-              {/* Dots */}
-              <div className="flex items-center gap-2">
-                {Array.from({ length: totalPages }).map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => { setCurrentPage(i); setIsPaused(true); setTimeout(() => setIsPaused(false), 6000); }}
-                    className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                      i === currentPage
-                        ? 'bg-brand-600 w-6'
-                        : 'bg-slate-300 hover:bg-slate-400'
-                    }`}
-                    aria-label={t('testimonials.ariaDot', { n: i + 1 })}
-                  />
-                ))}
-              </div>
 
               <button
                 onClick={() => { nextPage(); setIsPaused(true); setTimeout(() => setIsPaused(false), 6000); }}

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%">
+  <defs>
+    <!-- Dégradé pour imiter l'effet doré texturé du logo original -->
+    <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C59325" />
+      <stop offset="30%" stop-color="#E4B848" />
+      <stop offset="50%" stop-color="#FBF09B" />
+      <stop offset="70%" stop-color="#DFB241" />
+      <stop offset="100%" stop-color="#9A6B1F" />
+    </linearGradient>
+  </defs>
+
+  <g fill="url(#gold-grad)">
+    <!-- Bloc principal "KMH" avec la coupure courbée caractéristique -->
+    <!-- Lettre K -->
+    <path d="M 60 70 L 105 70 L 105 118 L 150 70 L 200 70 L 140 130 L 205 210 L 155 210 L 105 148 L 105 210 L 60 210 Z" />
+    <!-- Lettre M -->
+    <path d="M 195 70 L 235 70 L 255 125 L 275 70 L 315 70 L 315 210 L 275 210 L 275 120 L 255 165 L 235 120 L 235 210 L 195 210 Z" />
+    <!-- Lettre H -->
+    <path d="M 310 70 L 350 70 L 350 120 L 390 120 L 390 70 L 430 70 L 430 210 L 390 210 L 390 155 L 350 155 L 350 210 L 310 210 Z" />
+    
+    <!-- Ligne de découpe courbée (effet "Swoosh" négatif) -->
+    <path d="M 50 160 Q 230 115 440 145 L 440 160 Q 230 130 50 175 Z" fill="#FFFFFF" />
+  </g>
+
+  <!-- Texte secondaire "KM HOTEL" aligné en dessous -->
+  <text x="245" y="270" font-family="'Arial Black', 'Impact', sans-serif" font-size="46" font-weight="900" letter-spacing="1" text-anchor="middle" fill="url(#gold-grad)">KM HOTEL</text>
+</svg>

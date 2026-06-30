@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
   ChevronDown,
   Clock,
@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { DetailModal, type DishDetail } from '../components/DetailModal';
 import { useContactModal } from '../context/ContactModalContext';
+import { FcfaCurrency } from '../components/FcfaCurrency';
 
 const heroSlides = [
   {
@@ -98,7 +99,7 @@ function DishCard({ dish, index }: { dish: DishDetail; index: number }) {
           </div>
           <div className="absolute top-3 right-3">
             <span className="px-2.5 py-1 bg-white/90 backdrop-blur-sm text-brand-700 text-xs font-bold rounded-sm shadow-sm">
-              {dish.price}
+              <FcfaCurrency price={dish.price} />
             </span>
           </div>
           <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
@@ -129,7 +130,7 @@ function DishCard({ dish, index }: { dish: DishDetail; index: number }) {
               {dish.name}
             </h4>
             <span className="text-xs text-brand-600 font-medium whitespace-nowrap mt-1">
-              {dish.price}
+              <FcfaCurrency price={dish.price} />
             </span>
           </div>
           <p className="text-sm text-slate-500 font-light leading-relaxed line-clamp-2">
@@ -162,6 +163,9 @@ export function RestaurantPage() {
     const timer = setInterval(next, 5000);
     return () => clearInterval(timer);
   }, [next]);
+
+  const heroSlidesData = t('restaurant.hero.slides', { returnObjects: true }) as { badge: string; title: string }[];
+  const currentSlide = heroSlidesData?.[current] ?? { badge: '', title: '' };
 
   const highlightData = t('restaurant.highlights.items', { returnObjects: true }) as {
     title: string; hours: string; desc: string;
@@ -210,22 +214,22 @@ export function RestaurantPage() {
         ))}
 
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto mt-16">
-          <motion.div
-            key={current}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
-          >
-            <span className="text-brand-300 font-medium tracking-[0.2em] uppercase text-sm md:text-base mb-4 block">
-              {t('restaurant.hero.badge')}
-            </span>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif text-white font-bold mb-6 leading-tight">
-              {t('restaurant.hero.title')}
-            </h1>
-            <p className="text-lg md:text-xl text-slate-200 max-w-2xl mx-auto font-light">
-              {t('restaurant.hero.subtitle')}
-            </p>
-          </motion.div>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={current}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.6, ease: 'easeOut' }}
+            >
+              <span className="text-brand-300 font-medium tracking-[0.2em] uppercase text-sm md:text-base mb-4 block">
+                {currentSlide.badge}
+              </span>
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-serif text-white font-bold mb-6 leading-tight">
+                {currentSlide.title}
+              </h1>
+            </motion.div>
+          </AnimatePresence>
         </div>
 
         <motion.div

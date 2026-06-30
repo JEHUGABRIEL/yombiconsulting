@@ -1,6 +1,7 @@
 import { useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Users, Bed, Square, Star, Check } from 'lucide-react';
+import { FcfaCurrency } from './FcfaCurrency';
 
 export interface DishDetail {
   type: 'dish';
@@ -140,7 +141,7 @@ function DishContent({ item }: { item: DishDetail }) {
       <div className="p-6 sm:p-8">
         {/* Price */}
         <div className="flex items-center justify-between mb-6">
-          <span className="text-xl font-serif text-brand-600">{item.price}</span>
+          <FcfaCurrency price={item.price} className="text-xl font-serif text-brand-600" />
           <div className="flex items-center gap-1 text-amber-500">
             <Star className="w-4 h-4 fill-current" />
             <Star className="w-4 h-4 fill-current" />
@@ -241,7 +242,7 @@ function RoomContent({ item }: { item: RoomDetail }) {
 
         {/* Price */}
         <div className="mb-6">
-          <span className="text-2xl font-serif text-brand-600">{item.price}</span>
+          <FcfaCurrency price={item.price} className="text-2xl font-serif text-brand-600" />
         </div>
 
         {/* Description */}
